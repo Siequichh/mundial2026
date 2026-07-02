@@ -1091,6 +1091,120 @@ button { font-family: inherit; }
   .th-meta { align-items: flex-start; }
 }
 
+/* ===== Mercados de alto riesgo ===== */
+.tk-arriesgados {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px dashed var(--line);
+}
+.tk-arriesgados h4 {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+.riesgo-alto {
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--danger);
+  border: 1px solid color-mix(in srgb, var(--danger) 55%, transparent);
+  padding: 2px 7px;
+  border-radius: 999px;
+  margin-left: 7px;
+  vertical-align: middle;
+  font-weight: 700;
+}
+.arriesgados-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 20px;
+}
+.arr-block {}
+.arr-sub {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ink-dim);
+  margin-bottom: 8px;
+}
+.anota-primero { display: flex; flex-direction: column; gap: 6px; }
+.ap-row {
+  display: grid;
+  grid-template-columns: 90px 1fr 40px;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+}
+.ap-label { color: var(--ink-dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ap-bar-wrap { height: 8px; background: var(--bg-panel-alt); border-radius: 4px; overflow: hidden; border: 1px solid var(--line); }
+.ap-bar { height: 100%; border-radius: 4px; transition: width 0.8s cubic-bezier(.2,.8,.2,1); }
+.ap-home { background: var(--grass); }
+.ap-away { background: var(--sky); }
+.ap-ninguno { background: var(--ink-faint); }
+.ap-row-ninguno .ap-label { color: var(--ink-faint); font-style: italic; }
+.ap-pct { font-weight: 600; color: var(--ink); text-align: right; }
+
+.goleador-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.goleador {
+  background: var(--bg-panel-alt);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--danger);
+  border-radius: 7px;
+  padding: 8px 10px;
+}
+.gl-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.gl-name { font-weight: 700; font-size: 0.88rem; color: var(--ink); }
+.gl-equipo { font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink-faint); margin-right: auto; }
+.gl-prob { font-family: var(--font-mono); font-weight: 700; font-size: 0.8rem; color: var(--danger); }
+.gl-nota { display: block; margin-top: 3px; font-size: 0.75rem; color: var(--ink-faint); }
+
+/* Resultado final en header del ticket */
+.th-resultado {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  background: var(--bg-raise);
+  border: 1px solid var(--line);
+  padding: 4px 14px;
+  border-radius: 8px;
+}
+
+/* Banda de historial post-partido */
+.tk-historial {
+  margin-top: 18px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  border-left: 4px solid;
+}
+.hist-ok { background: color-mix(in srgb, var(--grass) 10%, transparent); border-color: var(--grass); }
+.hist-fail { background: color-mix(in srgb, var(--danger) 10%, transparent); border-color: var(--danger); }
+.hist-badge {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: block;
+  margin-bottom: 6px;
+}
+.hist-ok .hist-badge { color: var(--grass); }
+.hist-fail .hist-badge { color: var(--danger); }
+.hist-analisis { font-size: 0.85rem; color: var(--ink-dim); line-height: 1.5; }
+
+@media (max-width: 960px) {
+  .arriesgados-grid { grid-template-columns: 1fr; }
+}
+
 /* Movimiento reducido */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }

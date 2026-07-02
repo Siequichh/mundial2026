@@ -30,7 +30,10 @@ export default function PartidoCard({ partido, index }) {
           </span>
         </div>
         <div className="th-meta">
-          <span className="th-kickoff">{fechaHoraLocal(partido.kickoffUtc)} <em>tu hora</em></span>
+          {partido.resultadoReal
+            ? <span className="th-resultado">FINAL {partido.resultadoReal}</span>
+            : <span className="th-kickoff">{fechaHoraLocal(partido.kickoffUtc)} <em>tu hora</em></span>
+          }
           <span className="th-sede">{partido.sede}</span>
         </div>
       </header>
@@ -116,6 +119,62 @@ export default function PartidoCard({ partido, index }) {
         </div>
 
         <p className="tk-lectura"><b>Lectura del modelo:</b> {partido.lectura}</p>
+
+        {partido.arriesgados && (
+          <div className="tk-arriesgados">
+            <h4>Mercados de alto riesgo <i className="riesgo-alto">ALTO RIESGO</i></h4>
+            <div className="arriesgados-grid">
+              <div className="arr-block">
+                <span className="arr-sub">Anota primero</span>
+                <div className="anota-primero">
+                  <div className="ap-row">
+                    <span className="ap-label">{partido.home}</span>
+                    <div className="ap-bar-wrap">
+                      <div className="ap-bar ap-home" style={{ width: `${partido.arriesgados.anotaPrimero.home}%` }} />
+                    </div>
+                    <span className="ap-pct">{partido.arriesgados.anotaPrimero.home}%</span>
+                  </div>
+                  <div className="ap-row">
+                    <span className="ap-label">{partido.away}</span>
+                    <div className="ap-bar-wrap">
+                      <div className="ap-bar ap-away" style={{ width: `${partido.arriesgados.anotaPrimero.away}%` }} />
+                    </div>
+                    <span className="ap-pct">{partido.arriesgados.anotaPrimero.away}%</span>
+                  </div>
+                  <div className="ap-row ap-row-ninguno">
+                    <span className="ap-label">Ninguno / 0-0</span>
+                    <div className="ap-bar-wrap">
+                      <div className="ap-bar ap-ninguno" style={{ width: `${partido.arriesgados.anotaPrimero.ninguno}%` }} />
+                    </div>
+                    <span className="ap-pct">{partido.arriesgados.anotaPrimero.ninguno}%</span>
+                  </div>
+                </div>
+              </div>
+              <div className="arr-block">
+                <span className="arr-sub">Goleadores (anytime)</span>
+                <ul className="goleador-list">
+                  {partido.arriesgados.goleadores.map((g) => (
+                    <li key={g.jugador} className="goleador">
+                      <div className="gl-top">
+                        <span className="gl-name">{g.jugador}</span>
+                        <span className="gl-equipo">{g.equipo}</span>
+                        <span className="gl-prob">{g.prob}%</span>
+                      </div>
+                      {g.nota && <span className="gl-nota">{g.nota}</span>}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {partido.resultadoReal && partido.postAnalisis && (
+          <div className={`tk-historial ${partido.fijaAcerto ? 'hist-ok' : 'hist-fail'}`}>
+            <span className="hist-badge">{partido.fijaAcerto ? '✓ FIJA ACERTÓ' : '✗ FIJA FALLÓ'}</span>
+            <p className="hist-analisis">{partido.postAnalisis}</p>
+          </div>
+        )}
       </div>
 
       {/* Perforación del ticket */}

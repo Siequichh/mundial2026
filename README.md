@@ -21,10 +21,12 @@ Built with modern **React 19**, **Vite**, and **React Router 7**, this project t
 * **Day & Night Stadium Themes:** Fully persisted dual theme engine (`useTheme`) supporting automatic system preferences (`prefers-color-scheme`) and manual toggling. Both palettes meet **WCAG AA 4.5:1 contrast standards**.
 
 ### 📊 Advanced Statistical & Market Modeling
-* **Dixon-Coles & Poisson Models:** Calculates expected goals ($xG$) and exact score probability matrices adjusted for low-scoring match interdependence ($\rho$).
+* **Dixon-Coles & Poisson Models:** Calculates expected goals ($xG$) and exact score probability matrices adjusted for low-scoring match interdependence ($\rho$). Monte Carlo engine runs **300,000 simulations per match**.
 * **Multi-Source De-Vigged Odds Validation:** Cross-references internal mathematical probabilities against true (de-vigged) bookmaker odds (e.g., bet365) and live prediction markets (e.g., Kalshi).
-* **Referee-Calibrated Prop Markets:** Estimates corners, fouls, and card totals by factoring in match dynamics and the historical booking averages of officially designated FIFA referees (e.g., Glenn Nyberg).
-* **Dynamic Pick Confidence ("La Fija"):** Assigns algorithmic confidence tiers (**HIGH** $\ge 65\%$, **MEDIUM** $50\text{--}65\%$, **LOW** $<50\%$) directly derived from individual pick probabilities, accompanied by ranked alternative markets (Exact Scores, BTTS, Over/Under lines).
+* **Referee-Calibrated Prop Markets:** Estimates corners, fouls, and card totals by factoring in match dynamics and the historical booking averages of officially designated FIFA referees.
+* **High-Risk Markets:** Computes "who scores first" probabilities from the Dixon-Coles matrix and anytime goalscorer odds using `1 − exp(−λ × share)`. Always labeled **ALTO RIESGO**.
+* **Prediction History:** Once a match is played, `resultadoReal`, `postAnalisis`, and `fijaAcerto` are added. Past matchdays remain visible in `/predicciones` as an honest record.
+* **Dynamic Pick Confidence ("La Fija"):** Assigns algorithmic confidence tiers (**ALTA** $\ge 65\%$, **MEDIA** $50\text{--}65\%$, **BAJA** $<50\%$) per-pick (not distributed across matches), accompanied by ranked alternative markets.
 
 ### 🏟️ FIFA Knockout Bracket & Live Navigation
 * **Converging Knockout Tree:** Interactive 32-team tournament bracket (Round of 16 $\rightarrow$ Quarterfinals $\rightarrow$ Semifinals $\rightarrow$ Final) designed with dual converging flanks mirroring official FIFA and Google layouts.
@@ -52,10 +54,20 @@ The project is structured with strict **separation of concerns**, decoupling UI 
 
 ```text
 mundial2026/
+├── .claude/skills/
+│   └── actualizar-dia/         # /actualizar-dia skill (Claude Code)
+│       ├── SKILL.md            # Orchestrator: archive → recalibrate → generate → commit msg
+│       └── referencias/
+│           ├── prediccion.md   # Full quantitative methodology (Dixon-Coles + risky markets)
+│           └── post-partido.md # Post-match analysis methodology (process vs result)
 ├── .github/workflows/
 │   └── deploy.yml              # Automated GitHub Pages deployment pipeline
 ├── docs/
 │   └── BACKEND_PLAN.md         # Comprehensive Spring Boot REST API migration blueprint
+├── model/
+│   ├── simulate.py             # Dixon-Coles Monte Carlo engine (N=300,000)
+│   └── ejemplo_partidos.yaml   # Template for new match configurations
+├── origin-prompt.md.txt        # Founding quantitative analyst methodology document
 ├── public/                     # Static public assets
 └── src/
     ├── components/
@@ -92,10 +104,84 @@ mundial2026/
 
 ---
 
+## 🤖 Guide for Contributors & Forks
+
+This section is for anyone who forks or clones the project and wants to keep it updated with their own predictions for each World Cup 2026 matchday.
+
+### Prerequisites
+
+* **Node.js** v20+ and **npm** v9+
+* **Python** 3.10+ with `numpy`, `scipy`, `pyyaml` (`pip install numpy scipy pyyaml`)
+* **An AI coding assistant** with web search and file-editing capabilities (see below)
+
+### AI assistant compatibility
+
+The skill lives in `.claude/skills/actualizar-dia/SKILL.md`. It is written as a self-contained instruction set that any capable AI assistant can follow:
+
+| Tool | How to invoke |
+|---|---|
+| **Claude Code** (recommended) | Open the project folder → type `/actualizar-dia` |
+| **GitHub Copilot / Codex** | Paste the SKILL.md content as a chat prompt |
+| **OpenAI GPT-4o / o1** | Same — paste SKILL.md as a system prompt or attach the file |
+| **Any other LLM with web access** | Read `SKILL.md` and follow its steps manually or via API |
+
+The skill needs web search access to look up match results, lineups, and odds. Make sure your chosen assistant has that capability enabled.
+
+### Daily update workflow
+
+```bash
+# 1. Clone and install
+git clone https://github.com/<your-username>/mundial2026.git
+cd mundial2026
+npm install
+
+# 2. Open Claude Code in the project folder
+claude
+
+# 3. Invoke the daily update skill
+/actualizar-dia
+```
+
+The **`/actualizar-dia`** skill (`.claude/skills/actualizar-dia/`) handles everything:
+1. Detects past matchdays without `resultadoReal` → fetches real results from the web, archives with `resultadoReal` + `postAnalisis` + `fijaAcerto`.
+2. Detects today's matches kicking off in <60–90 min → fetches confirmed lineups, recalibrates xG if needed.
+3. Detects if today's matches are missing from `predicciones.js` → researches, simulates with Dixon-Coles, generates the full matchday block.
+4. Updates `bracket.js` with results and unlocked knockout fixtures.
+5. Delivers a ready-to-copy **commit message + summary** — you do the push.
+
+```bash
+# 4. Apply the changes (using the message the skill delivered)
+git add -A
+git commit -m "feat: predicciones 2026-07-03 + historial 2026-07-02"
+git push
+# The GitHub Actions workflow (.github/workflows/deploy.yml) redeploys Pages automatically.
+```
+
+### Python simulation pipeline
+
+The `model/` directory contains the Dixon-Coles simulation engine:
+
+```
+model/
+├── simulate.py            # Dixon-Coles Monte Carlo engine (N=300,000 sims)
+└── ejemplo_partidos.yaml  # Template for new match configurations
+```
+
+Run it manually:
+```bash
+cd model
+python simulate.py ejemplo_partidos.yaml
+# Outputs a JS block ready to paste into src/data/predicciones.js
+```
+
+For a new match, copy `ejemplo_partidos.yaml`, fill in `xg_home/away`, `rho`, `goleadores_home/away`, `arbitro`, picks, and external validation, then run the script. The `/actualizar-dia` skill does this automatically.
+
+---
+
 ## 🚀 Getting Started
 
 ### Prerequisites
-* **Node.js**: `v18.0.0` or higher
+* **Node.js**: `v20.0.0` or higher
 * **npm**: `v9.0.0` or higher
 
 ### Installation & Local Development

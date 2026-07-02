@@ -83,7 +83,7 @@ export default function Inicio() {
             <div className="model-snippet-card">
               <div className="msc-header">
                 <span className="msc-badge">METODOLOGÍA DIXON-COLES (1997)</span>
-                <span className="msc-sims">10,000 SIMULACIONES / PARTIDO</span>
+                <span className="msc-sims">300,000 SIMULACIONES / PARTIDO</span>
               </div>
               <p className="msc-text">
                 Modelo cuantitativo verificable basado en goles esperados y ajuste dinámico por sede y altitud.

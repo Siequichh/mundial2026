@@ -21,14 +21,14 @@ export default function ModelExplainer() {
       id: 'monte-carlo',
       stepNum: '02',
       title: 'Simulación Monte Carlo',
-      subtitle: '10,000 Iteraciones por Encuentro',
-      desc: 'Con las distribuciones de Poisson ajustadas para cada selección, ejecutamos 10,000 partidos virtuales independientes antes del silbatazo inicial para estabilizar la varianza estadística.',
+      subtitle: '300,000 Iteraciones por Encuentro',
+      desc: 'Con las distribuciones de Poisson ajustadas para cada selección, ejecutamos 300,000 partidos virtuales independientes antes del silbatazo inicial para estabilizar la varianza estadística.',
       metrics: [
-        { label: 'Iteraciones por Match', val: '10,000' },
+        { label: 'Iteraciones por Match', val: '300,000' },
         { label: 'Margen de Error (95% CI)', val: '±1.1%' },
         { label: 'Frecuencia de Actualización', val: 'Horaria' }
       ],
-      detail: 'El porcentaje final de victoria, empate o derrota refleja la frecuencia exacta en que cada marcador ocurrió a través de las diez mil simulaciones ejecutadas.'
+      detail: 'El porcentaje final de victoria, empate o derrota refleja la frecuencia exacta en que cada marcador ocurrió a través de las trescientas mil simulaciones ejecutadas.'
     },
     {
       id: 'calibracion',
@@ -37,9 +37,9 @@ export default function ModelExplainer() {
       subtitle: 'Detección de Valor y Nivel de Confianza',
       desc: 'Las probabilidades teóricas del modelo se comparan en tiempo real contra la liquidez y las cuotas del mercado asiático y europeo para detectar ineficiencias o sesgos de la afición.',
       metrics: [
-        { label: 'Confianza ALTA', val: '> 64.0%' },
-        { label: 'Confianza MEDIA', val: '48% - 64%' },
-        { label: 'SORPRESA / BAJA', val: '< 48.0%' }
+        { label: 'Confianza ALTA', val: '≥ 65%' },
+        { label: 'Confianza MEDIA', val: '50% – 64%' },
+        { label: 'Confianza BAJA', val: '< 50%' }
       ],
       detail: 'Cuando el modelo proyecta una probabilidad significativamente superior a la implícita en el mercado, la selección se califica como "La Fija" de la jornada.'
     }

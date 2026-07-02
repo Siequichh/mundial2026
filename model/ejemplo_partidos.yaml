@@ -1,0 +1,214 @@
+# ============================================================================
+# Ejemplo de configuración — Dieciseisavos de Final, 2 de julio 2026
+# ============================================================================
+# Cada partido necesita:
+#   - xg_home / xg_away : goles esperados (xG) de cada equipo
+#   - rho               : parámetro Dixon-Coles (correlación baja, típico -0.03 a -0.10)
+#   - corners_home / corners_away : corners esperados por equipo
+#   - arbitro           : datos del árbitro asignado
+#   - contexto / lectura: textos editoriales
+#
+# ¿De dónde salen los xG?
+#   1. Promedio de xG creados en los últimos 10 partidos oficiales (fuente: FBref/Opta)
+#   2. Ajuste ±10-15 % por rival (fuerza defensiva relativa)
+#   3. Ajuste por localía/sede neutral (+5 % al designado 'home')
+#   Ejemplo: España promedió 2.05 xG/partido en la fase de grupos;
+#            Austria concedió 1.73 xGA → factor = 1.73/1.50 ≈ 1.15
+#            xG ajustado ≈ 2.05 × 1.05 (localía) × (1.15 × 0.5 + 0.5) ≈ 2.15
+# ============================================================================
+
+fecha: '2026-07-02'
+etiqueta: 'Dieciseisavos de Final'
+simulaciones: 300000
+
+partidos:
+  - id: esp-aut
+    home: España
+    away: Austria
+    sede: 'SoFi Stadium, Los Ángeles'
+    kickoff_utc: '2026-07-02T19:00:00Z'
+
+    # --- Parámetros del modelo ---
+    xg_home: 2.15
+    xg_away: 0.65
+    rho: -0.05
+
+    # --- Corners (Poisson independiente) ---
+    corners_home: 5.8
+    corners_away: 4.4
+
+    # --- Árbitro ---
+    arbitro:
+      nombre: 'Glenn Nyberg'
+      pais: 'Suecia'
+      prom_amarillas: 3.21
+      prom_faltas: 21
+
+    # --- Contexto editorial ---
+    contexto: >-
+      España llega invicta y con valla a cero como líder del Grupo H.
+      Dudas físicas de Nico Williams y Yeremy Pino.
+      Austria clasificó in extremis: empató 3-3 a Argelia en el 96'.
+      El ganador cruza con Portugal/Croacia en octavos (6 jul, Dallas).
+    lectura: >-
+      Favorito claro y tres fuentes alineadas. Austria acaba de dar una
+      remontada increíble ante Argelia: el batacazo (≈9.5%) existe, pero
+      es el escenario improbable ya contemplado.
+
+    # --- Picks editoriales ---
+    picks:
+      fija:
+        seleccion: 'Gana España'
+      alternativas:
+        - seleccion: 'España gana sin recibir gol'
+          nota: 'La valla a cero viene intacta en 4 partidos'
+        - seleccion: 'Over 2.5 goles'
+          nota: 'España genera mucho; si rompe temprano hay goleada'
+        - seleccion: 'Marcador exacto 2-0'
+          nota: 'El más probable de la matriz'
+
+    # --- Goleadores para mercados arriesgados ---
+    # share = fracción del λ del equipo que aporta el jugador
+    # prob_anytime = 1 - exp(-lambda_equipo × share)
+    goleadores_home:
+      - jugador: 'Mikel Oyarzabal'
+        share: 0.33
+        nota: '9 titular, 3 goles en el torneo — referencia del área'
+      - jugador: 'Lamine Yamal'
+        share: 0.12
+        nota: '18 años (cumple 19 el 13 jul), 1G+2A — tiro desde fuera frecuente'
+    goleadores_away:
+      - jugador: 'Michael Gregoritsch'
+        share: 0.35
+        nota: 'Delantero centro, 35% del peso ofensivo austríaco'
+
+    # --- Validación externa (opcional) ---
+    validacion_extra:
+      - fuente: 'bet365 (de-vig)'
+        home: 73.5
+        draw: 20.1
+        away: 6.4
+      - fuente: 'Kalshi (traders)'
+        home: 75
+        draw: 18
+        away: 9
+
+  - id: por-cro
+    home: Portugal
+    away: Croacia
+    sede: 'BMO Field, Toronto'
+    kickoff_utc: '2026-07-02T23:00:00Z'
+
+    xg_home: 1.70
+    xg_away: 1.05
+    rho: -0.04
+
+    corners_home: 5.1
+    corners_away: 4.1
+
+    arbitro:
+      nombre: 'Espen Eskås'
+      pais: 'Noruega'
+      prom_amarillas: 3.8
+      prom_faltas: 24
+
+    contexto: >-
+      Portugal favorita ante la finalista de 2018. Último cruce terminó
+      1-1 (Nations League 2024). Croacia rinde históricamente bien en
+      fases eliminatorias. El ganador cruza con España/Austria en octavos
+      (6 jul, Dallas).
+    lectura: >-
+      Portugal favorita por poco: empate + Croacia suman ~48%. El marcador
+      individual más probable es el empate. El modelo no tiene una lectura
+      fuerte acá.
+
+    picks:
+      fija:
+        seleccion: 'Gana Portugal'
+      alternativas:
+        - seleccion: 'Portugal o empate (doble oportunidad)'
+          nota: 'La cobertura si Croacia compite como suele'
+        - seleccion: 'Ambos anotan'
+          nota: 'Las dos generan; Croacia no se guarda'
+        - seleccion: 'Marcador exacto 1-1'
+          nota: 'El resultado modal — ojo, más probable que cualquier triunfo exacto'
+
+    goleadores_home:
+      - jugador: 'Cristiano Ronaldo'
+        share: 0.38
+        nota: '9 titular, 2G en grupos'
+      - jugador: 'Bruno Fernandes'
+        share: 0.22
+        nota: 'Motor ofensivo, llegada + tiro lejano'
+    goleadores_away:
+      - jugador: 'Andrej Kramarić'
+        share: 0.45
+        nota: 'Delantero referencia, mayor share del ataque croata'
+
+    validacion_extra:
+      - fuente: 'bet365 (de-vig)'
+        home: 53.0
+        draw: 26.5
+        away: 20.6
+
+  - id: sui-arg
+    home: Suiza
+    away: Argelia
+    sede: 'BC Place, Vancouver'
+    kickoff_utc: '2026-07-03T03:00:00Z'
+
+    xg_home: 1.55
+    xg_away: 1.00
+    rho: -0.05
+
+    corners_home: 5.0
+    corners_away: 4.0
+
+    arbitro:
+      nombre: 'Yael Falcón Pérez'
+      pais: 'Argentina'
+      prom_amarillas: 4.2
+      prom_faltas: 26
+
+    contexto: >-
+      Suiza ganó el Grupo B invicta. Argelia entra como uno de los mejores
+      terceros, irregular pero con Mahrez (2G+1A) en gran nivel. Debilidad
+      clara: 7 goles concedidos en grupos. El ganador cruza con
+      Colombia/Ghana en octavos (7 jul, Vancouver).
+    lectura: >-
+      El partido más parejo del día: Suiza favorita por menos del 50% y
+      empate+Argelia superan la mitad. Cualquiera de los tres resultados
+      es plausible — todo pick acá es a consideración de cada uno.
+
+    picks:
+      fija:
+        seleccion: 'Gana Suiza'
+      alternativas:
+        - seleccion: 'Suiza o empate (doble oportunidad)'
+          nota: 'La jugada sensata en el partido más parejo del día'
+        - seleccion: 'Under 2.5 goles'
+          nota: 'Choque táctico, tendencia a marcador corto'
+        - seleccion: 'Marcador exacto 1-1'
+          nota: 'El resultado modal de la matriz'
+
+    goleadores_home:
+      - jugador: 'Breel Embolo'
+        share: 0.33
+        nota: 'Centro de ataque titular, 33% del peso ofensivo suizo'
+      - jugador: 'Xherdan Shaqiri'
+        share: 0.20
+        nota: 'Veterano con llegada y remate desde media distancia'
+    goleadores_away:
+      - jugador: 'Riyad Mahrez'
+        share: 0.40
+        nota: '2G+1A en grupos — referencia técnica del ataque argelino'
+
+    validacion_extra:
+      - fuente: 'bet365 (de-vig)'
+        home: 51.2
+        draw: 27.8
+        away: 21.0
+      - fuente: 'Mercado predicción'
+        home: 47
+        draw: 30
+        away: 24

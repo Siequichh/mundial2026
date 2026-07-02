@@ -33,6 +33,14 @@ export const jornadas = [
           tarjetas: { esperadas: 3.2, over35: 39.7, over45: 21.9 },
           faltas: { esperadas: 21 },
         },
+        arriesgados: {
+          anotaPrimero: { home: 71.8, away: 21.7, ninguno: 6.5 },
+          goleadores: [
+            { jugador: 'Mikel Oyarzabal', equipo: 'España', prob: 50.8, nota: '9 titular, 3 goles en el torneo — share ≈33% del ataque español' },
+            { jugador: 'Lamine Yamal', equipo: 'España', prob: 22.8, nota: '18 años (cumple 19 el 13 jul), 1G+2A — tiro desde fuera del área frecuente' },
+            { jugador: 'Michael Gregoritsch', equipo: 'Austria', prob: 20.4, nota: 'Delantero centro, 35% del peso ofensivo austríaco' },
+          ],
+        },
         picks: {
           fija: { seleccion: 'Gana España', prob: 71.6 },
           alternativas: [
@@ -66,6 +74,14 @@ export const jornadas = [
           corners: { esperados: 9.2, over85: 57.0, over95: 43.9, over105: 31.8 },
           tarjetas: { esperadas: 3.8, over35: 52.7, over45: 33.2 },
           faltas: { esperadas: 24 },
+        },
+        arriesgados: {
+          anotaPrimero: { home: 57.6, away: 35.5, ninguno: 6.9 },
+          goleadores: [
+            { jugador: 'Cristiano Ronaldo', equipo: 'Portugal', prob: 47.6, nota: '9 titular, 2G en grupos — todavía decide en área' },
+            { jugador: 'Andrej Kramarić', equipo: 'Croacia', prob: 37.6, nota: 'Delantero referencia, mayor share del ataque croata (~45%)' },
+            { jugador: 'Bruno Fernandes', equipo: 'Portugal', prob: 31.2, nota: 'Motor ofensivo, llegada + tiro lejano' },
+          ],
         },
         picks: {
           fija: { seleccion: 'Gana Portugal', prob: 52.1 },
@@ -101,6 +117,14 @@ export const jornadas = [
           corners: { esperados: 9.0, over85: 54.4, over95: 41.3, over105: 29.4 },
           tarjetas: { esperadas: 4.2, over35: 60.5, over45: 41.0 },
           faltas: { esperadas: 26 },
+        },
+        arriesgados: {
+          anotaPrimero: { home: 55.7, away: 35.9, ninguno: 8.4 },
+          goleadores: [
+            { jugador: 'Breel Embolo', equipo: 'Suiza', prob: 40.1, nota: 'Centro de ataque titular, 33% del peso ofensivo suizo' },
+            { jugador: 'Riyad Mahrez', equipo: 'Argelia', prob: 33.0, nota: '2G+1A en grupos — referencia técnica del ataque argelino' },
+            { jugador: 'Xherdan Shaqiri', equipo: 'Suiza', prob: 26.7, nota: 'Veterano con llegada y remate desde media distancia' },
+          ],
         },
         picks: {
           fija: { seleccion: 'Gana Suiza', prob: 49.5 },
