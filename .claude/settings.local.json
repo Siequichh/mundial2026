@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(py --version)",
+      "Bash(python *)",
+      "Bash(npm --version)",
+      "Bash(npm create *)"
+    ]
+  }
+}

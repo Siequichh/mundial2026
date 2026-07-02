@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- CSP por <meta>: GitHub Pages no permite headers HTTP custom. Límites conocidos:
+         no cubre frame-ancestors ni reporting. style-src 'unsafe-inline' es necesario por
+         los style={{'--i': i}} de React. El hash de script-src corresponde al script inline
+         del tema (si se modifica ese script, recalcular el hash).
+         TODO backend: ampliar connect-src con la URL de la API Spring Boot. -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'sha256-NfFXAOa48TL76Q90/MMUMpomJMh60KITtE+13bqWKBM='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Predicciones del Día — el prode del Mundial 2026. Probabilidades honestas partido a partido con modelo Dixon-Coles: 1X2, marcadores, goles, córners y tarjetas."
+    />
+    <meta name="theme-color" content="#0b1210" />
+    <meta property="og:title" content="Predicciones del Día · Mundial 2026" />
+    <meta property="og:description" content="El prode del Mundial 2026: la fija de cada día y sus alternativas, con probabilidades honestas." />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    <title>Predicciones del Día · Mundial 2026</title>
+    <!-- Tema antes del primer paint (evita flash). Su hash está en la CSP. -->
+    <script>document.documentElement.dataset.theme=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark')</script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
