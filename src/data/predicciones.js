@@ -13,7 +13,7 @@ export const jornadas = [
         home: 'Australia', away: 'Egipto',
         sede: 'AT&T Stadium, Arlington',
         kickoffUtc: '2026-07-03T18:00:00Z',
-        contexto: 'Cruce entre dos segundos de grupo. Egipto llega invicto (5 pts, +2) con Salah al mando, pero arrastra una molestia en el isquiotibial y su presencia no está asegurada. Australia salió del Grupo D con 4 pts y diferencia 0: bloque defensivo cerrado y poca generación. El ganador cruza con Argentina/Cabo Verde en octavos (7 jul, Atlanta).',
+        contexto: 'Cruce entre dos segundos de grupo. Egipto llega invicto (5 pts, +2) con Salah al mando: superó la molestia en el isquiotibial, entrenó completo y el DT confirmó que jugará "en alguna capacidad" — la duda es si arranca o entra desde el banco. Australia salió del Grupo D con 4 pts y diferencia 0: bloque defensivo cerrado y poca generación. El ganador cruza con Argentina/Cabo Verde en octavos (7 jul, Atlanta).',
         xg: { home: 0.95, away: 1.20 },
         rho: -0.08,
         prob: { home: 27.7, draw: 29.1, away: 43.2 },
@@ -36,7 +36,7 @@ export const jornadas = [
         arriesgados: {
           anotaPrimero: { home: 39.0, away: 49.3, ninguno: 11.7 },
           goleadores: [
-            { jugador: 'Mohamed Salah', equipo: 'Egipto', prob: 41.7, cuota: 2.40, nota: 'DUDA: molestia isquiotibial — probabilidad condicionada a que sea titular. Referencia absoluta del ataque egipcio' },
+            { jugador: 'Mohamed Salah', equipo: 'Egipto', prob: 41.7, cuota: 2.40, nota: 'Apto tras superar la molestia; jugará "en alguna capacidad". La prob asume titularidad — si entra desde el banco, baja. Referencia absoluta del ataque egipcio' },
             { jugador: 'Omar Marmoush', equipo: 'Egipto', prob: 30.0, cuota: 3.33, nota: 'Segunda vía ofensiva, gana peso si Salah no llega' },
             { jugador: 'Mitchell Duke', equipo: 'Australia', prob: 27.0, cuota: 3.70, nota: 'Nueve titular australiano, casi toda su generación pasa por él' },
           ],
@@ -276,6 +276,9 @@ export const jornadas = [
           ],
         },
         lectura: 'El partido más parejo del día: Suiza favorita por menos del 50% y empate+Argelia superan la mitad. Cualquiera de los tres resultados es plausible — todo pick acá es a consideración de cada uno.',
+        resultadoReal: '2-0',
+        fijaAcerto: true,
+        postAnalisis: 'Fija correcta y más cómoda de lo que el modelo anticipaba (49.5% baja confianza). Suiza dominó desde el arranque: Embolo abrió en el 10\' (el pick de goleador arriesgado acertó) y Ndoye la sentenció en el 46\'. La defensiva suiza mantuvo el arco en cero (probabilidad modelada 36.8%) — el Under 2.5 también acertó. Lección: cuando el favorito tiene el 49% y el marcador 2-0 está en la lista, el dominio real puede superar holgadamente la estrechez estadística.',
       },
     ],
   },
