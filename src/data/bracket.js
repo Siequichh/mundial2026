@@ -16,8 +16,8 @@ export const dieciseisavos = {
     { home: 'Inglaterra', away: 'R.D. Congo', resultado: '2-1', fecha: '1 jul', sede: 'Atlanta, GA', feeds: 3 },
   ],
   derecha: [
-    { home: 'Portugal', away: 'Croacia', resultado: null, hoy: true, fecha: '2 jul', sede: 'Toronto', feeds: 0 },
-    { home: 'España', away: 'Austria', resultado: null, hoy: true, fecha: '2 jul', sede: 'Los Ángeles', feeds: 0 },
+    { home: 'Portugal', away: 'Croacia', resultado: '2-1', fecha: '2 jul', sede: 'Toronto', feeds: 0 },
+    { home: 'España', away: 'Austria', resultado: '3-0', fecha: '2 jul', sede: 'Los Ángeles', feeds: 0 },
     { home: 'Estados Unidos', away: 'Bosnia y Herzegovina', resultado: '2-0', fecha: '2 jul', sede: 'Santa Clara, CA', feeds: 1 },
     { home: 'Bélgica', away: 'Senegal', resultado: '3-2', nota: 'prórroga', fecha: '1 jul', sede: 'Seattle, WA', feeds: 1 },
     { home: 'Argentina', away: 'Cabo Verde', resultado: null, fecha: '3 jul', sede: 'Miami', feeds: 2 },
@@ -36,7 +36,7 @@ export const octavos = {
     { home: 'México', away: 'Inglaterra', resultado: null, fecha: '5 jul', sede: 'Ciudad de México' },
   ],
   derecha: [
-    { home: null, away: null, pendiente: 'Portugal/Croacia vs España/Austria', resultado: null, fecha: '6 jul', sede: 'Dallas' },
+    { home: 'Portugal', away: 'España', resultado: null, fecha: '6 jul', sede: 'Dallas' },
     { home: 'Estados Unidos', away: 'Bélgica', resultado: null, fecha: '6 jul', sede: 'Seattle' },
     { home: null, away: null, pendiente: 'Argentina/C. Verde vs Australia/Egipto', resultado: null, fecha: '7 jul', sede: 'Atlanta' },
     { home: null, away: null, pendiente: 'Suiza/Argelia vs Colombia/Ghana', resultado: null, fecha: '7 jul', sede: 'Vancouver' },

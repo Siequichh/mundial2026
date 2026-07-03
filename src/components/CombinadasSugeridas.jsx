@@ -1,0 +1,60 @@
+import { getCombinadasDelDia } from '../services/predictionsService'
+
+const CLASES = { segura: 'combo-segura', valor: 'combo-valor', arriesgada: 'combo-arriesgada' }
+const PREMIO_BASE = 10
+
+export default function CombinadasSugeridas() {
+  const combinadas = getCombinadasDelDia()
+  if (!combinadas.length) return null
+
+  return (
+    <div className="combinadas-section">
+      <div className="comb-header">
+        <span className="comb-eyebrow">ARMADAS DESDE LOS PICKS DEL MODELO</span>
+        <h3 className="comb-title">Combinadas sugeridas</h3>
+        <p className="comb-sub">Una selección por partido. Todo resultado tomalo a tu consideración.</p>
+      </div>
+
+      <div className="combo-cards">
+        {combinadas.map((c) => (
+          <div key={c.perfil} className={`combo-card ${CLASES[c.perfil]}`}>
+            <div className="combo-top">
+              <span className="combo-perfil">{c.emoji} {c.titulo}</span>
+              {c.riesgoAlto && <span className="riesgo-alto combo-riesgo">ALTO RIESGO</span>}
+            </div>
+
+            <div className="combo-cuota-total">
+              <span className="cqt-num">{c.cuotaTotal}</span>
+              <span className="cqt-label">cuota total</span>
+            </div>
+
+            <ul className="combo-legs">
+              {c.legs.map((leg) => (
+                <li key={leg.partido} className="combo-leg">
+                  <span className="cl-partido">{leg.partido}</span>
+                  <span className="cl-sel">
+                    {leg.texto}
+                    {leg.chip && <span className="mkt-chip">{leg.chip}</span>}
+                  </span>
+                  <span className="cl-cuota">@{leg.cuota}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="combo-foot">
+              <span className="combo-prob">Prob. combinada: {c.probCombinada}%</span>
+              <span className="combo-premio">
+                S/ {PREMIO_BASE} → <b>S/ {(PREMIO_BASE * c.cuotaTotal).toFixed(2)}</b>
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <p className="comb-disclaimer">
+        Las cuotas mostradas son estimaciones del modelo (100/probabilidad) o de mercado al momento de la predicción.
+        Verificá la cuota real en tu casa antes de apostar. Esto es solo para prode y análisis.
+      </p>
+    </div>
+  )
+}

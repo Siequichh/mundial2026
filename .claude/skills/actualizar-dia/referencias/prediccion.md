@@ -172,14 +172,14 @@ P(jugador anota) = 1 − exp(−λ_equipo × share_jugador)
   arriesgados: {
     anotaPrimero: { home: 0.0, away: 0.0, ninguno: 0.0 },
     goleadores: [
-      { jugador: 'Nombre', equipo: 'Equipo', prob: 0.0, nota: '...' },
+      { jugador: 'Nombre', equipo: 'Equipo', prob: 0.0, cuota: 0.00, nota: '...' },
       // 2-3 jugadores, los de mayor share de cada equipo
     ],
   },
   picks: {
-    fija: { seleccion: 'Texto del pick', prob: 00.0 },
+    fija: { seleccion: 'Texto del pick', prob: 00.0, cuota: 0.00 },
     alternativas: [
-      { seleccion: 'Texto', prob: 00.0, nota: 'Nota breve' },
+      { seleccion: 'Texto', prob: 00.0, cuota: 0.00, nota: 'Nota breve' },
       // 2-3 alternativas
     ],
   },
@@ -193,7 +193,24 @@ P(jugador anota) = 1 − exp(−λ_equipo × share_jugador)
 
 ---
 
-## 8. Convenciones
+## 8. Campo `cuota` (obligatorio desde julio 2026)
+
+Cada pick (fija, alternativas, goleadores) **debe incluir `cuota`** en formato decimal universal (ej. `1.85`).
+
+**Cómo obtenerla:**
+1. Buscar en Bet365, Betsson o Te Apuesto la cuota del mercado exacto.
+2. Si la casa no cubre ese mercado puntual, usar la cuota justa del modelo: `round(100 / prob, 2)`.
+
+**Vocabulario canónico en `seleccion`** (la UI localiza al español en display; no cambiar los datos):
+- Usar `'Over 2.5 goles'` / `'Under 2.5 goles'` (no "Más de" — eso lo aplica el formatter)
+- Usar `'Ambos anotan'` (no "GG")
+- Usar `'Valla a cero …'` (no "Arco en cero")
+- Para doble oportunidad: `'X o empate (doble oportunidad)'`
+
+Las **combinadas sugeridas** se generan automáticamente desde los picks — no hay que autorarlas.
+Lo único necesario es que cada pick tenga `cuota`.
+
+## 9. Convenciones
 
 - Nombres de equipos: consistentes con `bracket.js` y `grupos.js`.
   Ej: `'Países Bajos'` (no `'Holanda'`), `'Estados Unidos'` (no `'USA'`).
@@ -204,7 +221,7 @@ P(jugador anota) = 1 − exp(−λ_equipo × share_jugador)
 
 ---
 
-## 9. Principios editoriales
+## 10. Principios editoriales
 
 1. **Calibración honesta**: los picks tienen probabilidades, no certezas.
 2. **No oversell**: si el favorito tiene 52%, es un partido parejo — decirlo.

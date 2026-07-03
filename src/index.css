@@ -1205,6 +1205,110 @@ button { font-family: inherit; }
   .arriesgados-grid { grid-template-columns: 1fr; }
 }
 
+/* ── Chip de mercado ─────────────────────────────────────────── */
+.mkt-chip {
+  display: inline-block;
+  margin-left: 0.3em;
+  padding: 0.05em 0.4em;
+  border-radius: 4px;
+  font-size: 0.72em;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: var(--bg-raise);
+  color: var(--ink-dim);
+  vertical-align: middle;
+  line-height: 1.6;
+}
+
+/* ── Glosario ────────────────────────────────────────────────── */
+.glosario {
+  margin: 1.25rem 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.glosario-toggle {
+  display: block;
+  padding: 0.75rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  cursor: pointer;
+  background: var(--bg-raise);
+  user-select: none;
+}
+.glosario-toggle:hover { color: var(--ink); }
+.glosario-body { padding: 0.75rem 1rem 1rem; }
+.glosario-tabla { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+.glosario-tabla th { text-align: left; padding: 0.35rem 0.5rem; color: var(--ink-dim); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--border); }
+.glosario-tabla td { padding: 0.4rem 0.5rem; border-bottom: 1px solid var(--border); color: var(--ink-dim); line-height: 1.4; }
+.glosario-tabla td:first-child { font-weight: 600; color: var(--ink); white-space: nowrap; }
+.glosario-tabla td:last-child { font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-dim); }
+.glosario-tabla tr:last-child td { border-bottom: none; }
+
+/* ── Combinadas sugeridas ────────────────────────────────────── */
+.combinadas-section { margin: 1.5rem 0 2rem; }
+.comb-header { margin-bottom: 1rem; }
+.comb-eyebrow { display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 0.3rem; }
+.comb-title { font-family: var(--font-display); font-size: clamp(1.3rem, 3vw, 1.8rem); font-weight: 800; color: var(--ink); margin: 0 0 0.2rem; line-height: 1.1; }
+.comb-sub { font-size: 0.83rem; color: var(--ink-dim); margin: 0; }
+
+.combo-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+@media (max-width: 900px) { .combo-cards { grid-template-columns: 1fr; } }
+
+.combo-card {
+  border-radius: 10px;
+  border: 2px solid var(--border);
+  background: var(--bg-raise);
+  padding: 1rem 1.1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.combo-segura  { border-color: var(--grass); }
+.combo-valor   { border-color: var(--gold); }
+.combo-arriesgada { border-color: var(--danger); }
+
+.combo-top { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.combo-perfil { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink); }
+.combo-riesgo { font-size: 0.65rem; }
+
+.combo-cuota-total { display: flex; align-items: baseline; gap: 0.4rem; }
+.cqt-num { font-family: var(--font-display); font-size: 2.4rem; font-weight: 900; line-height: 1; color: var(--ink); }
+.cqt-label { font-size: 0.72rem; color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.06em; }
+
+.combo-legs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.45rem; }
+.combo-leg {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  gap: 0 0.5rem;
+  padding: 0.45rem 0.55rem;
+  background: var(--bg);
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+.cl-partido { grid-column: 1 / -1; font-size: 0.7rem; color: var(--ink-dim); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.15rem; }
+.cl-sel { font-size: 0.83rem; color: var(--ink); font-weight: 500; align-self: center; }
+.cl-cuota { font-family: var(--font-mono); font-size: 0.82rem; font-weight: 700; color: var(--ink); align-self: center; white-space: nowrap; }
+
+.combo-foot { display: flex; flex-direction: column; gap: 0.2rem; padding-top: 0.25rem; border-top: 1px solid var(--border); }
+.combo-prob { font-size: 0.75rem; color: var(--ink-dim); }
+.combo-premio { font-size: 0.8rem; color: var(--ink-dim); }
+.combo-premio b { color: var(--ink); }
+
+.comb-disclaimer { font-size: 0.72rem; color: var(--ink-faint); line-height: 1.5; margin-top: 0.75rem; }
+
+/* cuota en picks */
+.pick-cuota { font-family: var(--font-mono); font-size: 0.85em; color: var(--ink-dim); }
+
 /* Movimiento reducido */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }

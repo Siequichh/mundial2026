@@ -1,6 +1,7 @@
 import { useReveal } from '../hooks/useReveal'
 import { flagClass } from '../utils/flags'
 import { fechaHoraLocal } from '../utils/fecha'
+import { formatoMercado } from '../utils/mercados'
 import ProbBar from './ProbBar'
 
 // Confianza derivada de la probabilidad del propio pick — por partido, no repartida.
@@ -72,10 +73,10 @@ export default function PartidoCard({ partido, index }) {
           <div className="tk-block">
             <h4>Goles</h4>
             <ul className="stat-list">
-              <li><span>Over 2.5</span><b>{partido.goles.over25}%</b></li>
-              <li><span>Over 3.5</span><b>{partido.goles.over35}%</b></li>
-              <li><span>Ambos anotan</span><b>{partido.goles.bttsSi}%</b></li>
-              <li><span>Valla a cero {partido.home}</span><b>{partido.goles.vallaHome}%</b></li>
+              <li><span>Más de 2.5 <span className="mkt-chip">+2.5</span></span><b>{partido.goles.over25}%</b></li>
+              <li><span>Más de 3.5 <span className="mkt-chip">+3.5</span></span><b>{partido.goles.over35}%</b></li>
+              <li><span>Ambos anotan <span className="mkt-chip">GG</span></span><b>{partido.goles.bttsSi}%</b></li>
+              <li><span>Arco en cero {partido.home}</span><b>{partido.goles.vallaHome}%</b></li>
             </ul>
           </div>
 
@@ -96,17 +97,17 @@ export default function PartidoCard({ partido, index }) {
               <span className="extra-name">Córners <i className="ruido">mercado ruidoso</i></span>
               <ul className="stat-list">
                 <li><span>Esperados</span><b>{partido.extras.corners.esperados}</b></li>
-                <li><span>Over 8.5</span><b>{partido.extras.corners.over85}%</b></li>
-                <li><span>Over 9.5</span><b>{partido.extras.corners.over95}%</b></li>
-                <li><span>Over 10.5</span><b>{partido.extras.corners.over105}%</b></li>
+                <li><span>Más de 8.5 <span className="mkt-chip">+8.5</span></span><b>{partido.extras.corners.over85}%</b></li>
+                <li><span>Más de 9.5 <span className="mkt-chip">+9.5</span></span><b>{partido.extras.corners.over95}%</b></li>
+                <li><span>Más de 10.5 <span className="mkt-chip">+10.5</span></span><b>{partido.extras.corners.over105}%</b></li>
               </ul>
             </div>
             <div className="extra">
               <span className="extra-name">Tarjetas <i className="ruido">el más impredecible</i></span>
               <ul className="stat-list">
                 <li><span>Esperadas</span><b>{partido.extras.tarjetas.esperadas}</b></li>
-                <li><span>Over 3.5</span><b>{partido.extras.tarjetas.over35}%</b></li>
-                <li><span>Over 4.5</span><b>{partido.extras.tarjetas.over45}%</b></li>
+                <li><span>Más de 3.5 <span className="mkt-chip">+3.5</span></span><b>{partido.extras.tarjetas.over35}%</b></li>
+                <li><span>Más de 4.5 <span className="mkt-chip">+4.5</span></span><b>{partido.extras.tarjetas.over45}%</b></li>
               </ul>
             </div>
             <div className="extra">
@@ -183,16 +184,31 @@ export default function PartidoCard({ partido, index }) {
       <footer className="ticket-picks">
         <div className="pick-fija">
           <span className="pick-label">La Fija</span>
-          <span className="pick-value">{partido.picks.fija.seleccion}</span>
-          <span className={`pick-conf ${conf.cls}`}>{partido.picks.fija.prob}% · {conf.label}</span>
+          <span className="pick-value">
+            {formatoMercado(partido.picks.fija.seleccion).texto}
+            {formatoMercado(partido.picks.fija.seleccion).chip && (
+              <span className="mkt-chip">{formatoMercado(partido.picks.fija.seleccion).chip}</span>
+            )}
+          </span>
+          <span className={`pick-conf ${conf.cls}`}>
+            {partido.picks.fija.prob}% · {conf.label}
+            {partido.picks.fija.cuota && <span className="pick-cuota"> · @{partido.picks.fija.cuota}</span>}
+          </span>
         </div>
         <ul className="pick-alts">
           {partido.picks.alternativas.map((a) => {
             const c = confianzaDe(a.prob)
+            const mkt = formatoMercado(a.seleccion)
             return (
               <li key={a.seleccion}>
-                <span className="alt-sel">{a.seleccion}</span>
-                <span className={`pick-conf ${c.cls}`}>{a.prob}%</span>
+                <span className="alt-sel">
+                  {mkt.texto}
+                  {mkt.chip && <span className="mkt-chip">{mkt.chip}</span>}
+                </span>
+                <span className={`pick-conf ${c.cls}`}>
+                  {a.prob}%
+                  {a.cuota && <span className="pick-cuota"> · @{a.cuota}</span>}
+                </span>
                 {a.nota && <span className="alt-nota">{a.nota}</span>}
               </li>
             )

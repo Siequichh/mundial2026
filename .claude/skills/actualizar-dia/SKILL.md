@@ -35,6 +35,8 @@ Skill orquestadora. Decide qué hacer según el estado actual del proyecto.
 
 Pueden aplicar varios pasos a la vez. Ejecutarlos en orden: 1 → 2 → 3.
 
+**Anotar al inicio:** qué partidos de hoy tienen kickoff posterior a la hora actual y aún no tienen `resultadoReal`. Esos son "pendientes de terminar esta sesión" → revisar en el Paso 3.5 antes del build.
+
 ---
 
 ## Paso 1 — Archivar predicciones pasadas
@@ -137,6 +139,21 @@ El esquema completo de un partido (con `arriesgados`) está en `referencias/pred
 
 ---
 
+## Paso 3.5 — Checkpoint: partidos que terminaron mientras trabajabas
+
+Antes de hacer el build, revisar si alguno de los "pendientes de terminar esta sesión" (anotados en Paso 0) ya tiene resultado.
+
+1. **Buscar en la web** los resultados de esos partidos (mismas fuentes que Paso 1).
+2. **Para cada partido que ya terminó:**
+   - Aplicar exactamente la misma lógica del Paso 1 (completar `resultadoReal`, `postAnalisis`, `fijaAcerto`).
+   - Actualizar `bracket.js` (resultado, quitar `hoy: true`, desbloquear cruce siguiente si corresponde).
+3. **Si algún partido todavía está en curso** (empezó pero no terminó): no forzar un resultado. Anotar en el summary del commit que ese partido sigue pendiente para el próximo `/actualizar-dia`.
+4. **Si ningún partido terminó todavía:** continuar al Paso 4 sin cambios, indicar en el summary que quedan N partidos pendientes de archivar.
+
+> **Por qué existe este paso:** el Paso 3 (investigación y generación de predicciones) puede durar 30-90 minutos. Partidos con kickoff durante esa ventana pueden terminar sin que el Paso 1 los haya cubierto. Este checkpoint los captura antes del commit.
+
+---
+
 ## Paso 4 — Verificar build
 
 ```bash
@@ -179,10 +196,12 @@ El workflow de GitHub Pages (`deploy.yml`) redespliega automáticamente.
 ## Checklist de cierre
 
 - [ ] Partidos pasados tienen `resultadoReal`, `postAnalisis`, `fijaAcerto`.
+- [ ] Checkpoint 3.5 ejecutado: partidos que terminaron durante la sesión también archivados.
 - [ ] `bracket.js` refleja resultados reales + próximos cruces actualizados.
 - [ ] La fecha de hoy tiene predicciones completas en `predicciones.js`.
 - [ ] Cada partido tiene `arriesgados` (anotaPrimero + goleadores).
 - [ ] `npm run build` pasa sin errores.
+- [ ] Summary del commit menciona partidos que siguen pendientes de archivar (si los hay).
 - [ ] Commit message y summary entregados al usuario.
 
 ---
