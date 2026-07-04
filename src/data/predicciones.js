@@ -13,7 +13,7 @@ export const jornadas = [
         home: 'Canadá', away: 'Marruecos',
         sede: 'NRG Stadium, Houston',
         kickoffUtc: '2026-07-04T17:00:00Z',
-        contexto: 'Canadá alcanza los octavos por primera vez en su historia tras vencer a Sudáfrica en dieciseisavos; el anfitrión llega enchufado pero pierde a Ismael Koné (tobillo fracturado). Marruecos —campeón de África y semifinalista en 2022— llega invicto y crecido: eliminó a Países Bajos por penales y su bloque es de los más sólidos del torneo. En el único antecedente reciente (grupos Qatar 2022) ganó Marruecos 2-1. Jonathan David (3 goles, 3.23 xG) es la referencia canadiense; Ismael Saibari (3) la marroquí. El ganador cruza con Francia/Paraguay en cuartos. Árbitro aún sin confirmar por FIFA.',
+        contexto: 'Canadá alcanza los octavos por primera vez en su historia tras vencer a Sudáfrica en dieciseisavos; el anfitrión llega enchufado pero pierde a Ismael Koné (tobillo fracturado). Marruecos —campeón de África y semifinalista en 2022— llega invicto y crecido: eliminó a Países Bajos por penales y su bloque es de los más sólidos del torneo. En el único antecedente reciente (grupos Qatar 2022) ganó Marruecos 2-1. Jonathan David (3 goles, 3.23 xG) es la referencia canadiense; Ismael Saibari (3) la marroquí. El ganador cruza con Francia/Paraguay en cuartos. [RECAL 1h: XI confirmados — Marruecos con su ataque titular (Saibari, Brahim Díaz, Ounahi, El Khannouss); única novedad, Chadi Riad al banco y Halhal de central (baja menor). Canadá con Alphonso Davies en el banco (como se preveía) y Jonathan David de referencia. Sin cambios materiales: xG y prob intactos. Árbitro confirmado: Michael Oliver (Inglaterra).]',
         xg: { home: 1.05, away: 1.35 },
         rho: -0.06,
         prob: { home: 28.4, draw: 28.9, away: 42.7 },
@@ -27,10 +27,10 @@ export const jornadas = [
           { score: '1-1', pct: 13.6 }, { score: '0-1', pct: 11.5 }, { score: '0-0', pct: 9.8 },
           { score: '1-0', pct: 8.8 }, { score: '1-2', pct: 8.7 },
         ],
-        arbitro: { nombre: 'Por confirmar', pais: '—', promAmarillas: 3.8 },
+        arbitro: { nombre: 'Michael Oliver', pais: 'Inglaterra', promAmarillas: 3.4 },
         extras: {
           corners: { esperados: 9.5, over85: 61.5, over95: 48.5, over105: 36.5 },
-          tarjetas: { esperadas: 4.0, over35: 58.0, over45: 37.0 },
+          tarjetas: { esperadas: 3.8, over35: 52.7, over45: 33.2 },
           faltas: { esperadas: 24 },
         },
         arriesgados: {
