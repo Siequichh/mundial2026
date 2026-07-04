@@ -6,7 +6,7 @@ import { mercadosDerivados, ETIQ_GRUPO } from '../utils/mercadosDerivados'
 import { poissonOverProb } from '../utils/poisson'
 import ProbBar from './ProbBar'
 
-// mercadosDeExtras (córners/tarjetas/disparos/atajadas) no se repite acá: ya se ve en el bloque
+// mercadosDeExtras (córners/tarjetas/disparos/atajadas) no se repite aquí: ya se ve en el bloque
 // "Otros mercados" de arriba. Este "ver más" es para lo que no tiene espacio propio en la ficha.
 function MasMercados({ partido }) {
   const todos = mercadosDerivados(partido).concat(partido.mercadosExtra ?? [])
@@ -48,6 +48,10 @@ function MasMercados({ partido }) {
           </div>
         ))}
       </div>
+      <p className="mas-mercados-disclaimer">
+        Algunas líneas (hándicap, corners por equipo, disparos, atajadas, par/impar, rango de goles)
+        son estimaciones del modelo cuando la casa no cotiza ese mercado puntual.
+      </p>
     </details>
   )
 }

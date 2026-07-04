@@ -16,3 +16,9 @@ export function fechaLarga(isoDate) {
 export function tzVisitante() {
   return Intl.DateTimeFormat().resolvedOptions().timeZone
 }
+
+// Diferencia en días entre dos fechas 'YYYY-MM-DD' (positivo si `fecha` es anterior a `hoy`).
+export function diasDesde(fecha, hoy) {
+  const ms = new Date(hoy + 'T12:00:00') - new Date(fecha + 'T12:00:00')
+  return Math.round(ms / 86400000)
+}

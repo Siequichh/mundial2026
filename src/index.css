@@ -1346,6 +1346,7 @@ button { font-family: inherit; }
 }
 .mas-prob-cuota { display: flex; align-items: center; gap: 2px; white-space: nowrap; }
 .mas-nota { font-style: normal; color: var(--ink-faint); font-size: 0.78em; }
+.mas-mercados-disclaimer { font-size: 0.7rem; color: var(--ink-faint); line-height: 1.5; margin-top: 14px; padding-top: 10px; border-top: 1px dotted var(--line); }
 
 /* ── Armador de combinadas ───────────────────────────────────── */
 .armador-section {
@@ -1355,7 +1356,27 @@ button { font-family: inherit; }
   border-radius: 14px;
   padding: 1.5rem 1.6rem 1.6rem;
 }
-.armador-head { margin-bottom: 1rem; }
+.armador-head {
+  margin-bottom: 0;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+  position: relative;
+  padding-right: 28px;
+}
+.armador-head::-webkit-details-marker { display: none; }
+.armador-head::after {
+  content: '▾';
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  font-size: 1.1rem;
+  color: var(--ink-faint);
+  transition: transform 0.2s, color 0.15s;
+}
+.armador-section[open] .armador-head::after { transform: rotate(180deg); color: var(--grass); }
+.armador-section:not([open]) .armador-head:hover .comb-title { color: var(--grass); }
+.armador-section[open] .armador-head { margin-bottom: 1rem; }
 
 .armador-filtros {
   display: flex;
@@ -1520,6 +1541,58 @@ button { font-family: inherit; }
 .stake-payout { font-size: 0.85rem; color: var(--ink-dim); }
 .stake-payout b { font-family: var(--font-mono); font-size: 1rem; color: var(--grass); }
 .slip-disclaimer { font-size: 0.68rem; color: var(--ink-faint); line-height: 1.5; border-top: 1px solid var(--line); padding-top: 8px; }
+
+/* ── Historial de predicciones ───────────────────────────────── */
+.historial-section {
+  margin: 0 0 2.5rem;
+  background: var(--bg-panel);
+  border: 1px dashed var(--line);
+  border-radius: 14px;
+  padding: 1.5rem 1.6rem 1.6rem;
+}
+.historial-head {
+  margin-bottom: 0;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+  position: relative;
+  padding-right: 28px;
+}
+.historial-head::-webkit-details-marker { display: none; }
+.historial-head::after {
+  content: '▾';
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  font-size: 1.1rem;
+  color: var(--ink-faint);
+  transition: transform 0.2s, color 0.15s;
+}
+.historial-section[open] .historial-head::after { transform: rotate(180deg); color: var(--grass); }
+.historial-section:not([open]) .historial-head:hover .comb-title { color: var(--grass); }
+.historial-section[open] .historial-head { margin-bottom: 1.25rem; }
+.historial-count { color: var(--ink-faint); font-size: 0.7em; }
+
+.historial-filtros { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.25rem; }
+
+.historial-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.75rem; }
+.historial-item {
+  border-radius: 10px;
+  border-left: 4px solid var(--line);
+  padding: 0.75rem 1rem;
+  background: var(--bg-raise);
+}
+.historial-item.hist-ok { border-left-color: var(--grass); background: color-mix(in srgb, var(--grass) 8%, var(--bg-raise)); }
+.historial-item.hist-fail { border-left-color: var(--danger); background: color-mix(in srgb, var(--danger) 8%, var(--bg-raise)); }
+.hi-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; }
+.hi-fecha { font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.04em; }
+.hi-badge { font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700; }
+.historial-item.hist-ok .hi-badge { color: var(--grass); }
+.historial-item.hist-fail .hi-badge { color: var(--danger); }
+.hi-teams { display: flex; align-items: center; gap: 10px; font-weight: 600; margin-bottom: 6px; }
+.hi-team { display: flex; align-items: center; gap: 6px; }
+.hi-resultado { font-family: var(--font-mono); font-weight: 700; color: var(--ink); }
+.hi-analisis { font-size: 0.83rem; color: var(--ink-dim); line-height: 1.5; margin: 0; }
 
 /* Movimiento reducido */
 @media (prefers-reduced-motion: reduce) {

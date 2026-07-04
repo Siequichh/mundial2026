@@ -14,6 +14,7 @@ function buildLeg(partido, pick, texto) {
     chip: mkt.chip,
     prob: pick.prob,
     cuota: pickCuota(pick),
+    fuenteCuota: pick.fuenteCuota,
   }
 }
 
@@ -40,7 +41,7 @@ export function buildCombinadas(partidos) {
     .map(p => {
       const g = p.arriesgados?.goleadores?.[0]
       if (!g) return null
-      return buildLeg(p, { prob: g.prob, cuota: g.cuota }, `${g.jugador} marca`)
+      return buildLeg(p, { prob: g.prob, cuota: g.cuota, fuenteCuota: g.fuenteCuota }, `${g.jugador} marca`)
     })
     .filter(Boolean)
 

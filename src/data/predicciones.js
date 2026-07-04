@@ -19,8 +19,8 @@ export const jornadas = [
         prob: { home: 28.4, draw: 28.9, away: 42.7 },
         validacion: [
           { fuente: 'Modelo (Dixon-Coles)', home: 28.4, draw: 28.9, away: 42.7 },
-          { fuente: 'bet365 (de-vig)', home: 26.0, draw: 28.0, away: 46.0 },
-          { fuente: 'Mercado (predicción media)', home: 27, draw: 27, away: 46 },
+          { fuente: 'FanDuel (de-vig)', home: 17.1, draw: 28.1, away: 54.8 },
+          { fuente: 'Kalshi (traders)', home: 20, draw: 28, away: 54 },
         ],
         goles: { over15: 69.9, over25: 43.0, over35: 22.1, bttsSi: 49.0, bttsNo: 51.0, vallaHome: 25.9, vallaAway: 35.0 },
         marcadores: [
@@ -36,17 +36,17 @@ export const jornadas = [
         arriesgados: {
           anotaPrimero: { home: 39.5, away: 50.7, ninguno: 9.8 },
           goleadores: [
-            { jugador: 'Jonathan David', equipo: 'Canadá', prob: 34.3, cuota: 2.90, nota: 'Talismán canadiense: 3 goles y 3.23 xG en el torneo, casi todo el peso ofensivo pasa por él' },
-            { jugador: 'Ismael Saibari', equipo: 'Marruecos', prob: 33.3, cuota: 3.00, nota: 'Máximo goleador marroquí (3), llega desde segunda línea con gran timing' },
-            { jugador: 'Brahim Díaz', equipo: 'Marruecos', prob: 23.7, cuota: 4.20, nota: 'Diferencial entre líneas, segunda vía de gol marroquí' },
+            { jugador: 'Jonathan David', equipo: 'Canadá', prob: 34.3, cuota: 4.33, fuenteCuota: 'consenso casas', nota: 'Talismán canadiense: 3 goles y 3.23 xG en el torneo, casi todo el peso ofensivo pasa por él' },
+            { jugador: 'Ismael Saibari', equipo: 'Marruecos', prob: 33.3, cuota: 3.00, fuenteCuota: 'bet365', nota: 'Máximo goleador marroquí (3), llega desde segunda línea con gran timing' },
+            { jugador: 'Brahim Díaz', equipo: 'Marruecos', prob: 23.7, cuota: 4.20, fuenteCuota: 'modelo', nota: 'Diferencial entre líneas, segunda vía de gol marroquí' },
           ],
         },
         picks: {
-          fija: { seleccion: 'Marruecos o empate (doble oportunidad)', prob: 71.6, cuota: 1.33 },
+          fija: { seleccion: 'Marruecos o empate (doble oportunidad)', prob: 71.6, cuota: 1.21, fuenteCuota: 'fanduel' },
           alternativas: [
-            { seleccion: 'Gana Marruecos', prob: 42.7, cuota: 2.31, nota: 'Favorito claro pero por debajo del 50%: Canadá anfitrión es rival incómodo' },
-            { seleccion: 'Under 2.5 goles', prob: 57.0, cuota: 1.65, nota: 'Dos bloques cautos de eliminatoria; Marruecos rara vez se abre' },
-            { seleccion: 'Marcador exacto 1-1', prob: 13.6, cuota: 7.35, nota: 'El más probable de la matriz — ojo, más que cualquier triunfo exacto' },
+            { seleccion: 'Gana Marruecos (90 min)', prob: 42.7, cuota: 1.74, fuenteCuota: 'fanduel', nota: 'Favorito claro pero por debajo del 50%: Canadá anfitrión es rival incómodo' },
+            { seleccion: 'Under 2.5 goles', prob: 57.0, cuota: 1.65, fuenteCuota: 'fanduel', nota: 'Dos bloques cautos de eliminatoria; Marruecos rara vez se abre' },
+            { seleccion: 'Marcador exacto 1-1', prob: 13.6, cuota: 7.35, fuenteCuota: 'modelo', nota: 'El más probable de la matriz — ojo, más que cualquier triunfo exacto' },
           ],
         },
         lectura: 'Marruecos es mejor equipo y llega crecido, pero un anfitrión en su primer octavo histórico no es trámite: el favorito no pasa del 43% y el empate empuja. Sin lectura fuerte de resultado exacto — el valor está en la cobertura y el Under.',
@@ -63,7 +63,7 @@ export const jornadas = [
         validacion: [
           { fuente: 'Modelo (Dixon-Coles)', home: 7.6, draw: 16.7, away: 75.7 },
           { fuente: 'bet365 (de-vig)', home: 6.3, draw: 13.5, away: 80.1 },
-          { fuente: 'Mercado (predicción media)', home: 7, draw: 14, away: 79 },
+          { fuente: 'Kalshi (traders)', home: 5, draw: 13, away: 84 },
         ],
         goles: { over15: 78.8, over25: 55.4, over35: 33.0, bttsSi: 41.0, bttsNo: 59.0, vallaHome: 10.0, vallaAway: 54.8 },
         marcadores: [
@@ -79,17 +79,17 @@ export const jornadas = [
         arriesgados: {
           anotaPrimero: { home: 19.5, away: 74.7, ninguno: 5.8 },
           goleadores: [
-            { jugador: 'Kylian Mbappé', equipo: 'Francia', prob: 60.2, cuota: 1.65, nota: 'Goleador del torneo (6) y en su mejor forma — comparte la mayor cuota del ataque francés' },
-            { jugador: 'Ousmane Dembélé', equipo: 'Francia', prob: 36.9, cuota: 2.70, nota: 'Desequilibrio y llegada por derecha, segunda vía de gol clara' },
-            { jugador: 'Julio Enciso', equipo: 'Paraguay', prob: 18.9, cuota: 5.30, nota: 'La escasa producción ofensiva paraguaya pasa por él — probabilidad baja' },
+            { jugador: 'Kylian Mbappé', equipo: 'Francia', prob: 60.2, cuota: 1.61, fuenteCuota: 'bet365', nota: 'Goleador del torneo (6) y en su mejor forma — comparte la mayor cuota del ataque francés' },
+            { jugador: 'Ousmane Dembélé', equipo: 'Francia', prob: 36.9, cuota: 2.70, fuenteCuota: 'modelo', nota: 'Desequilibrio y llegada por derecha, segunda vía de gol clara' },
+            { jugador: 'Julio Enciso', equipo: 'Paraguay', prob: 18.9, cuota: 5.30, fuenteCuota: 'modelo', nota: 'La escasa producción ofensiva paraguaya pasa por él — probabilidad baja' },
           ],
         },
         picks: {
-          fija: { seleccion: 'Gana Francia (90 min)', prob: 75.7, cuota: 1.28 },
+          fija: { seleccion: 'Gana Francia (90 min)', prob: 75.7, cuota: 1.20, fuenteCuota: 'bet365' },
           alternativas: [
-            { seleccion: 'Francia gana sin recibir gol', prob: 54.8, cuota: 1.75, nota: 'Paraguay generó muy poco ante Alemania; Francia puede dejar el arco en cero' },
-            { seleccion: 'Over 2.5 goles', prob: 55.4, cuota: 1.75, nota: 'Si Francia rompe temprano hay margen para goleada' },
-            { seleccion: 'Marcador exacto 0-2', prob: 14.6, cuota: 6.85, nota: 'El más probable de la matriz: triunfo francés cómodo' },
+            { seleccion: 'Francia gana sin recibir gol', prob: 54.8, cuota: 1.75, fuenteCuota: 'modelo', nota: 'Paraguay generó muy poco ante Alemania; Francia puede dejar el arco en cero' },
+            { seleccion: 'Over 2.5 goles', prob: 55.4, cuota: 1.60, fuenteCuota: 'consenso casas', nota: 'Si Francia rompe temprano hay margen para goleada' },
+            { seleccion: 'Marcador exacto 0-2', prob: 14.6, cuota: 6.85, fuenteCuota: 'modelo', nota: 'El más probable de la matriz: triunfo francés cómodo' },
           ],
         },
         lectura: 'Favorito claro y tres fuentes alineadas por encima del 75%. Paraguay vive del caos y ya eliminó a Alemania por penales: el batacazo (7.6%) existe pero es el escenario improbable ya contemplado. El interés real es por cuántos marca Francia y si Mbappé sigue su racha.',
@@ -141,7 +141,7 @@ export const jornadas = [
             { seleccion: 'Marcador exacto 0-1', prob: 14.0, cuota: 7.14, nota: 'El más probable de la matriz: triunfo egipcio por la mínima' },
           ],
         },
-        lectura: 'Partido cerrado y de pocos goles: Egipto favorito leve pero la duda de Salah aplana todo. El modelo ve más valor en el Under que en el ganador — todo pick de resultado acá es a consideración de cada uno.',
+        lectura: 'Partido cerrado y de pocos goles: Egipto favorito leve pero la duda de Salah aplana todo. El modelo ve más valor en el Under que en el ganador — todo pick de resultado aquí es a consideración de cada uno.',
         resultadoReal: '1-1',
         postAnalisis: 'Egipto ganó 4-2 en penales tras 1-1 en los 90\' (Ashour 13\', autogol de Hany 55\'). La fija Under 2.5 acertó: partido tan cerrado como anticipó el modelo (xG 0.95/1.20, empate 29%). Salah, en duda física, no marcó y el gol egipcio llegó desde una vía no modelada (Ashour), así que los goleadores arriesgados fallaron. Buena lectura del bajo voltaje; el desempate por penales confirma la paridad total.',
         fijaAcerto: true,
@@ -230,7 +230,7 @@ export const jornadas = [
           alternativas: [
             { seleccion: 'Colombia o empate (doble oportunidad)', prob: 81.3, cuota: 1.23, nota: 'La cobertura sensata: Colombia rara vez pierde, pero marca poco' },
             { seleccion: 'Under 2.5 goles', prob: 55.2, cuota: 1.81, nota: 'Ataque colombiano de bajo voltaje (4 goles en grupos)' },
-            { seleccion: 'Over 3.5 tarjetas', prob: 66.2, cuota: 1.51, nota: 'Turpin estricto + partido físico — el mercado de tarjetas es el más jugoso acá' },
+            { seleccion: 'Over 3.5 tarjetas', prob: 66.2, cuota: 1.51, nota: 'Turpin estricto + partido físico — el mercado de tarjetas es el más jugoso aquí' },
           ],
         },
         lectura: 'Colombia favorita clara pero sin pólvora: 4 goles en toda la fase de grupos y su goleador es un lateral. Ghana tiene con qué incomodar (Kudus, Semenyo). Marcador corto probable — la fija es sólida, la goleada no.',
@@ -330,7 +330,7 @@ export const jornadas = [
             { seleccion: 'Marcador exacto 1-1', prob: 11.9, cuota: 8.40, nota: 'El resultado modal — ojo, más probable que cualquier triunfo exacto' },
           ],
         },
-        lectura: 'Portugal favorita por poco: empate + Croacia suman 47.8%. El marcador individual más probable es el empate. El modelo no tiene una lectura fuerte acá.',
+        lectura: 'Portugal favorita por poco: empate + Croacia suman 47.8%. El marcador individual más probable es el empate. El modelo no tiene una lectura fuerte aquí.',
         resultadoReal: '2-1',
         fijaAcerto: true,
         postAnalisis: 'Fija correcta pero por el margen más fino: Croacia se adelantó (Perišić 53\'), Ronaldo empató de penal (67\') y Gonçalo Ramos la ganó de cabeza en el 90+3\'. El modelo fue honesto al marcarla como baja confianza (52.1%, sin lectura fuerte) — el partido casi termina en el 1-1 modal que señalaba la matriz. Nota de proceso alta aunque el resultado fue un volado: acertar no valida sobrevender un casi-empate. El mercado arriesgado también avisaba: Croacia anota primero era 35.5% y ocurrió.',
@@ -376,7 +376,7 @@ export const jornadas = [
             { seleccion: 'Marcador exacto 1-1', prob: 12.7, cuota: 7.87, nota: 'El resultado modal de la matriz' },
           ],
         },
-        lectura: 'El partido más parejo del día: Suiza favorita por menos del 50% y empate+Argelia superan la mitad. Cualquiera de los tres resultados es plausible — todo pick acá es a consideración de cada uno.',
+        lectura: 'El partido más parejo del día: Suiza favorita por menos del 50% y empate+Argelia superan la mitad. Cualquiera de los tres resultados es plausible — todo pick aquí es a consideración de cada uno.',
         resultadoReal: '2-0',
         fijaAcerto: true,
         postAnalisis: 'Fija correcta y más cómoda de lo que el modelo anticipaba (49.5% baja confianza). Suiza dominó desde el arranque: Embolo abrió en el 10\' (el pick de goleador arriesgado acertó) y Ndoye la sentenció en el 46\'. La defensiva suiza mantuvo el arco en cero (probabilidad modelada 36.8%) — el Under 2.5 también acertó. Lección: cuando el favorito tiene el 49% y el marcador 2-0 está en la lista, el dominio real puede superar holgadamente la estrechez estadística.',

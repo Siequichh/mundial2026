@@ -5,6 +5,7 @@ import PartidoCard from '../components/PartidoCard'
 import ModelExplainer from '../components/ModelExplainer'
 import CombinadasSugeridas from '../components/CombinadasSugeridas'
 import ArmaTuCombinada from '../components/ArmaTuCombinada'
+import HistorialPredicciones from '../components/HistorialPredicciones'
 
 export default function Predicciones() {
   const jornadas = getJornadas()
@@ -36,7 +37,7 @@ export default function Predicciones() {
                 <tr><td>Clasifica</td><td>El equipo avanza a la siguiente ronda por cualquier vía: gana en 90', en prórroga o en penales.</td><td>Q</td></tr>
                 <tr><td>Empate no apuesta</td><td>Si el partido termina empatado en 90', te devuelven la apuesta. Solo gana si el equipo elegido gana en 90'.</td><td>DNB</td></tr>
                 <tr><td>Ambos anotan No</td><td>Al menos uno de los dos equipos termina sin marcar goles</td><td>NG</td></tr>
-                <tr><td>Cuota @1.85</td><td>Por cada S/ 1 apostado ganás S/ 1.85 si acertás (formato decimal universal)</td><td>—</td></tr>
+                <tr><td>Cuota @1.85</td><td>Por cada S/ 1 apostado ganas S/ 1.85 si aciertas (formato decimal universal)</td><td>—</td></tr>
               </tbody>
             </table>
           </div>
@@ -44,6 +45,24 @@ export default function Predicciones() {
 
         <CombinadasSugeridas />
         <ArmaTuCombinada />
+
+        {jornadas.map((j) => {
+          const partidosFuturos = j.partidos.filter(p => !p.resultadoReal)
+          if (partidosFuturos.length === 0) return null
+          return (
+            <div className="jornada" key={j.fecha}>
+              <div className="jornada-tag">
+                <span className="jornada-fecha">{fechaLarga(j.fecha)}</span>
+                <span className="jornada-ronda">{j.etiqueta}</span>
+              </div>
+              <div className="partidos-grid">
+                {partidosFuturos.map((p, i) => <PartidoCard key={p.id} partido={p} index={i} />)}
+              </div>
+            </div>
+          )
+        })}
+
+        <HistorialPredicciones />
 
         <div className="pred-explainer-bar">
           <button onClick={() => setShowModel(!showModel)} className="btn-toggle-model">
@@ -57,18 +76,6 @@ export default function Predicciones() {
             <ModelExplainer />
           </div>
         )}
-
-        {jornadas.map((j) => (
-          <div className="jornada" key={j.fecha}>
-            <div className="jornada-tag">
-              <span className="jornada-fecha">{fechaLarga(j.fecha)}</span>
-              <span className="jornada-ronda">{j.etiqueta}</span>
-            </div>
-            <div className="partidos-grid">
-              {j.partidos.map((p, i) => <PartidoCard key={p.id} partido={p} index={i} />)}
-            </div>
-          </div>
-        ))}
       </div>
     </section>
   )

@@ -12,7 +12,7 @@ export default function CombinadasSugeridas() {
       <div className="comb-header">
         <span className="comb-eyebrow">ARMADAS DESDE LOS PICKS DEL MODELO</span>
         <h3 className="comb-title">Combinadas sugeridas</h3>
-        <p className="comb-sub">Una selección por partido. Todo resultado tomalo a tu consideración.</p>
+        <p className="comb-sub">Una selección por partido. Todo resultado tómalo a tu consideración.</p>
       </div>
 
       <div className="combo-cards">
@@ -53,7 +53,7 @@ export default function CombinadasSugeridas() {
 
       <p className="comb-disclaimer">
         Las cuotas mostradas son estimaciones del modelo (100/probabilidad) o de mercado al momento de la predicción.
-        Verificá la cuota real en tu casa antes de apostar. Esto es solo para prode y análisis.
+        Verifica la cuota real en tu casa antes de apostar. Esto es solo para prode y análisis.
       </p>
     </div>
   )

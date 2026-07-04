@@ -205,16 +205,17 @@ P(jugador anota) = 1 − exp(−λ_equipo × share_jugador)
   arriesgados: {
     anotaPrimero: { home: 0.0, away: 0.0, ninguno: 0.0 },
     goleadores: [
-      { jugador: 'Nombre', equipo: 'Equipo', prob: 0.0, cuota: 0.00, nota: '...' },
+      { jugador: 'Nombre', equipo: 'Equipo', prob: 0.0, cuota: 0.00, fuenteCuota: 'bet365', nota: '...' },
       // 2-3 jugadores, los de mayor share de cada equipo
     ],
   },
   picks: {
-    fija: { seleccion: 'Texto del pick', prob: 00.0, cuota: 0.00 },
+    fija: { seleccion: 'Texto del pick', prob: 00.0, cuota: 0.00, fuenteCuota: 'bet365' },
     alternativas: [
-      { seleccion: 'Texto', prob: 00.0, cuota: 0.00, nota: 'Nota breve' },
+      { seleccion: 'Texto', prob: 00.0, cuota: 0.00, fuenteCuota: 'bet365', nota: 'Nota breve' },
       // 2-3 alternativas
     ],
+    // fuenteCuota: 'bet365' | 'betsson' | 'modelo' — OBLIGATORIO junto a cuota, ver §8.
   },
   lectura: 'Análisis editorial honesto...',
   // La skill agrega estos campos el día siguiente:
@@ -226,13 +227,35 @@ P(jugador anota) = 1 − exp(−λ_equipo × share_jugador)
 
 ---
 
-## 8. Campo `cuota` (obligatorio desde julio 2026)
+## 8. Campo `cuota` y `fuenteCuota` (obligatorios desde julio 2026)
 
-Cada pick (fija, alternativas, goleadores) **debe incluir `cuota`** en formato decimal universal (ej. `1.85`).
+Cada pick (fija, alternativas, goleadores) **debe incluir `cuota`** en formato decimal universal
+(ej. `1.85`) **y `fuenteCuota`** indicando de dónde salió.
 
-**Cómo obtenerla:**
-1. Buscar en Bet365, Betsson o Te Apuesto la cuota del mercado exacto.
-2. Si la casa no cubre ese mercado puntual, usar la cuota justa del modelo: `round(100 / prob, 2)`.
+> ⚠ **Auditoría de 2026-07**: se revisaron los 56 picks existentes en `predicciones.js` y **45
+> (80%) coincidían exactamente** con `round(100/prob, 2)` — la fórmula de respaldo, NO una cuota
+> real. En los 6 partidos ya archivados eran **42/42 (100%)**. Una cuota real de casa de apuestas
+> **siempre** es menor a la cuota justa (la casa retiene margen/vig) — que coincidan al centavo es
+> estadísticamente imposible si de verdad se hubiese consultado una casa. Conclusión: el fallback
+> se venía usando como regla general, no como excepción. **No repetir este error.**
+
+### 8.0 Proceso obligatorio para cada `cuota`
+
+1. **Casa de referencia primaria: Bet365.** Secundaria (si Bet365 no cubre el mercado): Betsson.
+   No mezclar casas dentro del mismo partido salvo necesidad.
+2. Buscar la cuota **del mercado exacto** que dice `seleccion` (ver tabla de vocabulario abajo y
+   §8.1 para no confundir 90' con Clasifica). Anotar `fuenteCuota: 'bet365'` (o `'betsson'`).
+3. **Solo si la casa genuinamente no cubre ese mercado puntual** (p. ej. line de córners por
+   equipo, marcador exacto poco común): usar la cuota justa `round(100/prob, 2)` y marcar
+   `fuenteCuota: 'modelo'`. Esto es la excepción, no el default.
+4. **Auto-chequeo antes de guardar**: si TODAS las cuotas de un partido son exactamente
+   `round(100/prob, 2)`, es señal de que no se investigó nada real — parar y buscar de verdad
+   antes de continuar. Un partido real normalmente tiene una mezcla: algunos picks con cuota de
+   casa (con vig, por lo tanto más bajas que la justa) y como mucho 1-2 con `'modelo'` si el
+   mercado es raro.
+5. **Líneas over/under**: usar la línea exacta si la casa la tiene (ej. Over 2.5). Si solo ofrece
+   una línea distinta (ej. Over 2.25 asiático), usar esa y anotarlo en `nota`, o caer a `'modelo'`
+   si no hay nada comparable — nunca forzar una coincidencia.
 
 **Vocabulario canónico en `seleccion`** (la UI localiza al español en display; no cambiar los datos):
 
@@ -266,6 +289,16 @@ En fases eliminatorias **son mercados distintos**:
 
 La `fija` y las `alternativas` de picks **siempre deben usar la variante correcta**. El campo `seleccion` canónico define qué mercado es, no el texto que el usuario ve.
 
+**Al buscar la cuota (§8.0) de un pick de eliminatoria, cruzar con esto:**
+- Para `'Gana X (90 min)'` → buscar el mercado de la casa llamado **"Regular Time" / "Tiempo
+  Reglamentario" / "90 Minutes"** (Bet365 lo separa del "Match Winner" principal en fases
+  eliminatorias). NO usar el "Match Winner" genérico si ese incluye prórroga+penales — sería la
+  cuota de otro mercado pegada en el pick equivocado.
+- Para `'X clasifica'` → buscar **"To Qualify" / "Pasar de ronda" / "Match Winner incl. Overtime"**.
+- Si la casa no distingue los dos mercados explícitamente para ese partido, tratar la cuota como
+  no disponible para ese pick puntual y usar `fuenteCuota: 'modelo'` — no asumir que un mercado
+  sirve para el otro.
+
 ### 8.2 mercadosExtra (campo opcional para mercados de la simulación)
 
 Para mercados que requieren la matriz completa (hándicap, par/impar, rango de goles, totales por equipo, margen de victoria, córners por equipo), el sim puede emitirlos en un campo opcional:
@@ -297,6 +330,9 @@ Lo único necesario es que cada pick tenga `cuota`.
 - Insertar siempre al **PRINCIPIO** del array `jornadas`.
 - `prob.home + prob.draw + prob.away` debe sumar ~100% (±0.2%).
 - `lectura` honesta: si el modelo no tiene una lectura fuerte, decirlo.
+- **Español neutro, forma "tú" (no "vos").** Nada de voseo ("verificá", "armá", "tildá") ni modismos
+  de un solo país (ej. "acá" → "aquí"). Todo `contexto`/`lectura`/`nota`/`postAnalisis` y cualquier
+  texto de UI debe leerse igual de natural en México, Colombia, Perú o España.
 
 ---
 

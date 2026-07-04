@@ -20,6 +20,7 @@ function entry(partido, seleccion, prob, cuota, opts = {}) {
     riesgoAlto: opts.riesgoAlto ?? false,
     nota: opts.nota ?? null,
     grupo: opts.grupo ?? null,
+    fuenteCuota: opts.fuenteCuota ?? null,
   }
 }
 
@@ -28,9 +29,9 @@ export function poolDePartido(partido) {
 
   // Picks del modelo (fija + alternativas)
   const fija = partido.picks.fija
-  entries.push(entry(partido, fija.seleccion, fija.prob, fija.cuota ?? cuotaJusta(fija.prob), { grupo: 'fija' }))
+  entries.push(entry(partido, fija.seleccion, fija.prob, fija.cuota ?? cuotaJusta(fija.prob), { grupo: 'fija', fuenteCuota: fija.fuenteCuota }))
   for (const alt of partido.picks.alternativas) {
-    entries.push(entry(partido, alt.seleccion, alt.prob, alt.cuota ?? cuotaJusta(alt.prob), { grupo: 'alternativas', nota: alt.nota }))
+    entries.push(entry(partido, alt.seleccion, alt.prob, alt.cuota ?? cuotaJusta(alt.prob), { grupo: 'alternativas', nota: alt.nota, fuenteCuota: alt.fuenteCuota }))
   }
 
   // Mercados derivados (doble oportunidad, DNB, clasifica, goles, hándicap, par/impar, rango, faltas)
@@ -54,7 +55,7 @@ export function poolDePartido(partido) {
     entries.push(entry(partido, `${partido.home} anota primero`, ap.home, cuotaJusta(ap.home), { riesgoAlto: true, grupo: 'arriesgados' }))
     entries.push(entry(partido, `${partido.away} anota primero`, ap.away, cuotaJusta(ap.away), { riesgoAlto: true, grupo: 'arriesgados' }))
     for (const g of (partido.arriesgados.goleadores ?? [])) {
-      entries.push(entry(partido, `${g.jugador} marca`, g.prob, g.cuota ?? cuotaJusta(g.prob), { riesgoAlto: true, grupo: 'goleadores', nota: g.nota }))
+      entries.push(entry(partido, `${g.jugador} marca`, g.prob, g.cuota ?? cuotaJusta(g.prob), { riesgoAlto: true, grupo: 'goleadores', nota: g.nota, fuenteCuota: g.fuenteCuota }))
     }
   }
 

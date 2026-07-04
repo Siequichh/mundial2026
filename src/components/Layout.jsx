@@ -101,7 +101,7 @@ export default function Layout() {
         <p>
           Modelo Poisson bivariado con ajuste Dixon-Coles. Probabilidades con fines educativos y de
           prode, no de apuestas con dinero real. El fútbol tiene varianza irreducible: esto son
-          distribuciones de probabilidad, no certezas — todo resultado tomalo a tu consideración.
+          distribuciones de probabilidad, no certezas — todo resultado tómalo a tu consideración.
         </p>
         <p className="site-footer-sub">
           Mundial 2026 · México · Estados Unidos · Canadá — Se recalibra con alineaciones confirmadas ~1h antes de cada partido.

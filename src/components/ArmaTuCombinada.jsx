@@ -47,12 +47,12 @@ export default function ArmaTuCombinada() {
   function limpiar() { setSelected({}) }
 
   return (
-    <div className="armador-section">
-      <div className="armador-head">
+    <details className="armador-section">
+      <summary className="armador-head">
         <span className="comb-eyebrow">CALCULADORA INTERACTIVA</span>
-        <h3 className="comb-title">Armá tu combinada</h3>
-        <p className="comb-sub">Seleccioná mercados de distintos partidos y calculá cuota + probabilidad en tiempo real.</p>
-      </div>
+        <h3 className="comb-title">Arma tu combinada</h3>
+        <p className="comb-sub">Selecciona mercados de distintos partidos y calcula cuota + probabilidad en tiempo real.</p>
+      </summary>
 
       <div className="armador-filtros">
         {FILTROS.map(f => (
@@ -118,7 +118,7 @@ export default function ArmaTuCombinada() {
           </div>
 
           {selectedLegs.length === 0 ? (
-            <p className="slip-empty">Tildá mercados de la izquierda para armar tu combinada.</p>
+            <p className="slip-empty">Marca mercados de la izquierda para armar tu combinada.</p>
           ) : (
             <>
               <ul className="slip-legs">
@@ -167,9 +167,9 @@ export default function ArmaTuCombinada() {
               )}
             </>
           )}
-          <p className="slip-disclaimer">Cuotas estimadas por el modelo. Verificá en tu casa de apuestas antes de jugar.</p>
+          <p className="slip-disclaimer">Algunos mercados (hándicap, corners por equipo, disparos, atajadas, par/impar, rango de goles) son estimaciones del modelo cuando la casa no cotiza esa línea puntual. Verifica la cuota real en tu casa de apuestas antes de jugar.</p>
         </div>
       </div>
-    </div>
+    </details>
   )
 }

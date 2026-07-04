@@ -79,6 +79,9 @@ Solo si hay un partido de hoy con kickoff en menos de 60-90 minutos:
    - Ajustar `xg.home` o `xg.away` en el partido.
    - Re-simular mentalmente o correr `model/simulate.py` con los nuevos valores.
    - Actualizar `prob`, `goles`, `marcadores`, `arriesgados.goleadores` si corresponde.
+   - **Refrescar `cuota`/`fuenteCuota`** del pick afectado — las líneas de la casa se mueven con la
+     probabilidad, no dejar la cuota vieja pegada a una prob nueva. Volver a consultar Bet365/Betsson
+     (§8.0 de `prediccion.md`), no reusar la cuota original.
    - Agregar una nota al campo `contexto` mencionando la novedad: `[RECAL 1h: ...]`.
    - Mostrar delta en `lectura`: `ANTES xG 1.70/1.05 → AHORA 1.55/1.10`.
 4. Si el impacto es menor de 2%, dejar la predicción original intacta (no sobre-editar).
@@ -235,6 +238,10 @@ El workflow de GitHub Pages (`deploy.yml`) redespliega automáticamente.
 - [ ] **En eliminatorias**: picks de resultado usan `'Gana X (90 min)'` (no `'Gana X'`). Alternativa `'X clasifica'` incluida.
 - [ ] `fijaAcerto` refleja el mercado correcto (90' ≠ clasifica).
 - [ ] (Opcional) Si se encontró dato de tiros al arco, `extras.disparos` cargado — si no, se omite sin problema.
+- [ ] **Cuotas reales**: cada `cuota` tiene su `fuenteCuota` (`'bet365'`/`'betsson'`/`'modelo'`).
+      Auto-chequeo: si TODAS las cuotas del partido son exactamente `round(100/prob, 2)`, la
+      investigación de cuotas no se hizo de verdad — volver a buscarlas antes de guardar (ver §8.0
+      de `prediccion.md`).
 - [ ] `npm run build` pasa sin errores.
 - [ ] Summary del commit menciona partidos que siguen pendientes de archivar (si los hay).
 - [ ] Commit message y summary entregados al usuario.
