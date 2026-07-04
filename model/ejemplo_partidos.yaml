@@ -8,6 +8,12 @@
 #   - arbitro           : datos del árbitro asignado
 #   - contexto / lectura: textos editoriales
 #
+# Opcional (enriquece disparos + atajadas, ver §4.4/4.5 de referencias/prediccion.md):
+#   - tiros_home / tiros_away : tiros al arco promedio por equipo (FBref/Understat/Sofascore)
+#     Si se omiten, el partido sale sin extras.disparos/atajadas — no rompe nada.
+#     Hándicap, par/impar, rango de goles y faltas Over/Under NO van acá: se calculan
+#     solos en el cliente a partir de xg_home/xg_away/rho.
+#
 # ¿De dónde salen los xG?
 #   1. Promedio de xG creados en los últimos 10 partidos oficiales (fuente: FBref/Opta)
 #   2. Ajuste ±10-15 % por rival (fuerza defensiva relativa)
@@ -36,6 +42,10 @@ partidos:
     # --- Corners (Poisson independiente) ---
     corners_home: 5.8
     corners_away: 4.4
+
+    # --- Disparos al arco (opcional) ---
+    tiros_home: 6.2
+    tiros_away: 2.8
 
     # --- Árbitro ---
     arbitro:

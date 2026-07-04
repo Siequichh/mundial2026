@@ -223,6 +223,8 @@ def calcular_metricas(sims: np.ndarray, lam: float, mu: float, rho: float,
     top5 = marcadores_flat[:5]
 
     # ── 4. Corners ───────────────────────────────────────────────────────
+    # Split por equipo expuesto además del total: la app deriva Over/Under por
+    # equipo con Poisson a partir de 'home'/'away' (ver src/utils/mercadosDerivados.js).
     total_corners = corners_sims[:, 0] + corners_sims[:, 1]
     media_corners = float(np.mean(total_corners))
     corners = {
@@ -230,6 +232,8 @@ def calcular_metricas(sims: np.ndarray, lam: float, mu: float, rho: float,
         'over85': round(np.sum(total_corners >= 9) / n * 100, 1),
         'over95': round(np.sum(total_corners >= 10) / n * 100, 1),
         'over105': round(np.sum(total_corners >= 11) / n * 100, 1),
+        'home': {'esperados': round(float(np.mean(corners_sims[:, 0])), 1)},
+        'away': {'esperados': round(float(np.mean(corners_sims[:, 1])), 1)},
     }
 
     # ── 5. Tarjetas ─────────────────────────────────────────────────────
@@ -241,9 +245,21 @@ def calcular_metricas(sims: np.ndarray, lam: float, mu: float, rho: float,
     }
 
     # ── 6. Faltas esperadas (dato directo del árbitro) ───────────────────
+    # Over/Under NO se calculan acá: se derivan en el cliente con Poisson sobre
+    # 'esperadas' (ver §4.3 de referencias/prediccion.md).
     faltas = {
         'esperadas': arbitro.get('prom_faltas', 22),
     }
+
+    # ── 6b. Disparos (tiros al arco) — opcional, solo si el YAML los trae ────
+    # Atajadas se deriva sola en el cliente (disparos rival − xG rival); no se
+    # calcula acá (ver §4.5 de referencias/prediccion.md).
+    disparos = None
+    if 'tiros_home' in partido and 'tiros_away' in partido:
+        disparos = {
+            'home': {'esperados': round(partido['tiros_home'], 1)},
+            'away': {'esperados': round(partido['tiros_away'], 1)},
+        }
 
     # ── 7. Extras combinados ─────────────────────────────────────────────
     extras = {
@@ -251,6 +267,8 @@ def calcular_metricas(sims: np.ndarray, lam: float, mu: float, rho: float,
         'tarjetas': tarjetas,
         'faltas': faltas,
     }
+    if disparos:
+        extras['disparos'] = disparos
 
     # ── 8. Picks ─────────────────────────────────────────────────────────
     picks_config = partido.get('picks', {})
@@ -549,10 +567,16 @@ def generar_js(resultados: list, fecha: str, etiqueta: str) -> str:
         c = r['extras']['corners']
         t = r['extras']['tarjetas']
         f = r['extras']['faltas']
+        d = r['extras'].get('disparos')
         lineas.append('      extras: {')
-        lineas.append(f"        corners: {{ esperados: {c['esperados']}, over85: {c['over85']}, over95: {c['over95']}, over105: {c['over105']} }},")
+        lineas.append(
+            f"        corners: {{ esperados: {c['esperados']}, over85: {c['over85']}, over95: {c['over95']}, over105: {c['over105']}, "
+            f"home: {{ esperados: {c['home']['esperados']} }}, away: {{ esperados: {c['away']['esperados']} }} }},"
+        )
         lineas.append(f"        tarjetas: {{ esperadas: {t['esperadas']}, over35: {t['over35']}, over45: {t['over45']} }},")
         lineas.append(f"        faltas: {{ esperadas: {f['esperadas']} }},")
+        if d:
+            lineas.append(f"        disparos: {{ home: {{ esperados: {d['home']['esperados']} }}, away: {{ esperados: {d['away']['esperados']} }} }},")
         lineas.append('      },')
 
         # Mercados arriesgados

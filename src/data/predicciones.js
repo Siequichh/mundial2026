@@ -5,6 +5,98 @@
 // La confianza de cada pick se deriva de su propia probabilidad (no se reparte entre partidos).
 export const jornadas = [
   {
+    fecha: '2026-07-04',
+    etiqueta: 'Octavos de Final',
+    partidos: [
+      {
+        id: 'can-mar',
+        home: 'Canadá', away: 'Marruecos',
+        sede: 'NRG Stadium, Houston',
+        kickoffUtc: '2026-07-04T17:00:00Z',
+        contexto: 'Canadá alcanza los octavos por primera vez en su historia tras vencer a Sudáfrica en dieciseisavos; el anfitrión llega enchufado pero pierde a Ismael Koné (tobillo fracturado). Marruecos —campeón de África y semifinalista en 2022— llega invicto y crecido: eliminó a Países Bajos por penales y su bloque es de los más sólidos del torneo. En el único antecedente reciente (grupos Qatar 2022) ganó Marruecos 2-1. Jonathan David (3 goles, 3.23 xG) es la referencia canadiense; Ismael Saibari (3) la marroquí. El ganador cruza con Francia/Paraguay en cuartos. Árbitro aún sin confirmar por FIFA.',
+        xg: { home: 1.05, away: 1.35 },
+        rho: -0.06,
+        prob: { home: 28.4, draw: 28.9, away: 42.7 },
+        validacion: [
+          { fuente: 'Modelo (Dixon-Coles)', home: 28.4, draw: 28.9, away: 42.7 },
+          { fuente: 'bet365 (de-vig)', home: 26.0, draw: 28.0, away: 46.0 },
+          { fuente: 'Mercado (predicción media)', home: 27, draw: 27, away: 46 },
+        ],
+        goles: { over15: 69.9, over25: 43.0, over35: 22.1, bttsSi: 49.0, bttsNo: 51.0, vallaHome: 25.9, vallaAway: 35.0 },
+        marcadores: [
+          { score: '1-1', pct: 13.6 }, { score: '0-1', pct: 11.5 }, { score: '0-0', pct: 9.8 },
+          { score: '1-0', pct: 8.8 }, { score: '1-2', pct: 8.7 },
+        ],
+        arbitro: { nombre: 'Por confirmar', pais: '—', promAmarillas: 3.8 },
+        extras: {
+          corners: { esperados: 9.5, over85: 61.5, over95: 48.5, over105: 36.5 },
+          tarjetas: { esperadas: 4.0, over35: 58.0, over45: 37.0 },
+          faltas: { esperadas: 24 },
+        },
+        arriesgados: {
+          anotaPrimero: { home: 39.5, away: 50.7, ninguno: 9.8 },
+          goleadores: [
+            { jugador: 'Jonathan David', equipo: 'Canadá', prob: 34.3, cuota: 2.90, nota: 'Talismán canadiense: 3 goles y 3.23 xG en el torneo, casi todo el peso ofensivo pasa por él' },
+            { jugador: 'Ismael Saibari', equipo: 'Marruecos', prob: 33.3, cuota: 3.00, nota: 'Máximo goleador marroquí (3), llega desde segunda línea con gran timing' },
+            { jugador: 'Brahim Díaz', equipo: 'Marruecos', prob: 23.7, cuota: 4.20, nota: 'Diferencial entre líneas, segunda vía de gol marroquí' },
+          ],
+        },
+        picks: {
+          fija: { seleccion: 'Marruecos o empate (doble oportunidad)', prob: 71.6, cuota: 1.33 },
+          alternativas: [
+            { seleccion: 'Gana Marruecos', prob: 42.7, cuota: 2.31, nota: 'Favorito claro pero por debajo del 50%: Canadá anfitrión es rival incómodo' },
+            { seleccion: 'Under 2.5 goles', prob: 57.0, cuota: 1.65, nota: 'Dos bloques cautos de eliminatoria; Marruecos rara vez se abre' },
+            { seleccion: 'Marcador exacto 1-1', prob: 13.6, cuota: 7.35, nota: 'El más probable de la matriz — ojo, más que cualquier triunfo exacto' },
+          ],
+        },
+        lectura: 'Marruecos es mejor equipo y llega crecido, pero un anfitrión en su primer octavo histórico no es trámite: el favorito no pasa del 43% y el empate empuja. Sin lectura fuerte de resultado exacto — el valor está en la cobertura y el Under.',
+      },
+      {
+        id: 'par-fra',
+        home: 'Paraguay', away: 'Francia',
+        sede: 'Lincoln Financial Field, Filadelfia',
+        kickoffUtc: '2026-07-04T21:00:00Z',
+        contexto: 'Francia es una de las candidatas al título: ganó el Grupo I y barrió 3-0 a Suecia en dieciseisavos, con Mbappé como goleador del torneo (6 goles, 2.61 xG, 13 tiros al arco) en su mejor momento. Paraguay es la sorpresa: superó su grupo y eliminó a Alemania por penales (1-1) con Orlando Gill de héroe en la tanda. Su fútbol vive del orden, la transición y el caos; Julio Enciso (1G+2A) es su chispa ofensiva. Diferencia de jerarquía enorme, pero Paraguay ya demostró que aguanta y patea penales. El ganador cruza con Marruecos/Canadá en cuartos. Árbitro aún sin confirmar por FIFA.',
+        xg: { home: 0.60, away: 2.30 },
+        rho: -0.04,
+        prob: { home: 7.6, draw: 16.7, away: 75.7 },
+        validacion: [
+          { fuente: 'Modelo (Dixon-Coles)', home: 7.6, draw: 16.7, away: 75.7 },
+          { fuente: 'bet365 (de-vig)', home: 6.3, draw: 13.5, away: 80.1 },
+          { fuente: 'Mercado (predicción media)', home: 7, draw: 14, away: 79 },
+        ],
+        goles: { over15: 78.8, over25: 55.4, over35: 33.0, bttsSi: 41.0, bttsNo: 59.0, vallaHome: 10.0, vallaAway: 54.8 },
+        marcadores: [
+          { score: '0-2', pct: 14.6 }, { score: '0-1', pct: 12.4 }, { score: '0-3', pct: 11.2 },
+          { score: '1-2', pct: 8.7 }, { score: '1-1', pct: 7.9 },
+        ],
+        arbitro: { nombre: 'Por confirmar', pais: '—', promAmarillas: 4.0 },
+        extras: {
+          corners: { esperados: 10.5, over85: 70.0, over95: 58.0, over105: 45.0 },
+          tarjetas: { esperadas: 4.2, over35: 60.0, over45: 40.0 },
+          faltas: { esperadas: 24 },
+        },
+        arriesgados: {
+          anotaPrimero: { home: 19.5, away: 74.7, ninguno: 5.8 },
+          goleadores: [
+            { jugador: 'Kylian Mbappé', equipo: 'Francia', prob: 60.2, cuota: 1.65, nota: 'Goleador del torneo (6) y en su mejor forma — comparte la mayor cuota del ataque francés' },
+            { jugador: 'Ousmane Dembélé', equipo: 'Francia', prob: 36.9, cuota: 2.70, nota: 'Desequilibrio y llegada por derecha, segunda vía de gol clara' },
+            { jugador: 'Julio Enciso', equipo: 'Paraguay', prob: 18.9, cuota: 5.30, nota: 'La escasa producción ofensiva paraguaya pasa por él — probabilidad baja' },
+          ],
+        },
+        picks: {
+          fija: { seleccion: 'Gana Francia (90 min)', prob: 75.7, cuota: 1.28 },
+          alternativas: [
+            { seleccion: 'Francia gana sin recibir gol', prob: 54.8, cuota: 1.75, nota: 'Paraguay generó muy poco ante Alemania; Francia puede dejar el arco en cero' },
+            { seleccion: 'Over 2.5 goles', prob: 55.4, cuota: 1.75, nota: 'Si Francia rompe temprano hay margen para goleada' },
+            { seleccion: 'Marcador exacto 0-2', prob: 14.6, cuota: 6.85, nota: 'El más probable de la matriz: triunfo francés cómodo' },
+          ],
+        },
+        lectura: 'Favorito claro y tres fuentes alineadas por encima del 75%. Paraguay vive del caos y ya eliminó a Alemania por penales: el batacazo (7.6%) existe pero es el escenario improbable ya contemplado. El interés real es por cuántos marca Francia y si Mbappé sigue su racha.',
+      },
+    ],
+  },
+  {
     fecha: '2026-07-03',
     etiqueta: 'Dieciseisavos de Final',
     partidos: [
@@ -88,7 +180,7 @@ export const jornadas = [
           ],
         },
         picks: {
-          fija: { seleccion: 'Gana Argentina', prob: 82.5, cuota: 1.21 },
+          fija: { seleccion: 'Gana Argentina (90 min)', prob: 82.5, cuota: 1.21 },
           alternativas: [
             { seleccion: 'Argentina gana sin recibir gol', prob: 63.8, cuota: 1.57, nota: 'Cabo Verde apenas generó 0.21 xG ante España' },
             { seleccion: 'Over 2.5 goles', prob: 53.1, cuota: 1.88, nota: 'Si Argentina rompe temprano, hay margen para goleada' },
@@ -96,6 +188,9 @@ export const jornadas = [
           ],
         },
         lectura: 'Favorito abrumador y tres fuentes alineadas por encima del 82%. Cabo Verde generó apenas 0.21 xG ante España: el interés real del partido es por cuántos y quién, no por el resultado.',
+        resultadoReal: '3-2',
+        postAnalisis: 'FIJA FALLÓ A 90\': el partido terminó 1-1 en tiempo reglamentario (Messi 29\', Duarte 59\') — cualquier apuesta a "Gana Argentina (90 min)" habría perdido. Argentina clasificó en la prórroga (Lisandro 92\', Cabral 103\' para Cabo Verde, autogol Borges 111\'), pero eso es otro mercado ("Clasifica"). El modelo modeló el peligro de Cabo Verde en 5.2% y 0.45 xG; terminaron anotando dos y forzando 120 minutos. Lección de proceso: el xG de un tapado eliminatorio sin presión puede rebotar su histórico por 3-4x — la confianza del 82.5% encubrió una varianza real mucho mayor.',
+        fijaAcerto: false,
       },
       {
         id: 'col-gha',
@@ -139,6 +234,9 @@ export const jornadas = [
           ],
         },
         lectura: 'Colombia favorita clara pero sin pólvora: 4 goles en toda la fase de grupos y su goleador es un lateral. Ghana tiene con qué incomodar (Kudus, Semenyo). Marcador corto probable — la fija es sólida, la goleada no.',
+        resultadoReal: '1-0',
+        postAnalisis: 'Fija "Gana Colombia" correcta por las razones correctas: gol tempranero de Jhon Arias (14\') y control total (61% posesión, 7 tiros al arco vs 0 de Ghana, xG real 2.06 vs 0.26). La valla a cero y el Under 2.5 acertaron: Ghana no remató nunca al arco, justo el bajo voltaje que anticipaba el modelo (xG 1.75/0.72). El único fallo fue el goleador: los arriesgados eran Luis Díaz, James y Kudus, pero el gol lo hizo Arias — recordatorio de que en un ataque colombiano tan repartido el share individual es difícil de clavar. Marcador corto exactamente como preveía la lectura.',
+        fijaAcerto: true,
       },
     ],
   },

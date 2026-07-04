@@ -1309,6 +1309,218 @@ button { font-family: inherit; }
 /* cuota en picks */
 .pick-cuota { font-family: var(--font-mono); font-size: 0.85em; color: var(--ink-dim); }
 
+/* ── Ver más mercados (PartidoCard) ──────────────────────────── */
+.mas-mercados {
+  margin-top: 18px;
+  border-top: 1px dashed var(--line);
+  padding-top: 2px;
+}
+.mas-mercados-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.15s;
+}
+.mas-mercados-toggle:hover { color: var(--grass); }
+.mas-mercados-toggle::before { content: '▸'; font-size: 0.65rem; }
+.mas-mercados[open] .mas-mercados-toggle::before { content: '▾'; }
+.mas-mercados-body { padding-top: 14px; display: flex; flex-direction: column; gap: 16px; }
+.mas-grupo-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+.mas-prob-cuota { display: flex; align-items: center; gap: 2px; white-space: nowrap; }
+.mas-nota { font-style: normal; color: var(--ink-faint); font-size: 0.78em; }
+
+/* ── Armador de combinadas ───────────────────────────────────── */
+.armador-section {
+  margin: 0 0 2.5rem;
+  background: var(--bg-panel);
+  border: 1px dashed color-mix(in srgb, var(--grass) 40%, transparent);
+  border-radius: 14px;
+  padding: 1.5rem 1.6rem 1.6rem;
+}
+.armador-head { margin-bottom: 1rem; }
+
+.armador-filtros {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+.armador-filtro-btn {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--bg-raise);
+  color: var(--ink-dim);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.armador-filtro-btn:hover { border-color: var(--grass); color: var(--ink); }
+.armador-filtro-btn.active { background: var(--grass); color: var(--accent-ink); border-color: var(--grass); }
+
+.armador-body {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 1.25rem;
+  align-items: start;
+}
+@media (max-width: 860px) { .armador-body { grid-template-columns: 1fr; } }
+
+/* Mercados por partido */
+.armador-mercados { display: flex; flex-direction: column; gap: 1rem; }
+.armador-match {
+  background: var(--bg-panel-alt);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.am-header {
+  padding: 8px 14px;
+  background: var(--bg-raise);
+  border-bottom: 1px solid var(--line);
+}
+.am-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-dim);
+}
+.am-list { list-style: none; margin: 0; padding: 6px 0; }
+
+.am-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 8px;
+  align-items: center;
+  padding: 7px 14px;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  transition: background 0.12s, border-color 0.12s;
+}
+.am-item:hover { background: color-mix(in srgb, var(--grass) 6%, transparent); }
+.am-item.selected {
+  background: color-mix(in srgb, var(--grass) 10%, transparent);
+  border-left-color: var(--grass);
+}
+.am-item.riesgo-alto-item.selected { border-left-color: var(--danger); background: color-mix(in srgb, var(--danger) 8%, transparent); }
+
+.ami-check { width: 15px; height: 15px; accent-color: var(--grass); cursor: pointer; flex-shrink: 0; }
+.ami-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.ami-sel { font-size: 0.85rem; color: var(--ink); font-weight: 500; }
+.ami-riesgo {
+  font-size: 0.58rem; font-family: var(--font-mono); font-weight: 700;
+  margin-left: 6px; padding: 1px 5px; border-radius: 4px; vertical-align: middle;
+  background: color-mix(in srgb, var(--danger) 20%, transparent);
+}
+.ami-nota { font-size: 0.74rem; color: var(--ink-faint); }
+.ami-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 1px; }
+.ami-prob { font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700; }
+.ami-cuota { font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faint); }
+.tier-arr { color: var(--danger); }
+
+/* Slip / bet result panel */
+.armador-slip {
+  position: sticky;
+  top: 80px;
+  background: var(--bg-raise);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.slip-head { display: flex; align-items: center; justify-content: space-between; }
+.slip-title { font-family: var(--font-display); font-size: 1.1rem; text-transform: uppercase; color: var(--ink); }
+.slip-limpiar {
+  font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--ink-faint); background: none;
+  border: 1px solid var(--line); border-radius: 6px; padding: 3px 8px;
+  cursor: pointer; transition: color 0.15s, border-color 0.15s;
+}
+.slip-limpiar:hover { color: var(--danger); border-color: var(--danger); }
+
+.slip-empty { font-size: 0.82rem; color: var(--ink-faint); line-height: 1.5; }
+
+.slip-legs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.slip-leg {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 6px;
+  align-items: start;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 7px 10px;
+}
+.sl-remove {
+  background: none; border: none; color: var(--ink-faint);
+  font-size: 1rem; cursor: pointer; padding: 0; line-height: 1;
+  transition: color 0.15s;
+}
+.sl-remove:hover { color: var(--danger); }
+.sl-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.sl-partido { font-family: var(--font-mono); font-size: 0.64rem; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.04em; }
+.sl-sel { font-size: 0.82rem; color: var(--ink); font-weight: 500; }
+.sl-cuota { font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700; color: var(--ink); white-space: nowrap; align-self: center; }
+
+.slip-corr {
+  font-size: 0.74rem; color: var(--gold); background: color-mix(in srgb, var(--gold) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--gold) 40%, transparent);
+  border-radius: 7px; padding: 7px 10px; line-height: 1.45;
+}
+
+.slip-result {
+  display: flex; flex-direction: column; gap: 6px;
+  border-top: 1px dashed var(--line); padding-top: 10px;
+}
+.sr-cuota { display: flex; align-items: baseline; gap: 6px; }
+.sr-num { font-family: var(--font-display); font-size: 2.6rem; font-weight: 900; line-height: 1; color: var(--grass); }
+.sr-lbl { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-dim); }
+.sr-prob { font-size: 0.8rem; color: var(--ink-dim); }
+.sr-prob b { color: var(--ink); }
+
+.slip-stake {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  margin-top: 4px;
+}
+.stake-label { font-size: 0.8rem; color: var(--ink-dim); white-space: nowrap; }
+.stake-input {
+  width: 70px; padding: 5px 8px;
+  font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700;
+  background: var(--bg); border: 1px solid var(--line); border-radius: 7px;
+  color: var(--ink); text-align: right;
+  transition: border-color 0.15s;
+}
+.stake-input:focus { outline: none; border-color: var(--grass); }
+.stake-payout { font-size: 0.85rem; color: var(--ink-dim); }
+.stake-payout b { font-family: var(--font-mono); font-size: 1rem; color: var(--grass); }
+.slip-disclaimer { font-size: 0.68rem; color: var(--ink-faint); line-height: 1.5; border-top: 1px solid var(--line); padding-top: 8px; }
+
 /* Movimiento reducido */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }

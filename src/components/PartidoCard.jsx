@@ -1,8 +1,56 @@
 import { useReveal } from '../hooks/useReveal'
 import { flagClass } from '../utils/flags'
 import { fechaHoraLocal } from '../utils/fecha'
-import { formatoMercado } from '../utils/mercados'
+import { formatoMercado, cuotaJusta } from '../utils/mercados'
+import { mercadosDerivados, ETIQ_GRUPO } from '../utils/mercadosDerivados'
+import { poissonOverProb } from '../utils/poisson'
 import ProbBar from './ProbBar'
+
+// mercadosDeExtras (córners/tarjetas/disparos/atajadas) no se repite acá: ya se ve en el bloque
+// "Otros mercados" de arriba. Este "ver más" es para lo que no tiene espacio propio en la ficha.
+function MasMercados({ partido }) {
+  const todos = mercadosDerivados(partido).concat(partido.mercadosExtra ?? [])
+  if (!todos.length) return null
+
+  // Agrupar por grupo
+  const porGrupo = {}
+  for (const m of todos) {
+    const g = m.grupo ?? 'otros'
+    ;(porGrupo[g] = porGrupo[g] ?? []).push(m)
+  }
+
+  return (
+    <details className="mas-mercados">
+      <summary className="mas-mercados-toggle">Ver más mercados</summary>
+      <div className="mas-mercados-body">
+        {Object.entries(porGrupo).map(([grupo, items]) => (
+          <div key={grupo} className="mas-grupo">
+            <span className="mas-grupo-label">{ETIQ_GRUPO[grupo] ?? grupo}</span>
+            <ul className="stat-list">
+              {items.map((m) => {
+                const fmt = formatoMercado(m.seleccion)
+                const cuota = m.cuota ?? cuotaJusta(m.prob)
+                return (
+                  <li key={m.seleccion}>
+                    <span>
+                      {fmt.texto}
+                      {fmt.chip && <span className="mkt-chip">{fmt.chip}</span>}
+                      {m.nota && <em className="mas-nota"> · {m.nota}</em>}
+                    </span>
+                    <span className="mas-prob-cuota">
+                      <b>{m.prob}%</b>
+                      <span className="pick-cuota"> · @{cuota}</span>
+                    </span>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </details>
+  )
+}
 
 // Confianza derivada de la probabilidad del propio pick — por partido, no repartida.
 export function confianzaDe(prob) {
@@ -114,12 +162,42 @@ export default function PartidoCard({ partido, index }) {
               <span className="extra-name">Faltas</span>
               <ul className="stat-list">
                 <li><span>Esperadas</span><b>~{partido.extras.faltas.esperadas}</b></li>
+                <li><span>Más de 22.5 <span className="mkt-chip">+22.5</span></span><b>{poissonOverProb(partido.extras.faltas.esperadas, 22.5)}%</b></li>
+                <li><span>Más de 24.5 <span className="mkt-chip">+24.5</span></span><b>{poissonOverProb(partido.extras.faltas.esperadas, 24.5)}%</b></li>
               </ul>
             </div>
+            {partido.extras.disparos && (
+              <div className="extra">
+                <span className="extra-name">Disparos al arco</span>
+                <ul className="stat-list">
+                  <li><span>{partido.home} esperados</span><b>{partido.extras.disparos.home.esperados}</b></li>
+                  <li><span>{partido.home} Más de 3.5</span><b>{poissonOverProb(partido.extras.disparos.home.esperados, 3.5)}%</b></li>
+                  <li><span>{partido.away} esperados</span><b>{partido.extras.disparos.away.esperados}</b></li>
+                  <li><span>{partido.away} Más de 3.5</span><b>{poissonOverProb(partido.extras.disparos.away.esperados, 3.5)}%</b></li>
+                </ul>
+              </div>
+            )}
+            {partido.extras.disparos && (
+              <div className="extra">
+                <span className="extra-name">Atajadas <i className="ruido">derivado, no medido</i></span>
+                <ul className="stat-list">
+                  <li>
+                    <span>Arquero {partido.home} Más de 2.5</span>
+                    <b>{poissonOverProb(Math.max(partido.extras.disparos.away.esperados - partido.xg.away, 0.3), 2.5)}%</b>
+                  </li>
+                  <li>
+                    <span>Arquero {partido.away} Más de 2.5</span>
+                    <b>{poissonOverProb(Math.max(partido.extras.disparos.home.esperados - partido.xg.home, 0.3), 2.5)}%</b>
+                  </li>
+                </ul>
+              </div>
+            )}
           </div>
         </div>
 
         <p className="tk-lectura"><b>Lectura del modelo:</b> {partido.lectura}</p>
+
+        <MasMercados partido={partido} />
 
         {partido.arriesgados && (
           <div className="tk-arriesgados">

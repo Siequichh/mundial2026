@@ -98,6 +98,10 @@ Seguir la metodología completa en **`referencias/prediccion.md`**:
 - Árbitro designado: nombre, país, promedio amarillas/faltas.
 - Cuotas de al menos 2 casas → de-vigar para obtener probabilidades implícitas.
 - Mercados de predicción (Kalshi, Polymarket) si hay data.
+- **Opcional** — tiros al arco promedio por equipo (FBref/Understat/Sofascore), ver §4.4 de
+  `prediccion.md`. Enriquece disparos + atajadas. Si no aparece en la búsqueda, se omite sin
+  bloquear el resto del flujo — hándicap, par/impar, rango de goles y faltas over/under NO
+  dependen de esto, se calculan solos (ver 3.2).
 
 ### 3.2 Calibración xG + Dixon-Coles
 Seguir los pasos 3.1 → 3.5 de `referencias/prediccion.md`:
@@ -116,8 +120,36 @@ prob_anytime(jugador) = 1 - exp(−λ_equipo × share_jugador)
 ```
 Investigar shares de los 2-3 goleadores más probables por equipo (goles en el torneo / goles totales del equipo).
 
+### 3.3b Vocabulario de picks — CRÍTICO en eliminatorias
+
+**`'Gana X (90 min)'`** y **`'X clasifica'`** son mercados distintos. Siempre usar la variante correcta:
+
+| Mercado | Cuándo usarlo | `seleccion` canónico |
+|---|---|---|
+| Gana en 90' | Partido se resuelve en tiempo reglamentario | `'Gana Argentina (90 min)'` |
+| Clasifica | Fase eliminatoria; incluye prórroga + penales | `'Argentina clasifica'` |
+| Doble oportunidad | Cubre 90' | `'Doble oportunidad 1X'` / `'X2'` / `'12'` |
+| Empate no apuesta | Reembolso si empate a 90' | `'Argentina empate no apuesta'` |
+
+Ver §8.1 de `referencias/prediccion.md` para las fórmulas.
+
+### 3.3c mercadosExtra (opcional — mercados adicionales de la matriz)
+
+Si se corre `model/simulate.py`, agregar al partido un campo `mercadosExtra`:
+```js
+mercadosExtra: [
+  { grupo: 'goles',     seleccion: 'Par de goles',          prob: 50.8, cuota: 1.97 },
+  { grupo: 'goles',     seleccion: 'Rango 2-3 goles',       prob: 47.8, cuota: 2.09 },
+  { grupo: 'tiempos',   seleccion: 'Gol en el primer tiempo', prob: 62.5, cuota: 1.60 },
+  { grupo: 'especiales',seleccion: 'Gana Colombia por 1 gol', prob: 22.1, cuota: 4.52 },
+  // etc. — ver §8.2 de referencias/prediccion.md
+]
+```
+Los derivados básicos (doble oportunidad, DNB, clasifica, Over 1.5, Under 3.5, BTTS No) se calculan automáticamente en la UI desde los campos `prob`, `goles` y `xg` existentes. `mercadosExtra` es solo para mercados que requieren la matriz completa.
+
 ### 3.4 Picks
 - `fija`: el pick de mayor confianza según probabilidad (≥65% ALTA, 50-65% MEDIA, <50% BAJA).
+- **En eliminatorias:** si la fija es de resultado, usar `'Gana X (90 min)'`. Agregar `'X clasifica'` como alternativa.
 - `alternativas`: 2-3 opciones con prob y nota breve.
 - `arriesgados.goleadores`: 2-3 jugadores, siempre etiquetados como ALTO RIESGO.
 - `lectura`: 1-2 frases honestas. Si el modelo no tiene lectura fuerte, decirlo.
@@ -200,6 +232,9 @@ El workflow de GitHub Pages (`deploy.yml`) redespliega automáticamente.
 - [ ] `bracket.js` refleja resultados reales + próximos cruces actualizados.
 - [ ] La fecha de hoy tiene predicciones completas en `predicciones.js`.
 - [ ] Cada partido tiene `arriesgados` (anotaPrimero + goleadores).
+- [ ] **En eliminatorias**: picks de resultado usan `'Gana X (90 min)'` (no `'Gana X'`). Alternativa `'X clasifica'` incluida.
+- [ ] `fijaAcerto` refleja el mercado correcto (90' ≠ clasifica).
+- [ ] (Opcional) Si se encontró dato de tiros al arco, `extras.disparos` cargado — si no, se omite sin problema.
 - [ ] `npm run build` pasa sin errores.
 - [ ] Summary del commit menciona partidos que siguen pendientes de archivar (si los hay).
 - [ ] Commit message y summary entregados al usuario.

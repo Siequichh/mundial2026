@@ -75,12 +75,15 @@ Derivar de la matriz Poisson completa (0-10 goles por equipo):
 
 ---
 
-## 4. Corners, tarjetas y faltas
+## 4. Corners, tarjetas, faltas, disparos y atajadas
 
 ### 4.1 Corners
 - Modelar con Poisson independiente para cada equipo.
 - Media de corners: promedio de los últimos 5 partidos de cada equipo + ajuste por estilo del rival.
 - Calcular Over 8.5/9.5/10.5 con `P(total ≥ 9/10/11)`.
+- **Opcional** — guardar también el split por equipo en `extras.corners.home.esperados` /
+  `.away.esperados` (media de corners forzados por cada uno). Si se guarda, la app deriva sola el
+  Over 4.5 córners por equipo — no hace falta calcularlo a mano.
 
 ### 4.2 Tarjetas
 - Lambda base = promedio histórico del árbitro designado.
@@ -88,7 +91,34 @@ Derivar de la matriz Poisson completa (0-10 goles por equipo):
 - Fuente: transfermarkt.com o RSSSF para stats de árbitros FIFA.
 
 ### 4.3 Faltas
-- Dato directo del árbitro: `prom_faltas` o promedio del torneo (~22/partido).
+- Dato directo del árbitro: `prom_faltas` o promedio del torneo (~22/partido). Guardar solo
+  `extras.faltas.esperadas` — **el Over 22.5/24.5 se deriva solo** en el cliente (Poisson sobre ese
+  lambda). No hace falta calcularlo ni guardarlo en `predicciones.js`.
+
+### 4.4 Disparos (tiros al arco) — OPCIONAL, enriquece el catálogo si hay dato confiable
+- Fuentes: FBref (pestaña "Shooting", columnas `Sh` tiros totales / `SoT` tiros al arco),
+  Understat, Sofascore (stats del partido/torneo).
+- Estimar λ_disparos por equipo: promedio de tiros al arco de los últimos 5-10 partidos, mismo
+  criterio de ajuste que el xG (calidad de rival, sede neutral).
+- Guardar en `extras.disparos: { home: { esperados }, away: { esperados } }`. La app deriva sola
+  el Over 3.5 tiros al arco por equipo (Poisson).
+- **Si no hay dato confiable, omitir el campo por completo** — nada se rompe, la ficha
+  simplemente no muestra esa sección. No es un requisito del flujo diario.
+
+### 4.5 Atajadas (saves del arquero) — se derivan solas, CERO investigación propia
+- No hace falta buscar nada adicional. La app calcula:
+  ```
+  esperado_atajadas_home = max(disparos.away.esperados − xg.away, 0.3)
+  esperado_atajadas_away = max(disparos.home.esperados − xg.home, 0.3)
+  ```
+  (tiros al arco del rival que no terminaron en gol ≈ atajadas del arquero propio; piso de 0.3
+  para evitar un lambda irreal). Esto solo aparece si ya se cargó `extras.disparos` (§4.4).
+
+### 4.6 Hándicap, Par/Impar y Rango de goles — GRATIS, no autorar nada
+Estos tres mercados se calculan en el cliente reconstruyendo la matriz Dixon-Coles a partir de
+`xg.home`, `xg.away` y `rho` — campos que **todo partido ya tiene**. No requieren investigación ni
+campos nuevos en `predicciones.js`, ni en partidos viejos ni en los nuevos. La skill no tiene que
+hacer nada para que aparezcan.
 
 ---
 
@@ -166,8 +196,11 @@ P(jugador anota) = 1 − exp(−λ_equipo × share_jugador)
   arbitro: { nombre: 'Nombre', pais: 'País', promAmarillas: 0.0 },
   extras: {
     corners: { esperados: 0.0, over85: 0.0, over95: 0.0, over105: 0.0 },
+    // corners.home / corners.away: opcional, ver §4.1
     tarjetas: { esperadas: 0.0, over35: 0.0, over45: 0.0 },
-    faltas: { esperadas: 0 },
+    faltas: { esperadas: 0 },   // Over 22.5/24.5 se derivan solos, no se guardan
+    // disparos: { home: { esperados: 0.0 }, away: { esperados: 0.0 } },  // OPCIONAL, ver §4.4
+    // atajadas NO se guarda — se deriva sola de disparos + xg, ver §4.5
   },
   arriesgados: {
     anotaPrimero: { home: 0.0, away: 0.0, ninguno: 0.0 },
@@ -202,10 +235,56 @@ Cada pick (fija, alternativas, goleadores) **debe incluir `cuota`** en formato d
 2. Si la casa no cubre ese mercado puntual, usar la cuota justa del modelo: `round(100 / prob, 2)`.
 
 **Vocabulario canónico en `seleccion`** (la UI localiza al español en display; no cambiar los datos):
-- Usar `'Over 2.5 goles'` / `'Under 2.5 goles'` (no "Más de" — eso lo aplica el formatter)
-- Usar `'Ambos anotan'` (no "GG")
-- Usar `'Valla a cero …'` (no "Arco en cero")
-- Para doble oportunidad: `'X o empate (doble oportunidad)'`
+
+| Selección canónica | Chip UI | Notas |
+|---|---|---|
+| `'Over 2.5 goles'` / `'Under 2.5 goles'` | `+2.5` / `−2.5` | Aplica a cualquier threshold |
+| `'Ambos anotan'` | `GG` | |
+| `'Ambos anotan No'` | `NG` | |
+| `'Valla a cero …'` | — | Formatter lo muestra como "Arco en cero" |
+| `'X o empate (doble oportunidad)'` | — | Para el formato antiguo de alternativas |
+| **`'Gana X (90 min)'`** | `90'` | **Usar SIEMPRE en fases eliminatorias.** Solo cubre los 90'. |
+| **`'X clasifica'`** | `Q` | Incluye prórroga y penales. Ver §8.1. |
+| `'Doble oportunidad 1X'` / `'X2'` / `'12'` | `1X` / `X2` / `'12` | UI los muestra con chip propio |
+| `'X empate no apuesta'` | `DNB` | |
+| `'X anota primero'` | `1er` | |
+| `'X marca'` | `GOL` | Para goleadores en combinadas/pool |
+
+### 8.1 Gana (90 min) vs Clasifica — CRÍTICO en eliminatorias
+
+En fases eliminatorias **son mercados distintos**:
+
+- **`'Gana X (90 min)'`** → liquida al pitazo final del tiempo reglamentario. Si el partido va a prórroga o penales, la apuesta **se pierde** aunque ese equipo clasifique después.
+- **`'X clasifica'`** → incluye prórroga y penales. El modelo la computa como:
+  ```
+  P(clasifica_home) = P(gana_home_90) + P(empate_90) × λh/(λh + λa)
+  P(clasifica_away) = P(gana_away_90) + P(empate_90) × λa/(λh + λa)
+  ```
+  El reparto del empate en prórroga/penales es proporcional a la fuerza relativa (xG) — simplificación conocida.
+
+> ⚠ **Ejemplo**: Argentina-Cabo Verde terminó 1-1 en 90'. La fija "Gana Argentina (90 min)" **falló**. Argentina clasificó en prórroga, que es el mercado "Argentina clasifica".
+
+La `fija` y las `alternativas` de picks **siempre deben usar la variante correcta**. El campo `seleccion` canónico define qué mercado es, no el texto que el usuario ve.
+
+### 8.2 mercadosExtra (campo opcional para mercados de la simulación)
+
+Para mercados que requieren la matriz completa (hándicap, par/impar, rango de goles, totales por equipo, margen de victoria, córners por equipo), el sim puede emitirlos en un campo opcional:
+
+```javascript
+mercadosExtra: [
+  { grupo: 'handicap',  seleccion: 'Hándicap europeo +1 Colombia', prob: 78.2, cuota: 1.28, nota: 'Colombia gana o empata si le dan un gol de ventaja' },
+  { grupo: 'goles',     seleccion: 'Par de goles',                 prob: 50.8, cuota: 1.97 },
+  { grupo: 'goles',     seleccion: 'Rango 0-1 goles',             prob: 28.4, cuota: 3.52, nota: 'Partido muy cerrado' },
+  { grupo: 'goles',     seleccion: 'Rango 2-3 goles',             prob: 47.8, cuota: 2.09 },
+  { grupo: 'goles',     seleccion: 'Rango 4+ goles',              prob: 23.8, cuota: 4.20 },
+  { grupo: 'tiempos',   seleccion: 'Gol en el primer tiempo',     prob: 62.5, cuota: 1.60 },
+  { grupo: 'tiempos',   seleccion: 'Más goles en 2do tiempo',     prob: 54.2, cuota: 1.84 },
+  { grupo: 'especiales',seleccion: 'Colombia gana por 1 gol',     prob: 22.1, cuota: 4.52 },
+  { grupo: 'especiales',seleccion: 'Colombia gana por 2+',        prob: 36.4, cuota: 2.75 },
+]
+```
+
+Grupos disponibles: `handicap`, `goles`, `tiempos`, `especiales`, `corners`. Si el partido no tiene `mercadosExtra`, la UI simplemente no muestra esa sección.
 
 Las **combinadas sugeridas** se generan automáticamente desde los picks — no hay que autorarlas.
 Lo único necesario es que cada pick tenga `cuota`.

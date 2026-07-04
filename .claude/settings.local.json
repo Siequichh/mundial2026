@@ -5,7 +5,8 @@
       "Bash(py --version)",
       "Bash(python *)",
       "Bash(npm --version)",
-      "Bash(npm create *)"
+      "Bash(npm create *)",
+      "WebFetch(domain:www.aljazeera.com)"
     ]
   }
 }

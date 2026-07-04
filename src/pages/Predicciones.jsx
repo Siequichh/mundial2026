@@ -4,6 +4,7 @@ import { fechaLarga } from '../utils/fecha'
 import PartidoCard from '../components/PartidoCard'
 import ModelExplainer from '../components/ModelExplainer'
 import CombinadasSugeridas from '../components/CombinadasSugeridas'
+import ArmaTuCombinada from '../components/ArmaTuCombinada'
 
 export default function Predicciones() {
   const jornadas = getJornadas()
@@ -29,8 +30,12 @@ export default function Predicciones() {
                 <tr><td>Ambos anotan</td><td>Los dos equipos marcan al menos un gol cada uno</td><td>GG</td></tr>
                 <tr><td>Arco en cero</td><td>Un equipo termina el partido sin recibir goles</td><td>—</td></tr>
                 <tr><td>Doble oportunidad</td><td>Dos resultados te cubren: ejemplo "Colombia o empate" = gana Colombia o empatan</td><td>—</td></tr>
-                <tr><td>Primer gol</td><td>Qué equipo o jugador anota primero en el partido</td><td>—</td></tr>
-                <tr><td>Marca en el partido</td><td>Un jugador anota en cualquier momento del partido (anytime scorer)</td><td>—</td></tr>
+                <tr><td>Primer gol</td><td>Qué equipo o jugador anota primero en el partido</td><td>1er</td></tr>
+                <tr><td>Marca en el partido</td><td>Un jugador anota en cualquier momento del partido (anytime scorer)</td><td>GOL</td></tr>
+                <tr><td>Gana (90 min)</td><td>El equipo gana en los 90 minutos de tiempo reglamentario. Se PIERDE si el partido va a prórroga o penales, aunque ese equipo clasifique.</td><td>90'</td></tr>
+                <tr><td>Clasifica</td><td>El equipo avanza a la siguiente ronda por cualquier vía: gana en 90', en prórroga o en penales.</td><td>Q</td></tr>
+                <tr><td>Empate no apuesta</td><td>Si el partido termina empatado en 90', te devuelven la apuesta. Solo gana si el equipo elegido gana en 90'.</td><td>DNB</td></tr>
+                <tr><td>Ambos anotan No</td><td>Al menos uno de los dos equipos termina sin marcar goles</td><td>NG</td></tr>
                 <tr><td>Cuota @1.85</td><td>Por cada S/ 1 apostado ganás S/ 1.85 si acertás (formato decimal universal)</td><td>—</td></tr>
               </tbody>
             </table>
@@ -38,6 +43,7 @@ export default function Predicciones() {
         </details>
 
         <CombinadasSugeridas />
+        <ArmaTuCombinada />
 
         <div className="pred-explainer-bar">
           <button onClick={() => setShowModel(!showModel)} className="btn-toggle-model">

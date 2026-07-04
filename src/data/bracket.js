@@ -20,10 +20,10 @@ export const dieciseisavos = {
     { home: 'España', away: 'Austria', resultado: '3-0', fecha: '2 jul', sede: 'Los Ángeles', feeds: 0 },
     { home: 'Estados Unidos', away: 'Bosnia y Herzegovina', resultado: '2-0', fecha: '2 jul', sede: 'Santa Clara, CA', feeds: 1 },
     { home: 'Bélgica', away: 'Senegal', resultado: '3-2', nota: 'prórroga', fecha: '1 jul', sede: 'Seattle, WA', feeds: 1 },
-    { home: 'Argentina', away: 'Cabo Verde', resultado: null, fecha: '3 jul', sede: 'Miami', feeds: 2 },
+    { home: 'Argentina', away: 'Cabo Verde', resultado: '3-2', nota: 'prórroga', fecha: '3 jul', sede: 'Miami', feeds: 2 },
     { home: 'Australia', away: 'Egipto', resultado: '1-1', penales: '4-2', fecha: '3 jul', sede: 'Arlington, TX', feeds: 2 },
     { home: 'Suiza', away: 'Argelia', resultado: '2-0', fecha: '2 jul', sede: 'Vancouver', feeds: 3 },
-    { home: 'Colombia', away: 'Ghana', resultado: null, fecha: '3 jul', sede: 'Kansas City', feeds: 3 },
+    { home: 'Colombia', away: 'Ghana', resultado: '1-0', fecha: '3 jul', sede: 'Kansas City', feeds: 3 },
   ],
 }
 
@@ -38,8 +38,8 @@ export const octavos = {
   derecha: [
     { home: 'Portugal', away: 'España', resultado: null, fecha: '6 jul', sede: 'Dallas' },
     { home: 'Estados Unidos', away: 'Bélgica', resultado: null, fecha: '6 jul', sede: 'Seattle' },
-    { home: null, away: 'Egipto', pendiente: 'Argentina/C. Verde vs Egipto', resultado: null, fecha: '7 jul', sede: 'Atlanta' },
-    { home: 'Suiza', away: null, pendiente: 'vs Colombia/Ghana', resultado: null, fecha: '7 jul', sede: 'Vancouver' },
+    { home: 'Argentina', away: 'Egipto', resultado: null, fecha: '7 jul', sede: 'Atlanta' },
+    { home: 'Suiza', away: 'Colombia', resultado: null, fecha: '7 jul', sede: 'Vancouver' },
   ],
 }
 

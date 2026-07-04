@@ -17,8 +17,15 @@ function buildLeg(partido, pick, texto) {
   }
 }
 
+// ponytail: asume independencia entre legs — correcto para partidos distintos;
+// ver aviso de correlación en ArmaTuCombinada si hay legs del mismo partido
+export function combinar(legs) {
+  const cuotaTotal = +(legs.reduce((a, l) => a * l.cuota, 1).toFixed(2))
+  const probCombinada = +(legs.reduce((a, l) => a * (l.prob / 100), 1) * 100).toFixed(1)
+  return { cuotaTotal, probCombinada }
+}
+
 export function buildCombinadas(partidos) {
-  // ponytail: asume independencia entre partidos distintos — correcto para parlays de partidos separados
   const futuros = partidos.filter(p => !p.resultadoReal)
   if (futuros.length < 2) return []
 
@@ -38,8 +45,7 @@ export function buildCombinadas(partidos) {
     .filter(Boolean)
 
   function combo(legs, perfil, emoji, titulo, riesgoAlto = false) {
-    const cuotaTotal = +(legs.reduce((a, l) => a * l.cuota, 1).toFixed(2))
-    const probCombinada = +(legs.reduce((a, l) => a * (l.prob / 100), 1) * 100).toFixed(1)
+    const { cuotaTotal, probCombinada } = combinar(legs)
     return { perfil, emoji, titulo, riesgoAlto, legs, cuotaTotal, probCombinada }
   }
 
