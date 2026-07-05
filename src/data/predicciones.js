@@ -5,6 +5,98 @@
 // La confianza de cada pick se deriva de su propia probabilidad (no se reparte entre partidos).
 export const jornadas = [
   {
+    fecha: '2026-07-05',
+    etiqueta: 'Octavos de Final',
+    partidos: [
+      {
+        id: 'bra-nor',
+        home: 'Brasil', away: 'Noruega',
+        sede: 'MetLife Stadium, East Rutherford',
+        kickoffUtc: '2026-07-05T20:00:00Z',
+        contexto: 'El plato fuerte de los octavos: dos de los ataques más temidos del torneo frente a frente. Brasil ganó el Grupo C y superó 2-1 a Japón, con Vinícius Jr. y Matheus Cunha llevando el gol. Noruega es la sorpresa alegre del Mundial de la mano de Erling Haaland (5 goles): fue segunda del Grupo I y venció 2-1 a Costa de Marfil. Dato histórico incómodo para Brasil: Noruega nunca le ganó... pero tampoco perdió en sus 4 cruces (en el único Mundial, grupos 1998, ganó Noruega 2-1). El ganador va a cuartos. Árbitro: Ismail Elfath (EE.UU.).',
+        xg: { home: 1.80, away: 1.15 },
+        rho: -0.05,
+        prob: { home: 52.0, draw: 25.5, away: 22.5 },
+        validacion: [
+          { fuente: 'Modelo (Dixon-Coles)', home: 52.0, draw: 25.5, away: 22.5 },
+          { fuente: 'bet365 (de-vig)', home: 49.9, draw: 27.7, away: 22.4 },
+          { fuente: 'Kalshi (traders)', home: 54, draw: 26, away: 21 },
+        ],
+        goles: { over15: 78.5, over25: 55.5, over35: 33.5, bttsSi: 56.8, bttsNo: 43.2, vallaHome: 33.2, vallaAway: 15.7 },
+        marcadores: [
+          { score: '1-1', pct: 11.1 }, { score: '2-1', pct: 9.9 }, { score: '1-0', pct: 9.3 },
+          { score: '2-0', pct: 9.0 }, { score: '3-1', pct: 6.1 },
+        ],
+        arbitro: { nombre: 'Ismail Elfath', pais: 'EE.UU.', promAmarillas: 3.9 },
+        extras: {
+          corners: { esperados: 10.0, over85: 66.0, over95: 54.0, over105: 42.0, home: { esperados: 5.6 }, away: { esperados: 4.4 } },
+          tarjetas: { esperadas: 3.9, over35: 54.7, over45: 35.2 },
+          faltas: { esperadas: 21 },
+        },
+        arriesgados: {
+          anotaPrimero: { home: 59.1, away: 35.2, ninguno: 5.7 },
+          goleadores: [
+            { jugador: 'Erling Haaland', equipo: 'Noruega', prob: 46.0, cuota: 2.20, fuenteCuota: 'consenso casas', nota: 'Máximo goleador del torneo (5); concentra casi todo el peligro noruego — su cuota es la más corta pese a ser el equipo underdog' },
+            { jugador: 'Vinícius Junior', equipo: 'Brasil', prob: 43.0, cuota: 2.30, fuenteCuota: 'consenso casas', nota: '4 goles en el torneo, principal vía brasileña por izquierda' },
+            { jugador: 'Matheus Cunha', equipo: 'Brasil', prob: 31.0, cuota: 3.30, fuenteCuota: 'modelo', nota: 'Segunda referencia ofensiva, llega desde media punta' },
+          ],
+        },
+        picks: {
+          fija: { seleccion: 'Brasil o empate (doble oportunidad)', prob: 77.5, cuota: 1.29, fuenteCuota: 'bet365' },
+          alternativas: [
+            { seleccion: 'Gana Brasil (90 min)', prob: 52.0, cuota: 1.89, fuenteCuota: 'bet365', nota: 'Favorito leve; Noruega con Haaland siempre está viva y la prórroga es escenario real' },
+            { seleccion: 'Ambos anotan', prob: 56.8, cuota: 1.66, fuenteCuota: 'bet365', nota: 'Dos ataques de primer nivel; ninguna defensa está para dejar el arco en cero seguro' },
+            { seleccion: 'Brasil clasifica', prob: 67.6, cuota: 1.36, fuenteCuota: 'modelo', nota: 'Incluye prórroga y penales — el margen real de Brasil aparece más en pasar de ronda que en ganar a 90\'' },
+          ],
+        },
+        lectura: 'Brasil es mejor en conjunto y tres fuentes lo ponen favorito (~50-54%), pero es un partido grande y parejo: Haaland puede definir cualquier cosa y Noruega nunca perdió contra Brasil. El modelo ve más valor en la cobertura (doble oportunidad / clasifica) y en los goles que en el ganador exacto. Prórroga muy posible.',
+      },
+      {
+        id: 'mex-ing',
+        home: 'México', away: 'Inglaterra',
+        sede: 'Estadio Azteca, Ciudad de México',
+        kickoffUtc: '2026-07-06T00:00:00Z',
+        contexto: 'México llega intratable en defensa: ganó sus 4 partidos sin recibir un solo gol (Sudáfrica, Corea del Sur, República Checa y Ecuador en dieciseisavos), apoyado en la altura y el ruido del Azteca —fortaleza donde nunca perdió un partido de Mundial en 10 visitas—. Inglaterra tiene mejores individualidades pero sufre ante equipos que se cierran atrás: necesitó un doblete tardío de Harry Kane (5 goles, ya máximo goleador histórico inglés en Mundiales) para superar a R.D. Congo. Julián Quiñones (3 goles) es la principal —y escasa— vía de gol mexicana. El ganador va a cuartos. Árbitro: Alireza Faghani (Australia).',
+        xg: { home: 1.05, away: 1.25 },
+        rho: -0.07,
+        prob: { home: 30.0, draw: 30.5, away: 39.5 },
+        validacion: [
+          { fuente: 'Modelo (Dixon-Coles)', home: 30.0, draw: 30.5, away: 39.5 },
+          { fuente: 'bet365 (de-vig)', home: 31.6, draw: 30.6, away: 37.9 },
+          { fuente: 'Kalshi (traders)', home: 32, draw: 30, away: 39 },
+        ],
+        goles: { over15: 63.0, over25: 37.0, over35: 16.5, bttsSi: 43.5, bttsNo: 56.5, vallaHome: 30.5, vallaAway: 34.5 },
+        marcadores: [
+          { score: '1-1', pct: 13.0 }, { score: '0-1', pct: 12.8 }, { score: '0-0', pct: 10.9 },
+          { score: '1-0', pct: 9.1 }, { score: '0-2', pct: 8.0 },
+        ],
+        arbitro: { nombre: 'Alireza Faghani', pais: 'Australia', promAmarillas: 3.6 },
+        extras: {
+          corners: { esperados: 8.5, over85: 49.0, over95: 37.0, over105: 26.0, home: { esperados: 4.0 }, away: { esperados: 4.5 } },
+          tarjetas: { esperadas: 4.2, over35: 62.4, over45: 43.0 },
+          faltas: { esperadas: 26 },
+        },
+        arriesgados: {
+          anotaPrimero: { home: 40.7, away: 48.4, ninguno: 10.9 },
+          goleadores: [
+            { jugador: 'Harry Kane', equipo: 'Inglaterra', prob: 41.0, cuota: 2.50, fuenteCuota: 'consenso casas', nota: 'Máximo goleador histórico inglés en Mundiales; el 9 fijo y la vía más fiable de gol visitante' },
+            { jugador: 'Bukayo Saka', equipo: 'Inglaterra', prob: 28.0, cuota: 3.60, fuenteCuota: 'modelo', nota: 'Desborde y remate por derecha, segunda amenaza inglesa' },
+            { jugador: 'Julián Quiñones', equipo: 'México', prob: 25.0, cuota: 4.50, fuenteCuota: 'consenso casas', nota: 'Goleador mexicano (3) — pero el ataque local es de bajo voltaje, por eso la cuota es larga' },
+          ],
+        },
+        picks: {
+          fija: { seleccion: 'Inglaterra o empate (doble oportunidad)', prob: 70.0, cuota: 1.36, fuenteCuota: 'bet365' },
+          alternativas: [
+            { seleccion: 'Under 2.5 goles', prob: 63.0, cuota: 1.62, fuenteCuota: 'bet365', nota: 'México no recibió goles en 4 partidos e Inglaterra sufre ante bloques bajos: partido táctico y cerrado' },
+            { seleccion: 'Gana Inglaterra (90 min)', prob: 39.5, cuota: 2.50, fuenteCuota: 'bet365', nota: 'Favorito leve, por debajo del 40%: el Azteca y la altura emparejan mucho' },
+            { seleccion: 'Ambos anotan No', prob: 56.5, cuota: 1.57, fuenteCuota: 'modelo', nota: 'Al menos un arco queda en cero — coherente con la racha defensiva mexicana' },
+          ],
+        },
+        lectura: 'Partido parejísimo y de pocos goles: las tres fuentes coinciden (Inglaterra ~38-40%, México ~30-32%, empate ~30%). El modelo inclina levemente a Inglaterra por plantel, pero puede estar subestimando la fortaleza del Azteca —altura, ruido y una México que no encaja goles—. La lectura fuerte no es el ganador sino el bajo marcador. Prórroga muy probable.',
+      },
+    ],
+  },
+  {
     fecha: '2026-07-04',
     etiqueta: 'Octavos de Final',
     partidos: [
@@ -96,6 +188,9 @@ export const jornadas = [
           ],
         },
         lectura: 'Favorito claro y tres fuentes alineadas por encima del 75%. Paraguay vive del caos y ya eliminó a Alemania por penales: el batacazo (7.6%) existe pero es el escenario improbable ya contemplado. El interés real es por cuántos marca Francia y si Mbappé sigue su racha.',
+        resultadoReal: '0-1',
+        postAnalisis: 'La fija (Gana Francia 90 min) acertó: Francia ganó 1-0 en tiempo reglamentario, sin prórroga. El gol llegó de penal de Mbappé (70\', VAR, tras falta de Diego Gómez sobre Doué), que sigue como goleador claro del torneo. También acertó la alternativa "Francia gana sin recibir gol" — fue la mejor lectura. Pero el modelo sobrestimó el volumen de gol: esperaba xG 2.30 y un 0-2 cómodo (Over 2.5 al 55%), y Paraguay lo desmintió con un búnker de 10 detrás de la pelota que ahogó a Francia hasta un único gol tardío de penal. Fallaron el Over 2.5 (1 solo gol) y el marcador exacto 0-2 (fue 0-1). Lección: contra un bloque bajo disciplinado que venía de eliminar a Alemania, hasta el xG de un candidato se suprime — el resultado (gana Francia) se cumplió, pero el modo (partido trabado y de pocos goles) validó el perfil paraguayo más que la proyección de goles del modelo.',
+        fijaAcerto: true,
       },
     ],
   },

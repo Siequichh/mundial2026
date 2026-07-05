@@ -242,6 +242,9 @@ El workflow de GitHub Pages (`deploy.yml`) redespliega automáticamente.
       Auto-chequeo: si TODAS las cuotas del partido son exactamente `round(100/prob, 2)`, la
       investigación de cuotas no se hizo de verdad — volver a buscarlas antes de guardar (ver §8.0
       de `prediccion.md`).
+- [ ] **Bet Builder**: cada partido tiene `picks.fija`, `arriesgados.goleadores` (con el killer del
+      favorito) y `goles.over15` — la UI arma solo el Bet Builder (mismo partido) con eso. Nunca
+      multiplicar cuotas de un mismo partido como independientes (ver §8.3 de `prediccion.md`).
 - [ ] `npm run build` pasa sin errores.
 - [ ] Summary del commit menciona partidos que siguen pendientes de archivar (si los hay).
 - [ ] Commit message y summary entregados al usuario.

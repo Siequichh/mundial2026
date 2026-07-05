@@ -31,7 +31,7 @@ export const dieciseisavos = {
 export const octavos = {
   izquierda: [
     { home: 'Canadá', away: 'Marruecos', resultado: '0-3', fecha: '4 jul', sede: 'Houston' },
-    { home: 'Paraguay', away: 'Francia', resultado: null, fecha: '4 jul', sede: 'Filadelfia' },
+    { home: 'Paraguay', away: 'Francia', resultado: '0-1', fecha: '4 jul', sede: 'Filadelfia' },
     { home: 'Brasil', away: 'Noruega', resultado: null, fecha: '5 jul', sede: 'East Rutherford' },
     { home: 'México', away: 'Inglaterra', resultado: null, fecha: '5 jul', sede: 'Ciudad de México' },
   ],

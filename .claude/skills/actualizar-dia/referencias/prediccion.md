@@ -322,6 +322,30 @@ Grupos disponibles: `handicap`, `goles`, `tiempos`, `especiales`, `corners`. Si 
 Las **combinadas sugeridas** se generan automáticamente desde los picks — no hay que autorarlas.
 Lo único necesario es que cada pick tenga `cuota`.
 
+### 8.3 Combinadas y Bet Builder (mismo partido) — auto-generadas
+
+La UI arma dos tipos de combinada, ambas derivadas de los datos que ya autoras (no hay que
+escribir nada extra):
+
+1. **Combinadas multi-partido** (Segura / Valor / Arriesgada): una selección por partido.
+   Requieren **≥2 partidos futuros** en la jornada. Asumen independencia (partidos distintos) →
+   multiplicación directa de cuotas.
+2. **Bet Builder (mismo partido / same-game parlay)**: combina varios mercados de UN solo partido
+   —`picks.fija` + goleador estrella del favorito + `Over 1.5 goles`—, igual que el "Bet Builder"
+   de bet365 o el "Same Game Parlay" de FanDuel. Se genera **uno por cada partido futuro**, así que
+   la sección de combinadas **nunca desaparece aunque quede un solo partido en el día**.
+
+**Correlación (crítico):** los mercados de un mismo partido **no son independientes** (si el
+favorito golea, "gana" + "su killer marca" + "Over" ocurren juntas). Por eso el Bet Builder aplica
+un **recorte de correlación** a la cuota (`combinarMismoPartido` en `src/utils/combinadas.js`,
+factor 0.80): la casa siempre paga **menos** que multiplicar las cuotas sueltas. La `prob`
+combinada que se muestra es el producto (cota inferior, aprox.). **No multipliques cuotas de un
+mismo partido como si fueran independientes** — ni en los datos ni en el análisis.
+
+Para que el Bet Builder salga bien basta con que cada partido tenga `picks.fija`,
+`arriesgados.goleadores` (con el killer del favorito) y `goles.over15` — campos que el esquema ya
+exige siempre.
+
 ## 9. Convenciones
 
 - Nombres de equipos: consistentes con `bracket.js` y `grupos.js`.

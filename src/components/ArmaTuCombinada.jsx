@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react'
 import { getJornadaDelDia } from '../services/predictionsService'
 import { poolDePartido } from '../utils/mercadoPool'
-import { combinar } from '../utils/combinadas'
+import { combinar, combinarMismoPartido } from '../utils/combinadas'
 
 const TIER_LABEL = { seguro: 'Seguro', medio: 'Medio', bajo: 'Bajo', arriesgado: 'Arriesg.' }
 const TIER_CLS   = { seguro: 'conf-alta', medio: 'conf-media', bajo: 'conf-baja', arriesgado: 'tier-arr' }
@@ -25,14 +25,18 @@ export default function ArmaTuCombinada() {
 
   const selectedLegs = Object.values(selected)
 
-  const resultado = useMemo(
-    () => selectedLegs.length >= 1 ? combinar(selectedLegs) : null,
-    [selectedLegs],
-  )
+  // Todos los legs del mismo partido (≥2) = bet builder → cuota ajustada por correlación.
+  const partidosUnicos = new Set(selectedLegs.map(l => l.partidoId)).size
+  const esBetBuilder = selectedLegs.length >= 2 && partidosUnicos === 1
 
-  // Aviso de correlación si ≥2 legs del mismo partido
-  const mismoPartidoIds = selectedLegs.map(l => l.partidoId)
-  const hayCorrelacion  = new Set(mismoPartidoIds).size < mismoPartidoIds.length
+  const resultado = useMemo(() => {
+    if (selectedLegs.length < 1) return null
+    return esBetBuilder ? combinarMismoPartido(selectedLegs) : combinar(selectedLegs)
+  }, [selectedLegs, esBetBuilder])
+
+  // Aviso de correlación solo cuando hay legs del mismo partido MEZCLADOS con otros partidos
+  // (ahí no aplicamos ajuste porque el cálculo mixto sería aproximado).
+  const hayCorrelacion = !esBetBuilder && partidosUnicos < selectedLegs.length
 
   function toggle(leg) {
     setSelected(prev => {
@@ -137,9 +141,15 @@ export default function ArmaTuCombinada() {
                 ))}
               </ul>
 
+              {esBetBuilder && (
+                <p className="slip-betbuilder">
+                  🎯 Bet Builder (mismo partido): cuota ajustada por correlación, como en las casas de apuestas. Sin ajustar sería @{resultado?.cuotaSinAjuste}.
+                </p>
+              )}
+
               {hayCorrelacion && (
                 <p className="slip-corr">
-                  ⚠ Dos o más mercados del mismo partido: la multiplicación sobreestima la prob. combinada (los resultados están correlacionados).
+                  ⚠ Mezclas mercados del mismo partido con otros: la multiplicación no ajusta por correlación. Para un Bet Builder, elige solo mercados de un mismo juego.
                 </p>
               )}
 
@@ -149,7 +159,7 @@ export default function ArmaTuCombinada() {
                     <span className="sr-num">{resultado.cuotaTotal}</span>
                     <span className="sr-lbl">cuota total</span>
                   </div>
-                  <div className="sr-prob">Prob. combinada: <b>{resultado.probCombinada}%</b></div>
+                  <div className="sr-prob">Prob. combinada: <b>{resultado.probCombinada}%</b>{esBetBuilder && ' (aprox.)'}</div>
                   <div className="slip-stake">
                     <label className="stake-label">Apuesta S/</label>
                     <input
