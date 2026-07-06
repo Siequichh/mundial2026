@@ -5,6 +5,98 @@
 // La confianza de cada pick se deriva de su propia probabilidad (no se reparte entre partidos).
 export const jornadas = [
   {
+    fecha: '2026-07-06',
+    etiqueta: 'Octavos de Final',
+    partidos: [
+      {
+        id: 'por-esp',
+        home: 'Portugal', away: 'España',
+        sede: 'AT&T Stadium, Dallas',
+        kickoffUtc: '2026-07-06T19:00:00Z',
+        contexto: 'Reedición ibérica un año después de la final de Nations League 2025, que ganó Portugal por penales tras el 2-2. España llega como el equipo más sólido del torneo: 8 goles a favor y 0 en contra en 4 partidos, con un 3-0 a Austria en dieciseisavos y Lamine Yamal como referencia ofensiva en racha. Portugal avanza a trompicones —dos empates (R.D. Congo y Colombia), goleada 5-0 a Uzbekistán y un sufrido 2-1 a Croacia con cabezazo de Gonçalo Ramos en el añadido—; Cristiano Ronaldo (3 goles, el mayor xG luso y 7 disparos) sigue siendo su amenaza más clara. El ganador va a cuartos. Árbitro: Anthony Taylor (Inglaterra).',
+        xg: { home: 1.00, away: 1.60 },
+        rho: -0.05,
+        prob: { home: 24.5, draw: 26.0, away: 49.5 },
+        validacion: [
+          { fuente: 'Modelo (Dixon-Coles)', home: 24.5, draw: 26.0, away: 49.5 },
+          { fuente: 'bet365 (de-vig)', home: 23.7, draw: 26.3, away: 49.9 },
+          { fuente: 'JohnnyBet (algoritmo)', home: 24, draw: 26, away: 50 },
+        ],
+        goles: { over15: 73.3, over25: 48.2, over35: 26.4, bttsSi: 50.4, bttsNo: 49.6, vallaHome: 20.2, vallaAway: 36.8 },
+        marcadores: [
+          { score: '0-1', pct: 11.9 }, { score: '1-1', pct: 11.9 }, { score: '0-2', pct: 9.5 },
+          { score: '1-2', pct: 9.5 }, { score: '0-0', pct: 7.4 },
+        ],
+        arbitro: { nombre: 'Anthony Taylor', pais: 'Inglaterra', promAmarillas: 4.4 },
+        extras: {
+          corners: { esperados: 10.5, over85: 68.0, over95: 56.0, over105: 44.0, home: { esperados: 4.0 }, away: { esperados: 6.5 } },
+          tarjetas: { esperadas: 4.8, over35: 68.0, over45: 50.0 },
+          faltas: { esperadas: 24 },
+        },
+        arriesgados: {
+          anotaPrimero: { home: 35.6, away: 57.0, ninguno: 7.4 },
+          goleadores: [
+            { jugador: 'Lamine Yamal', equipo: 'España', prob: 38.0, cuota: 2.75, fuenteCuota: 'consenso casas', nota: 'La estrella española en su mejor momento; alto volumen de remate y desequilibrio en el uno contra uno — la vía de gol más probable del favorito' },
+            { jugador: 'Mikel Oyarzabal', equipo: 'España', prob: 30.0, cuota: 3.50, fuenteCuota: 'modelo', nota: 'Referencia de área, finalizador fiable en el ataque coral español' },
+            { jugador: 'Cristiano Ronaldo', equipo: 'Portugal', prob: 33.0, cuota: 3.20, fuenteCuota: 'consenso casas', nota: '3 goles y el mayor xG luso; concentra casi todo el peligro portugués' },
+          ],
+        },
+        picks: {
+          fija: { seleccion: 'España o empate (doble oportunidad)', prob: 75.5, cuota: 1.30, fuenteCuota: 'bet365' },
+          alternativas: [
+            { seleccion: 'Gana España (90 min)', prob: 49.5, cuota: 1.95, fuenteCuota: 'bet365', nota: 'Favorito claro por juego y defensa, pero Portugal saca resultados en eliminatorias y la prórroga es escenario real' },
+            { seleccion: 'Under 2.5 goles', prob: 51.8, cuota: 1.90, fuenteCuota: 'bet365', nota: 'España no recibió goles en 4 partidos y Portugal es de bajo voltaje salvo Ronaldo: eliminatoria táctica y cerrada' },
+            { seleccion: 'España clasifica', prob: 62.0, cuota: 1.55, fuenteCuota: 'modelo', nota: 'Incluye prórroga y penales — ojo: Portugal ya ganó a España por penales en la Nations League 2025' },
+          ],
+        },
+        lectura: 'España es favorito para las tres fuentes (~50%), tiene la mejor defensa del torneo (0 goles recibidos) y a Yamal enchufado. Portugal llega irregular pero en eliminatoria y con Ronaldo nunca está muerto —y viene de eliminar a España por penales hace un año—. El modelo ve más valor en la cobertura (doble oportunidad / clasifica) y el bajo marcador que en el ganador exacto. Prórroga posible.',
+      },
+      {
+        id: 'usa-bel',
+        home: 'Estados Unidos', away: 'Bélgica',
+        sede: 'Lumen Field, Seattle',
+        kickoffUtc: '2026-07-06T23:00:00Z',
+        contexto: 'El anfitrión juega en casa con el envión de haber ganado el Grupo D (4-1 a Paraguay, 2-0 a Australia, 2-3 con Turquía) y un 2-0 a Bosnia en dieciseisavos, pero pierde por suspensión a Folarin Balogun (2 goles), su goleador, lo que rebaja su pegada; Christian Pulisic sigue sin marcar en el torneo. Bélgica ganó el Grupo G y remontó 3-2 a Senegal en la prórroga: tiene más jerarquía (De Bruyne, Courtois, Doku, Trossard) pero llega irregular (0-0 con Irán, 1-1 con Egipto). Partido parejísimo con localía para EE.UU. El ganador va a cuartos. Árbitro: Raphael Claus (Brasil).',
+        xg: { home: 1.20, away: 1.35 },
+        rho: -0.06,
+        prob: { home: 37.0, draw: 27.0, away: 36.0 },
+        validacion: [
+          { fuente: 'Modelo (Dixon-Coles)', home: 37.0, draw: 27.0, away: 36.0 },
+          { fuente: 'bet365 (de-vig)', home: 37.9, draw: 27.1, away: 35.0 },
+          { fuente: 'Squawka (modelo)', home: 23, draw: 20, away: 57 },
+        ],
+        goles: { over15: 72.3, over25: 46.9, over35: 25.3, bttsSi: 51.8, bttsNo: 48.2, vallaHome: 25.9, vallaAway: 30.1 },
+        marcadores: [
+          { score: '1-1', pct: 12.6 }, { score: '0-1', pct: 10.5 }, { score: '1-0', pct: 9.4 },
+          { score: '1-2', pct: 8.5 }, { score: '0-0', pct: 7.8 },
+        ],
+        arbitro: { nombre: 'Raphael Claus', pais: 'Brasil', promAmarillas: 4.3 },
+        extras: {
+          corners: { esperados: 9.5, over85: 58.0, over95: 46.0, over105: 34.0, home: { esperados: 4.5 }, away: { esperados: 5.0 } },
+          tarjetas: { esperadas: 4.3, over35: 63.0, over45: 44.0 },
+          faltas: { esperadas: 24 },
+        },
+        arriesgados: {
+          anotaPrimero: { home: 43.4, away: 48.8, ninguno: 7.8 },
+          goleadores: [
+            { jugador: 'Christian Pulisic', equipo: 'Estados Unidos', prob: 30.0, cuota: 3.60, fuenteCuota: 'modelo', nota: 'La estrella local, aún sin marcar en el torneo pero principal vía de gol de EE.UU. con Balogun suspendido' },
+            { jugador: 'Leandro Trossard', equipo: 'Bélgica', prob: 31.0, cuota: 3.40, fuenteCuota: 'consenso casas', nota: '2 goles en el torneo; finalizador más en forma del ataque belga' },
+            { jugador: 'Ricardo Pepi', equipo: 'Estados Unidos', prob: 26.0, cuota: 4.00, fuenteCuota: 'modelo', nota: 'Candidato a suplir a Balogun como referencia de área; llega goleador desde Países Bajos' },
+          ],
+        },
+        picks: {
+          fija: { seleccion: 'Over 1.5 goles', prob: 72.3, cuota: 1.44, fuenteCuota: 'bet365' },
+          alternativas: [
+            { seleccion: 'Gana Estados Unidos (90 min)', prob: 37.0, cuota: 2.50, fuenteCuota: 'bet365', nota: 'Leve favorito de la casa por localía pese a perder a Balogun; partido de moneda al aire' },
+            { seleccion: 'Bélgica clasifica', prob: 48.0, cuota: 2.00, fuenteCuota: 'modelo', nota: 'Mejor plantel; incluye prórroga y penales, como el 3-2 a Senegal' },
+            { seleccion: 'Ambos anotan', prob: 51.8, cuota: 1.80, fuenteCuota: 'bet365', nota: 'Dos ataques y dos defensas con fisuras: Bélgica alternó cero con 3-2, EE.UU. encajó 3 a Turquía' },
+          ],
+        },
+        lectura: 'Moneda al aire: bet365 lo ve parejísimo con leve favoritismo a EE.UU. por la localía en Seattle, mientras el modelo de Squawka inclina a Bélgica (57%) por talento. Los belgas tienen más jerarquía (De Bruyne, Courtois, Doku) pero llegan irregulares; EE.UU. juega en casa y con envión, aunque la suspensión de Balogun le quita su mejor rematador. Sin lectura fuerte en el ganador: el valor está en los goles.',
+      },
+    ],
+  },
+  {
     fecha: '2026-07-05',
     etiqueta: 'Octavos de Final',
     partidos: [
@@ -50,6 +142,9 @@ export const jornadas = [
           ],
         },
         lectura: 'Brasil es mejor en conjunto y tres fuentes lo ponen favorito (~50-54%), pero es un partido grande y parejo: Haaland puede definir cualquier cosa y Noruega nunca perdió contra Brasil. El modelo ve más valor en la cobertura (doble oportunidad / clasifica) y en los goles que en el ganador exacto. Prórroga muy posible.',
+        resultadoReal: '1-2',
+        postAnalisis: 'Fija falló: la doble oportunidad Brasil-empate (77.5%) se cayó con el 1-2. Noruega ganó con doblete de Haaland (79\', 90\') y Neymar descontó de penal en la adición. El modelo acertó en lo cualitativo —marcó a Haaland como la amenaza #1 pese a ser underdog y advirtió que Noruega "siempre está viva"— pero sobreponderó la solidez brasileña: Brasil generó (gol anulado, penal fallado por Bruno Guimarães) y no concretó. Lección: cuando el underdog tiene un killer de élite que concentra el peligro, la doble oportunidad del favorito es menos sólida de lo que sugiere el xG agregado.',
+        fijaAcerto: false,
       },
       {
         id: 'mex-ing',
@@ -93,6 +188,9 @@ export const jornadas = [
           ],
         },
         lectura: 'Partido parejísimo y de pocos goles: las tres fuentes coinciden (Inglaterra ~38-40%, México ~30-32%, empate ~30%). El modelo inclina levemente a Inglaterra por plantel, pero puede estar subestimando la fortaleza del Azteca —altura, ruido y una México que no encaja goles—. La lectura fuerte no es el ganador sino el bajo marcador. Prórroga muy probable.',
+        resultadoReal: '2-3',
+        postAnalisis: 'Fija acertó: Inglaterra o empate (doble oportunidad) quedó cubierta con el 3-2. El modelo leyó bien que Inglaterra era favorito leve por plantel y que Kane/Saka eran las vías de gol (Saka asistió los dos cabezazos de Bellingham; Kane marcó de penal). Quiñones anotó, tal como se lo señaló de vía mexicana. Lo que falló fue la lectura de bajo marcador (Under 2.5): salieron 5 goles. El modelo sobreponderó la racha de vallas invictas de México, construida ante rivales flojos (Sudáfrica, Corea, Chequia, Ecuador), que no predijo su rendimiento ante un top real: Inglaterra rompió temprano y el partido se abrió. La expulsión de Quansah (8\' ST) mantuvo vivo a México pero no alcanzó.',
+        fijaAcerto: true,
       },
     ],
   },

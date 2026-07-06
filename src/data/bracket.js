@@ -32,8 +32,8 @@ export const octavos = {
   izquierda: [
     { home: 'Canadá', away: 'Marruecos', resultado: '0-3', fecha: '4 jul', sede: 'Houston' },
     { home: 'Paraguay', away: 'Francia', resultado: '0-1', fecha: '4 jul', sede: 'Filadelfia' },
-    { home: 'Brasil', away: 'Noruega', resultado: null, fecha: '5 jul', sede: 'East Rutherford' },
-    { home: 'México', away: 'Inglaterra', resultado: null, fecha: '5 jul', sede: 'Ciudad de México' },
+    { home: 'Brasil', away: 'Noruega', resultado: '1-2', fecha: '5 jul', sede: 'East Rutherford' },
+    { home: 'México', away: 'Inglaterra', resultado: '2-3', fecha: '5 jul', sede: 'Ciudad de México' },
   ],
   derecha: [
     { home: 'Portugal', away: 'España', resultado: null, fecha: '6 jul', sede: 'Dallas' },
