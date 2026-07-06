@@ -5,6 +5,98 @@
 // La confianza de cada pick se deriva de su propia probabilidad (no se reparte entre partidos).
 export const jornadas = [
   {
+    fecha: '2026-07-07',
+    etiqueta: 'Octavos de Final',
+    partidos: [
+      {
+        id: 'arg-egi',
+        home: 'Argentina', away: 'Egipto',
+        sede: 'Mercedes-Benz Stadium, Atlanta',
+        kickoffUtc: '2026-07-07T16:00:00Z',
+        contexto: 'Argentina llega como una de las grandes candidatas y con Lionel Messi en modo Botín de Oro: 7 goles y 3.82 de xG, líder de artilleros del torneo. La Albiceleste sufrió más de lo esperado en dieciseisavos (3-2 a Cabo Verde en la prórroga) pero su plantel es de otra categoría, con Julián Álvarez como referencia por el centro. Egipto es un rival ordenado y correoso —eliminó a Australia por penales— pero de bajo voltaje ofensivo: su única vía real de gol es Mohamed Salah (1 gol, 1.94 xG). El ganador va a cuartos. Árbitro: François Letexier (Francia).',
+        xg: { home: 2.05, away: 0.75 },
+        rho: -0.08,
+        prob: { home: 72.0, draw: 19.0, away: 9.0 },
+        validacion: [
+          { fuente: 'Modelo (Dixon-Coles)', home: 72.0, draw: 19.0, away: 9.0 },
+          { fuente: 'bet365 (de-vig)', home: 69.9, draw: 20.1, away: 10.0 },
+          { fuente: 'Kalshi (traders)', home: 71, draw: 21, away: 10 },
+        ],
+        goles: { over15: 76.9, over25: 53.1, over35: 30.9, bttsSi: 46.0, bttsNo: 54.0, vallaHome: 47.2, vallaAway: 12.9 },
+        marcadores: [
+          { score: '2-0', pct: 12.8 }, { score: '1-0', pct: 12.5 }, { score: '2-1', pct: 9.6 },
+          { score: '1-1', pct: 9.4 }, { score: '3-0', pct: 8.7 },
+        ],
+        arbitro: { nombre: 'François Letexier', pais: 'Francia', promAmarillas: 3.9 },
+        extras: {
+          corners: { esperados: 10.5, over85: 68.0, over95: 56.0, over105: 44.0, home: { esperados: 6.5 }, away: { esperados: 4.0 } },
+          tarjetas: { esperadas: 4.0, over35: 55.0, over45: 36.0 },
+          faltas: { esperadas: 22 },
+        },
+        arriesgados: {
+          anotaPrimero: { home: 68.8, away: 25.2, ninguno: 6.1 },
+          goleadores: [
+            { jugador: 'Lionel Messi', equipo: 'Argentina', prob: 60.0, cuota: 1.66, fuenteCuota: 'bet365', nota: 'Líder del Botín de Oro (7 goles); el killer del favorito y la vía de gol más probable del partido' },
+            { jugador: 'Julián Álvarez', equipo: 'Argentina', prob: 34.0, cuota: 2.60, fuenteCuota: 'modelo', nota: 'Referencia de área y salida constante para Messi; segunda amenaza clara' },
+            { jugador: 'Mohamed Salah', equipo: 'Egipto', prob: 34.0, cuota: 2.70, fuenteCuota: 'consenso casas', nota: 'Concentra casi todo el peligro egipcio; su única ruta realista al gol' },
+          ],
+        },
+        picks: {
+          fija: { seleccion: 'Gana Argentina (90 min)', prob: 72.0, cuota: 1.36, fuenteCuota: 'bet365' },
+          alternativas: [
+            { seleccion: 'Argentina clasifica', prob: 88.0, cuota: 1.10, fuenteCuota: 'modelo', nota: 'Incluye prórroga y penales; el margen de plantel es enorme, difícil que Egipto pase de ronda' },
+            { seleccion: 'Over 1.5 goles', prob: 76.9, cuota: 1.40, fuenteCuota: 'bet365', nota: 'Argentina genera mucho y Egipto no está para blindar el cero 90 minutos' },
+            { seleccion: 'Ambos anotan No', prob: 54.0, cuota: 1.75, fuenteCuota: 'modelo', nota: 'Al menos un arco en cero — coherente con el bajo poder ofensivo egipcio salvo Salah' },
+          ],
+        },
+        lectura: 'Lectura fuerte del modelo: Argentina es claro favorito y las tres fuentes coinciden (~70-75%), con Messi en el mejor momento del torneo. Egipto es sólido pero su techo ofensivo es Salah y poco más. La duda no es tanto el ganador como el margen; el valor está en Argentina y en los goles, no en buscar la sorpresa.',
+      },
+      {
+        id: 'sui-col',
+        home: 'Suiza', away: 'Colombia',
+        sede: 'BC Place, Vancouver',
+        kickoffUtc: '2026-07-07T20:00:00Z',
+        contexto: 'El cruce más parejo de los octavos: dos equipos ordenados que llegaron invictos y líderes de grupo. Colombia se apoya en Luis Díaz (1 gol, 1.87 xG), su corredor más peligroso, y sacó adelante un dieciseisavos apretado. Suiza fue resolviendo sin ruido —solo un empate ante Qatar le mancha el registro— y tiene en Breel Embolo (marcó ante Argelia) a su referencia. Único antecedente mundialista: Colombia 2-0 en 1994. El ganador va a cuartos. Árbitro: Iván Barton (El Salvador).',
+        xg: { home: 1.00, away: 1.30 },
+        rho: -0.06,
+        prob: { home: 27.5, draw: 30.5, away: 42.0 },
+        validacion: [
+          { fuente: 'Modelo (Dixon-Coles)', home: 27.5, draw: 30.5, away: 42.0 },
+          { fuente: 'bet365 (de-vig)', home: 27.1, draw: 30.6, away: 42.2 },
+          { fuente: 'Kalshi (traders)', home: 27, draw: 32, away: 43 },
+        ],
+        goles: { over15: 66.9, over25: 40.4, over35: 20.1, bttsSi: 46.0, bttsNo: 54.0, vallaHome: 27.3, vallaAway: 36.8 },
+        marcadores: [
+          { score: '1-1', pct: 13.0 }, { score: '0-1', pct: 13.0 }, { score: '1-0', pct: 10.0 },
+          { score: '0-0', pct: 10.0 }, { score: '0-2', pct: 8.5 },
+        ],
+        arbitro: { nombre: 'Iván Barton', pais: 'El Salvador', promAmarillas: 4.4 },
+        extras: {
+          corners: { esperados: 9.5, over85: 58.0, over95: 46.0, over105: 34.0, home: { esperados: 4.5 }, away: { esperados: 5.0 } },
+          tarjetas: { esperadas: 4.5, over35: 65.0, over45: 46.0 },
+          faltas: { esperadas: 25 },
+        },
+        arriesgados: {
+          anotaPrimero: { home: 39.1, away: 50.9, ninguno: 10.0 },
+          goleadores: [
+            { jugador: 'Luis Díaz', equipo: 'Colombia', prob: 37.0, cuota: 2.90, fuenteCuota: 'consenso casas', nota: 'El corredor más peligroso de Colombia y su figura más probable de gol — el killer del favorito' },
+            { jugador: 'Breel Embolo', equipo: 'Suiza', prob: 33.0, cuota: 3.20, fuenteCuota: 'modelo', nota: 'Referencia de área suiza, ya marcó en dieciseisavos ante Argelia' },
+            { jugador: 'Jhon Córdoba', equipo: 'Colombia', prob: 28.0, cuota: 3.80, fuenteCuota: 'modelo', nota: 'Segundo foco ofensivo colombiano por el centro' },
+          ],
+        },
+        picks: {
+          fija: { seleccion: 'Colombia o empate (doble oportunidad)', prob: 72.5, cuota: 1.36, fuenteCuota: 'bet365' },
+          alternativas: [
+            { seleccion: 'Gana Colombia (90 min)', prob: 42.0, cuota: 2.25, fuenteCuota: 'bet365', nota: 'Favorita leve en el cruce más cerrado de la ronda; Suiza es incómoda' },
+            { seleccion: 'Under 2.5 goles', prob: 59.6, cuota: 1.62, fuenteCuota: 'bet365', nota: 'Dos bloques ordenados y de pocos goles: partido táctico' },
+            { seleccion: 'Colombia clasifica', prob: 57.0, cuota: 1.65, fuenteCuota: 'modelo', nota: 'Incluye prórroga y penales — margen real ligeramente a favor de Colombia' },
+          ],
+        },
+        lectura: 'El cruce más parejo de los octavos. Colombia es leve favorita para casi todas las fuentes (~42-52%) por el talento de Luis Díaz, pero Suiza es un bloque ordenado que apenas cedió un empate en todo el torneo. El modelo no tiene lectura fuerte en el ganador: el valor está en la cobertura (doble oportunidad) y en el bajo marcador. Prórroga muy posible.',
+      },
+    ],
+  },
+  {
     fecha: '2026-07-06',
     etiqueta: 'Octavos de Final',
     partidos: [
@@ -50,6 +142,9 @@ export const jornadas = [
           ],
         },
         lectura: 'España es favorito para las tres fuentes (~50%), tiene la mejor defensa del torneo (0 goles recibidos) y a Yamal enchufado. Portugal llega irregular pero en eliminatoria y con Ronaldo nunca está muerto —y viene de eliminar a España por penales hace un año—. El modelo ve más valor en la cobertura (doble oportunidad / clasifica) y el bajo marcador que en el ganador exacto. Prórroga posible.',
+        resultadoReal: '0-1',
+        postAnalisis: 'Fija acertó: España o empate (doble oport.) cubierta con el 1-0. El modelo dio en el clavo en lo estructural —España favorito, mejor defensa del torneo (mantuvo la valla invicta, ya 5 partidos sin recibir) y partido de bajo marcador (Under 2.5 también acertó, salió 1 gol)—. Lo sufrido del cierre validó la lectura de "prórroga posible": el gol llegó en el 90\' por Mikel Merino desde el banco, con España rozando el alargue. Yamal, nuestro top goleador, no marcó; España encontró el gol por un revulsivo, recordatorio de que en partidos cerrados el rematador esperado no siempre es quien define. La solidez defensiva española se confirma como su rasgo más predecible.',
+        fijaAcerto: true,
       },
       {
         id: 'usa-bel',
