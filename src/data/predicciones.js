@@ -13,7 +13,7 @@ export const jornadas = [
         home: 'Argentina', away: 'Egipto',
         sede: 'Mercedes-Benz Stadium, Atlanta',
         kickoffUtc: '2026-07-07T16:00:00Z',
-        contexto: 'Argentina llega como una de las grandes candidatas y con Lionel Messi en modo Botín de Oro: 7 goles y 3.82 de xG, líder de artilleros del torneo. La Albiceleste sufrió más de lo esperado en dieciseisavos (3-2 a Cabo Verde en la prórroga) pero su plantel es de otra categoría, con Julián Álvarez como referencia por el centro. Egipto es un rival ordenado y correoso —eliminó a Australia por penales— pero de bajo voltaje ofensivo: su única vía real de gol es Mohamed Salah (1 gol, 1.94 xG). El ganador va a cuartos. Árbitro: François Letexier (Francia).',
+        contexto: 'Argentina llega como una de las grandes candidatas y con Lionel Messi en modo Botín de Oro: 7 goles y 3.82 de xG, líder de artilleros del torneo. La Albiceleste sufrió más de lo esperado en dieciseisavos (3-2 a Cabo Verde en la prórroga) pero su plantel es de otra categoría, con Julián Álvarez como referencia por el centro. Egipto es un rival ordenado y correoso —eliminó a Australia por penales— pero de bajo voltaje ofensivo: su única vía real de gol es Mohamed Salah (1 gol, 1.94 xG). El ganador va a cuartos. Árbitro: François Letexier (Francia). [RECAL 1h: XI confirmados (Flashscore) — Argentina 4-4-2: E. Martínez; Molina, Romero, L. Martínez, Tagliafico; De Paul, Mac Allister, Paredes, Fernández; Messi, Julián Álvarez. Julián Álvarez es el 9, tal como preveía la predicción. Egipto 4-4-2: Shobeir; Hafez, Rabia, Ibrahim, Hany; Hassan, Lasheen, Attia, Ashour; Ziko, Salah — sin Marmoush, con Salah como única vía real de gol. Los XI confirman las alineaciones previstas: sin cambios materiales, xG (2.05/0.75), prob y picks intactos.]',
         xg: { home: 2.05, away: 0.75 },
         rho: -0.08,
         prob: { home: 72.0, draw: 19.0, away: 9.0 },
@@ -37,7 +37,7 @@ export const jornadas = [
           anotaPrimero: { home: 68.8, away: 25.2, ninguno: 6.1 },
           goleadores: [
             { jugador: 'Lionel Messi', equipo: 'Argentina', prob: 60.0, cuota: 1.66, fuenteCuota: 'bet365', nota: 'Líder del Botín de Oro (7 goles); el killer del favorito y la vía de gol más probable del partido' },
-            { jugador: 'Julián Álvarez', equipo: 'Argentina', prob: 34.0, cuota: 2.60, fuenteCuota: 'modelo', nota: 'Referencia de área y salida constante para Messi; segunda amenaza clara' },
+            { jugador: 'Julián Álvarez', equipo: 'Argentina', prob: 34.0, cuota: 2.60, fuenteCuota: 'modelo', nota: 'Titular confirmado de 9 en el 4-4-2; referencia de área y salida constante para Messi; segunda amenaza clara' },
             { jugador: 'Mohamed Salah', equipo: 'Egipto', prob: 34.0, cuota: 2.70, fuenteCuota: 'consenso casas', nota: 'Concentra casi todo el peligro egipcio; su única ruta realista al gol' },
           ],
         },
@@ -49,7 +49,7 @@ export const jornadas = [
             { seleccion: 'Ambos anotan No', prob: 54.0, cuota: 1.75, fuenteCuota: 'modelo', nota: 'Al menos un arco en cero — coherente con el bajo poder ofensivo egipcio salvo Salah' },
           ],
         },
-        lectura: 'Lectura fuerte del modelo: Argentina es claro favorito y las tres fuentes coinciden (~70-75%), con Messi en el mejor momento del torneo. Egipto es sólido pero su techo ofensivo es Salah y poco más. La duda no es tanto el ganador como el margen; el valor está en Argentina y en los goles, no en buscar la sorpresa.',
+        lectura: 'Lectura fuerte del modelo: Argentina es claro favorito y las tres fuentes coinciden (~70-75%), con Messi en el mejor momento del torneo. Egipto es sólido pero su techo ofensivo es Salah y poco más. La duda no es tanto el ganador como el margen; el valor está en Argentina y en los goles, no en buscar la sorpresa. [RECAL 1h: XI confirmados = alineaciones previstas (Julián Álvarez de 9, Salah solo arriba en Egipto); sin cambios, xG 2.05/0.75 y picks intactos.]',
       },
       {
         id: 'sui-col',
