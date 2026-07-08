@@ -6,6 +6,7 @@ const NAV = [
   { to: '/predicciones', label: 'Predicciones', icon: '◉' },
   { to: '/resultados', label: 'Resultados', icon: '≡' },
   { to: '/camino', label: 'Camino al Título', icon: '⛁' },
+  { to: '/juego', label: 'Juego', icon: '⚽' },
 ]
 
 export default function Layout() {

@@ -1,5 +1,5 @@
-import { dieciseisavos, octavos, rondasPorDefinir } from '../data/bracket'
+import { dieciseisavos, octavos, cuartos, rondasPorDefinir } from '../data/bracket'
 
 export function getBracket() {
-  return { dieciseisavos, octavos, rondasPorDefinir }
+  return { dieciseisavos, octavos, cuartos, rondasPorDefinir }
 }

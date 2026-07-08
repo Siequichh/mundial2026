@@ -43,6 +43,7 @@ const equipos = {
   'Colombia': { iso: 'co', corto: 'COL' },
   'Portugal': { iso: 'pt', corto: 'POR' },
   'R.D. Congo': { iso: 'cd', corto: 'COD' },
+
   'Uzbekistán': { iso: 'uz', corto: 'UZB' },
   'Inglaterra': { iso: 'gb-eng', corto: 'ENG' },
   'Croacia': { iso: 'hr', corto: 'CRO' },

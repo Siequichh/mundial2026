@@ -1619,3 +1619,706 @@ button { font-family: inherit; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .ticket, .match-mini, .group-table { opacity: 1; transform: none; }
 }
+
+
+/* ============================================================
+   TIROS DE ESTRELLA — Magical Kicks (broadcast night match)
+   ============================================================ */
+.mk-wrap { max-width: 560px; margin: 0 auto; }
+
+/* --- Selector de pateador --- */
+.mk-selector { display: flex; flex-direction: column; gap: 1.25rem; }
+.mk-selector-head { text-align: center; }
+.mk-selector-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.mk-selector-titulo {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin: 0.2rem 0 0;
+}
+.mk-jugadores-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(158px, 1fr));
+  gap: 0.7rem;
+}
+@keyframes mk-card-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+.mk-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0.8rem 0.85rem 0.9rem;
+  background:
+    linear-gradient(160deg, color-mix(in srgb, var(--grass) 7%, var(--bg-panel)) 0%, var(--bg-panel) 55%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  cursor: pointer;
+  color: var(--ink);
+  font-family: var(--font-body);
+  text-align: left;
+  overflow: hidden;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.18s, box-shadow 0.18s;
+  touch-action: manipulation;
+  animation: mk-card-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--i) * 40ms);
+}
+.mk-card::after {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(90deg, var(--mx), var(--us-b), var(--ca));
+  opacity: 0;
+  transition: opacity 0.18s;
+}
+.mk-card:hover, .mk-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--grass) 55%, var(--line));
+  box-shadow: var(--shadow);
+  outline: none;
+}
+.mk-card:hover::after, .mk-card:focus-visible::after { opacity: 1; }
+.mk-card-top { display: flex; align-items: center; justify-content: space-between; }
+.mk-card-pais {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  color: var(--ink-faint);
+}
+.mk-card-nombre {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  line-height: 1.05;
+}
+.mk-card-stats { display: flex; flex-direction: column; gap: 4px; }
+.mk-stat { display: flex; align-items: center; gap: 6px; }
+.mk-stat-label { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em; color: var(--ink-faint); width: 26px; }
+.mk-stat-track { flex: 1; height: 4px; background: var(--bg-raise); border-radius: 2px; overflow: hidden; }
+.mk-stat-fill { display: block; height: 100%; border-radius: 2px; }
+.mk-stat-num { font-family: var(--font-mono); font-size: 0.66rem; font-weight: 600; color: var(--ink-dim); width: 18px; text-align: right; }
+
+/* --- Juego --- */
+.mk-juego { display: flex; flex-direction: column; gap: 0.9rem; }
+
+/* Scoreboard broadcast */
+.mk-board {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: stretch;
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.mk-board-side {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.65rem 0.9rem;
+  min-width: 0;
+}
+.mk-board-rival { justify-content: flex-end; }
+.mk-board-nombre {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mk-board-tag {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  color: var(--accent-ink);
+  background: var(--ink-faint);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.mk-board-score {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.4rem 1rem;
+  background: linear-gradient(180deg, var(--bg-raise), var(--bg-panel-alt));
+  border-inline: 1px solid var(--line);
+}
+.mk-board-goles, .mk-board-cpu {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 900;
+  line-height: 1;
+  min-width: 1.1ch;
+  text-align: center;
+}
+.mk-board-goles { color: var(--grass); }
+.mk-board-cpu { color: var(--danger); }
+.mk-board-vs {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+
+/* Historial */
+.mk-historial { display: flex; gap: 9px; justify-content: center; }
+.mk-dot {
+  width: 15px; height: 15px;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  background: var(--bg-panel);
+  transition: background 0.25s, border-color 0.25s, transform 0.25s;
+}
+.mk-dot.gol { background: var(--grass); border-color: var(--grass); box-shadow: 0 0 10px color-mix(in srgb, var(--grass) 55%, transparent); }
+.mk-dot.atajado { background: var(--danger); border-color: var(--danger); }
+.mk-dot.pendiente { opacity: 0.35; }
+
+/* Campo / estadio */
+.mk-campo {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: crosshair;
+  container-type: inline-size;
+}
+.mk-escena { display: block; width: 100%; height: auto; }
+.mk-zona-tap { cursor: crosshair; }
+
+@keyframes mk-aim-pulse { 50% { opacity: 0.45; } }
+.mk-zona-aim { animation: mk-aim-pulse 0.7s ease-in-out infinite; }
+
+/* Balón */
+.mk-ball { transform-box: fill-box; transform-origin: center; will-change: transform; }
+@keyframes mk-ball-idle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-1.2px); }
+}
+.mk-ball-idle { animation: mk-ball-idle 1.8s ease-in-out infinite; }
+@keyframes mk-shoot {
+  0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
+  100% { transform: translate(var(--tx), var(--ty)) scale(0.66) rotate(340deg); }
+}
+.mk-ball-fly { animation: mk-shoot 0.58s cubic-bezier(0.3, 0.2, 0.35, 1) forwards; }
+
+/* Arquero */
+.mk-gk { transform-box: fill-box; transform-origin: 50% 85%; will-change: transform; }
+@keyframes mk-gk-idle {
+  0%, 100% { transform: translateX(-2.2px); }
+  50% { transform: translateX(2.2px); }
+}
+.mk-gk-idle { animation: mk-gk-idle 2.2s ease-in-out infinite; }
+@keyframes mk-gk-dive {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  100% { transform: translate(var(--kx, 0), var(--ky, 0)) rotate(var(--krot, 0deg)); }
+}
+.mk-gk-dive { animation: mk-gk-dive 0.5s cubic-bezier(0.35, 0.1, 0.3, 1) forwards; }
+
+/* Overlays */
+.mk-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+.mk-overlay-fin {
+  pointer-events: auto;
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter: blur(4px);
+}
+@keyframes mk-stamp {
+  0%   { transform: scale(2.2) rotate(-4deg); opacity: 0; }
+  55%  { transform: scale(0.95) rotate(-2deg); opacity: 1; }
+  100% { transform: scale(1) rotate(-2deg); opacity: 1; }
+}
+.mk-overlay-texto {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 9vw, 4rem);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  animation: mk-stamp 0.4s cubic-bezier(0.2, 1.2, 0.4, 1) both;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+}
+.mk-overlay-gol .mk-overlay-texto {
+  color: #fff;
+  -webkit-text-stroke: 1px var(--grass);
+  text-shadow: 0 0 26px color-mix(in srgb, var(--grass) 70%, transparent), 0 4px 30px rgba(0,0,0,0.6);
+}
+.mk-overlay-atajado .mk-overlay-texto {
+  color: var(--danger);
+  text-shadow: 0 0 22px color-mix(in srgb, var(--danger) 45%, transparent), 0 4px 30px rgba(0,0,0,0.6);
+}
+
+/* Confetti */
+.mk-confeti { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+@keyframes mk-confeti-caida {
+  0%   { transform: translateY(-10px) translateX(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(105cqw) translateX(var(--drift, 0)) rotate(540deg); opacity: 0.15; }
+}
+.mk-confeti i {
+  position: absolute;
+  top: -8px;
+  width: 7px; height: 11px;
+  border-radius: 2px;
+  animation: mk-confeti-caida 1.4s cubic-bezier(0.3, 0.4, 0.6, 1) both;
+}
+
+/* Fin de tanda */
+.mk-fin-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+.mk-fin-titulo {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 8vw, 3.2rem);
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  color: var(--ink);
+}
+.mk-fin-score {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+.mk-fin-dots { display: flex; gap: 8px; margin: 0.2rem 0 0.5rem; }
+
+/* Barra de acción */
+.mk-accion { display: flex; justify-content: center; min-height: 52px; align-items: center; }
+.mk-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--ink-dim);
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.55rem 1.1rem;
+}
+.mk-hint-icon { color: var(--gold); }
+@keyframes mk-live-blink { 50% { opacity: 0.35; } }
+.mk-hint-live { color: var(--gold); animation: mk-live-blink 0.8s ease-in-out infinite; }
+.mk-btn {
+  padding: 0.75rem 2rem;
+  background: var(--grass);
+  color: var(--accent-ink);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 6px 20px -8px color-mix(in srgb, var(--grass) 70%, transparent);
+}
+.mk-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 26px -8px color-mix(in srgb, var(--grass) 80%, transparent); }
+.mk-btn:active { transform: translateY(0); }
+
+/* Mobile */
+@media (max-width: 480px) {
+  .mk-jugadores-grid { grid-template-columns: repeat(2, 1fr); gap: 0.55rem; }
+  .mk-card { padding: 0.65rem 0.7rem 0.75rem; }
+  .mk-card-nombre { font-size: 1.05rem; }
+  .mk-board-nombre { font-size: 0.85rem; }
+  .mk-board-goles, .mk-board-cpu { font-size: 1.5rem; }
+  .mk-board-vs { font-size: 0.55rem; }
+  .mk-board-side { padding: 0.55rem 0.6rem; }
+  .mk-hint { font-size: 0.66rem; padding: 0.5rem 0.85rem; }
+}
+
+/* ============================================================
+   TORNEO DE PENALES — estilos tk-* (suma a los mk-* existentes)
+   ============================================================ */
+
+/* Selector: descripción extra del arquero en la card */
+.mk-card-arquero {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--sky);
+  letter-spacing: 0.06em;
+  margin-top: -4px;
+}
+.mk-selector-sub {
+  font-size: 0.85rem;
+  color: var(--ink-dim);
+  margin: 0.4rem 0 0;
+}
+
+/* ─── Pantalla de sorteo / entre-ronda ─── */
+.tk-sorteo,
+.tk-entreronda {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  text-align: center;
+}
+.tk-sorteo-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.tk-entreronda-titulo {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ─── Tarjeta VS ─── */
+.tk-vs-card {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.tk-vs-lado {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 1.1rem 0.75rem;
+}
+.tk-vs-lado .flag { font-size: 2rem; width: 2rem; height: 2rem; }
+.tk-vs-lado strong {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 3vw, 1.3rem);
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.tk-vs-arquero {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--sky);
+  letter-spacing: 0.05em;
+}
+.tk-vs-centro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 0 0.8rem;
+  border-inline: 1px solid var(--line);
+  background: var(--bg-raise);
+}
+.tk-vs-ronda {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+.tk-vs-vs {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+}
+
+/* ─── Llave del torneo ─── */
+.tk-llave-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-panel);
+}
+.tk-llave {
+  display: flex;
+  gap: 0;
+  min-width: 580px;
+  padding: 0.5rem 0;
+}
+.tk-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0 0.35rem;
+  border-right: 1px solid var(--line);
+}
+.tk-col:last-child { border-right: none; }
+.tk-col-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  padding: 0.3rem 0.2rem 0.5rem;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 0.25rem;
+}
+.tk-col-futura .tk-col-label { color: color-mix(in srgb, var(--ink-faint) 50%, transparent); }
+.tk-col-matches { display: flex; flex-direction: column; gap: 0.3rem; justify-content: space-around; flex: 1; }
+.tk-match {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 0.3rem 0.25rem;
+  border-radius: 6px;
+  background: transparent;
+  transition: background 0.15s;
+}
+.tk-match-tuyo { background: color-mix(in srgb, var(--gold) 8%, var(--bg-panel)); }
+.tk-match-tbd { opacity: 0.35; }
+
+/* Chips de jugador dentro de la llave */
+.tk-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  background: var(--bg-raise);
+  color: var(--ink-dim);
+  transition: background 0.15s, color 0.15s;
+}
+.tk-chip-tu {
+  background: color-mix(in srgb, var(--grass) 18%, var(--bg-raise));
+  color: var(--grass);
+  font-weight: 700;
+}
+.tk-chip-winner {
+  background: color-mix(in srgb, var(--grass) 12%, var(--bg-raise));
+  color: var(--ink);
+}
+.tk-chip-tbd {
+  background: transparent;
+  color: var(--ink-faint);
+  border: 1px dashed var(--line);
+  width: 28px;
+  justify-content: center;
+}
+.tk-chip-score {
+  font-size: 0.55rem;
+  color: var(--ink-faint);
+  margin-left: 2px;
+}
+.tk-chip-nombre { max-width: 36px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tk-vs-sep {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: var(--ink-faint);
+  padding: 0 3px;
+  align-self: center;
+}
+
+/* ─── Cabecera del partido ─── */
+.tk-partida-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+}
+.tk-partida-ronda {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.tk-partida-vs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  justify-content: center;
+}
+.tk-partida-lado {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
+.tk-partida-lado-r { justify-content: flex-end; }
+.tk-partida-nombre {
+  font-family: var(--font-display);
+  font-size: clamp(0.85rem, 2.5vw, 1.1rem);
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tk-partida-score {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.2rem 0.8rem;
+  background: var(--bg-raise);
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+.tk-ps-yo, .tk-ps-rival {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 900;
+  line-height: 1;
+  min-width: 1ch;
+  text-align: center;
+}
+.tk-ps-yo { color: var(--grass); }
+.tk-ps-rival { color: var(--danger); }
+.tk-ps-sep { font-family: var(--font-mono); font-size: 1rem; color: var(--ink-faint); }
+.tk-partida-arquero {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--sky);
+  letter-spacing: 0.04em;
+}
+
+/* ─── Tanda (slots de 5 tiros) ─── */
+.tk-tanda {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.65rem 1rem;
+}
+.tk-tanda-fila {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.tk-tanda-etiq {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  color: var(--ink-faint);
+  width: 38px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ─── Overlay de clasificado/eliminado ─── */
+.mk-overlay-ganaste .mk-overlay-texto { color: var(--gold); text-shadow: 0 0 28px color-mix(in srgb, var(--gold) 60%, transparent), 0 4px 30px rgba(0,0,0,0.6); }
+.mk-overlay-perdiste .mk-overlay-texto { color: var(--danger); }
+.mk-overlay-sub {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 4vw, 1.8rem);
+  font-weight: 700;
+  color: var(--ink-dim);
+  letter-spacing: 0.08em;
+}
+
+/* ─── Campeón ─── */
+.tk-campeon {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+  padding: 1.5rem 0;
+}
+.tk-campeon-trofeo { font-size: 4rem; line-height: 1; }
+.tk-campeon-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.tk-campeon-titulo {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 7vw, 3rem);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0;
+  color: var(--ink);
+}
+.tk-campeon-sub {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-dim);
+  margin: 0;
+}
+
+/* ─── Eliminado ─── */
+.tk-eliminado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+  padding: 1.5rem 0;
+}
+.tk-eliminado-icono { font-size: 3rem; }
+.tk-eliminado-titulo {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 5vw, 2rem);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0;
+  color: var(--danger);
+}
+
+/* Mobile: chips más anchos, vs-card vertical en pantallas muy pequeñas */
+@media (max-width: 360px) {
+  .tk-vs-card { flex-direction: column; }
+  .tk-vs-centro { flex-direction: row; border: none; border-block: 1px solid var(--line); width: 100%; padding: 0.4rem 1rem; }
+}

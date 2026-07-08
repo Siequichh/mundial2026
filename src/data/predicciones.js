@@ -5,6 +5,196 @@
 // La confianza de cada pick se deriva de su propia probabilidad (no se reparte entre partidos).
 export const jornadas = [
   {
+    fecha: '2026-07-11',
+    etiqueta: 'Cuartos de Final',
+    partidos: [
+      {
+        id: 'nor-eng',
+        home: 'Noruega', away: 'Inglaterra',
+        sede: 'Arrowhead Stadium, Kansas City',
+        kickoffUtc: '2026-07-11T16:00:00Z',
+        contexto: 'El choque más inesperado de los cuartos: Noruega eliminó a Brasil 2-1 en octavos, la sorpresa más grande del torneo. Haaland lleva 5 goles en 4 partidos y es el máximo goleador activo tras la salida de Messi del otro lado del cuadro. Ødegaard dirige el juego con claridad y el equipo nórdico tiene un bloque cohesionado. Inglaterra pasó con algo de sufrimiento: 2-1 a R.D. Congo y 3-2 a México, con Bellingham como motor y Kane finalizando. Los ingleses tienen mayor profundidad de plantel y más experiencia en este tipo de eliminatorias, pero Noruega llega con la confianza de haber tumbado a Brasil. Árbitro: Victor Gomes (Sudáfrica).',
+        xg: { home: 1.30, away: 1.45 },
+        rho: -0.06,
+        prob: { home: 42.0, draw: 27.0, away: 31.0 },
+        validacion: [
+          { fuente: 'Modelo (Dixon-Coles)', home: 42.0, draw: 27.0, away: 31.0 },
+          { fuente: 'bet365 (de-vig)', home: 41.1, draw: 27.6, away: 31.3 },
+          { fuente: 'Kalshi (traders)', home: 43, draw: 27, away: 30 },
+        ],
+        goles: { over15: 73.0, over25: 50.0, over35: 29.0, bttsSi: 55.6, bttsNo: 44.4, vallaHome: 23.5, vallaAway: 27.3 },
+        marcadores: [
+          { score: '1-1', pct: 12.0 }, { score: '1-0', pct: 11.0 }, { score: '2-1', pct: 10.0 },
+          { score: '0-1', pct: 10.5 }, { score: '2-0', pct: 8.5 },
+        ],
+        arbitro: { nombre: 'Victor Gomes', pais: 'Sudáfrica', promAmarillas: 3.9 },
+        extras: {
+          corners: { esperados: 10.0, over85: 63.0, over95: 51.0, over105: 39.0, home: { esperados: 5.0 }, away: { esperados: 5.0 } },
+          tarjetas: { esperadas: 4.2, over35: 58.0, over45: 38.0 },
+          faltas: { esperadas: 24 },
+        },
+        arriesgados: {
+          anotaPrimero: { home: 44.3, away: 49.3, ninguno: 6.4 },
+          goleadores: [
+            { jugador: 'Erling Haaland', equipo: 'Noruega', prob: 44.0, cuota: 2.04, fuenteCuota: 'bet365', nota: 'El mejor delantero del mundo en su peak (25 años); 5 goles en el torneo, la amenaza más peligrosa del partido — el killer del favorito noruegio' },
+            { jugador: 'Harry Kane', equipo: 'Inglaterra', prob: 35.0, cuota: 2.60, fuenteCuota: 'bet365', nota: 'La referencia inglesa y capitán goleador; comparte con Haaland el duelo de 9s más emocionante del cuadro' },
+            { jugador: 'Jude Bellingham', equipo: 'Inglaterra', prob: 30.0, cuota: 3.20, fuenteCuota: 'bet365', nota: 'Motor del mediocampo inglés y opción de gol desde segunda línea; marcó en dos de los tres partidos anteriores' },
+          ],
+        },
+        picks: {
+          fija: { seleccion: 'Over 2.5 goles', prob: 50.0, cuota: 1.84, fuenteCuota: 'bet365' },
+          alternativas: [
+            { seleccion: 'Haaland anota en cualquier momento', prob: 44.0, cuota: 2.04, fuenteCuota: 'bet365', nota: 'El máximo goleador activo del torneo ante una defensa inglesa que ya recibió 4 goles en dos partidos' },
+            { seleccion: 'Ambos anotan (BTTS Sí)', prob: 55.6, cuota: 1.70, fuenteCuota: 'bet365', nota: 'Ambos equipos atacan y tienen defensas permeables; λ simétricas y alto BTTS' },
+            { seleccion: 'Noruega clasifica', prob: 57.0, cuota: 1.60, fuenteCuota: 'modelo', nota: 'Incluye prórroga y penales; el factor Haaland y la confianza de haber eliminado a Brasil dan ventaja acumulada' },
+          ],
+        },
+        lectura: 'El modelo no tiene lectura fuerte en el resultado a 90 minutos: las probabilidades son casi simétricas (42-31 con empate a 27). El valor está en los goles — el choque de dos de los mejores atacantes del torneo (Haaland vs Kane) en un partido sin clara presión defensiva hace al Over 2.5 la apuesta más sólida. Si hay que elegir ganador, Noruega tiene el factor sorpresa y a Haaland en racha; si hayque elegir una apuesta de clasificación, Noruega clasifica a cuota 1.60 cubre prórroga y penales.',
+      },
+      {
+        id: 'arg-sui',
+        home: 'Argentina', away: 'Suiza',
+        sede: 'Hard Rock Stadium, Miami',
+        kickoffUtc: '2026-07-11T20:00:00Z',
+        contexto: 'La gran cita del cuadro derecho: Argentina con Messi en un nivel histórico (8 goles, Botín de Oro virtual) y un camino dramático — 3-2 a Cabo Verde en dieciseisavos y 3-2 a Egipto remontando de 0-2. Suiza llegó a cuartos por la vía más dura posible: 0-0 con Colombia y clasificación en los penales (4-3). Embolo es la única carta real del ataque suizo; el resto del equipo se apoya en un bloque defensivo compacto con Granit Xhaka como pivote de control. Argentina tiene una diferencia de clase incontestable, pero ya mostró que puede sufrir. Si Suiza logra mantener el cero hasta el 70\', el partido se complica para todos. Árbitro: Clément Turpin (Francia).',
+        xg: { home: 1.90, away: 0.75 },
+        rho: -0.08,
+        prob: { home: 63.0, draw: 22.0, away: 15.0 },
+        validacion: [
+          { fuente: 'Modelo (Dixon-Coles)', home: 63.0, draw: 22.0, away: 15.0 },
+          { fuente: 'bet365 (de-vig)', home: 61.8, draw: 22.7, away: 15.5 },
+          { fuente: 'Kalshi (traders)', home: 64, draw: 22, away: 14 },
+        ],
+        goles: { over15: 73.0, over25: 49.0, over35: 27.0, bttsSi: 44.9, bttsNo: 55.1, vallaHome: 47.2, vallaAway: 15.0 },
+        marcadores: [
+          { score: '1-0', pct: 14.5 }, { score: '2-0', pct: 11.5 }, { score: '2-1', pct: 9.5 },
+          { score: '1-1', pct: 8.5 }, { score: '3-0', pct: 7.5 },
+        ],
+        arbitro: { nombre: 'Clément Turpin', pais: 'Francia', promAmarillas: 4.2 },
+        extras: {
+          corners: { esperados: 10.5, over85: 68.0, over95: 56.0, over105: 44.0, home: { esperados: 7.0 }, away: { esperados: 3.5 } },
+          tarjetas: { esperadas: 4.2, over35: 58.0, over45: 38.0 },
+          faltas: { esperadas: 24 },
+        },
+        arriesgados: {
+          anotaPrimero: { home: 66.6, away: 26.3, ninguno: 7.1 },
+          goleadores: [
+            { jugador: 'Lionel Messi', equipo: 'Argentina', prob: 53.0, cuota: 1.72, fuenteCuota: 'bet365', nota: '8 goles en el torneo; el killer indiscutible del favorito y el jugador más en forma del Mundial — apostar contra Messi en este estado es ignorar la evidencia' },
+            { jugador: 'Julián Álvarez', equipo: 'Argentina', prob: 41.0, cuota: 2.20, fuenteCuota: 'bet365', nota: 'Referencia de 9 en el 4-4-2 argentino; complemento perfecto de Messi y segunda amenaza clara con alto volumen en área' },
+            { jugador: 'Breel Embolo', equipo: 'Suiza', prob: 23.0, cuota: 3.80, fuenteCuota: 'modelo', nota: 'La única carta real del ataque suizo; ya marcó en dieciseisavos y es el foco de todos los ataques helvéticos' },
+          ],
+        },
+        picks: {
+          fija: { seleccion: 'Argentina clasifica', prob: 80.0, cuota: 1.22, fuenteCuota: 'bet365' },
+          alternativas: [
+            { seleccion: 'Messi anota en cualquier momento', prob: 53.0, cuota: 1.72, fuenteCuota: 'bet365', nota: 'Con 8 goles en el torneo y la fuerza ofensiva del equipo, es la apuesta más respaldada por la evidencia' },
+            { seleccion: 'Gana Argentina (90 min)', prob: 63.0, cuota: 1.46, fuenteCuota: 'bet365', nota: 'Favorita clara a 90\' aunque ya mostró que puede sufrir; el valor está en Argentina clasifica con el seguro de prórroga' },
+            { seleccion: 'Ambos anotan No', prob: 55.1, cuota: 1.72, fuenteCuota: 'modelo', nota: 'Suiza tiene muy baja capacidad ofensiva (λ=0.75) y Argentina concede poco cuando no está abriendo espacios' },
+          ],
+        },
+        lectura: 'Lectura clara del modelo: Argentina es el favorito más definido del cuadro derecho. Las tres fuentes convergen en torno al 62-64% para Argentina en 90 minutos y 79-81% de clasificación. Messi en el mejor momento de su carrera mundialista hace difícil no apostar por él. El único riesgo es el factor Suiza: equipos muy organizados con un bloque compacto pueden frustrar a Argentina hasta los penales, como ya vimos con Colombia. La cuota 1.22 de Argentina clasifica es justa para 80% de probabilidad — poco valor pero poco riesgo.',
+      },
+    ],
+  },
+  {
+    fecha: '2026-07-10',
+    etiqueta: 'Cuartos de Final',
+    partidos: [
+      {
+        id: 'esp-bel',
+        home: 'España', away: 'Bélgica',
+        sede: 'SoFi Stadium, Los Ángeles',
+        kickoffUtc: '2026-07-10T23:00:00Z',
+        contexto: 'España llega como el equipo más consistente del torneo: 3-0 a Austria y 1-0 a Portugal sin conceder un solo gol. Rodri es el metrónomo del mediocampo, Lamine Yamal el desequilibrio por la derecha y el sistema de Luis de la Fuente genera pocas ocasiones en contra. Bélgica fue la mayor sorpresa del cuadro izquierdo: goleó 4-1 a Estados Unidos en octavos y viene de ganar 3-2 a Senegal. De Bruyne (35 años en 2026) sigue siendo el motor creativo pero el equipo depende de que él esté fino. La Generación Dorada belga cierra quizás su última oportunidad mundialista. Árbitro: Wilton Sampaio (Brasil).',
+        xg: { home: 1.60, away: 1.10 },
+        rho: -0.07,
+        prob: { home: 53.0, draw: 24.0, away: 23.0 },
+        validacion: [
+          { fuente: 'Modelo (Dixon-Coles)', home: 53.0, draw: 24.0, away: 23.0 },
+          { fuente: 'bet365 (de-vig)', home: 52.1, draw: 24.4, away: 23.5 },
+          { fuente: 'Kalshi (traders)', home: 54, draw: 24, away: 22 },
+        ],
+        goles: { over15: 74.0, over25: 50.0, over35: 28.0, bttsSi: 53.2, bttsNo: 46.8, vallaHome: 33.3, vallaAway: 20.2 },
+        marcadores: [
+          { score: '1-0', pct: 12.5 }, { score: '2-0', pct: 10.5 }, { score: '2-1', pct: 9.5 },
+          { score: '1-1', pct: 10.5 }, { score: '1-2', pct: 7.5 },
+        ],
+        arbitro: { nombre: 'Wilton Sampaio', pais: 'Brasil', promAmarillas: 4.1 },
+        extras: {
+          corners: { esperados: 10.5, over85: 66.0, over95: 54.0, over105: 42.0, home: { esperados: 6.5 }, away: { esperados: 4.0 } },
+          tarjetas: { esperadas: 4.5, over35: 62.0, over45: 42.0 },
+          faltas: { esperadas: 25 },
+        },
+        arriesgados: {
+          anotaPrimero: { home: 55.3, away: 38.0, ninguno: 6.7 },
+          goleadores: [
+            { jugador: 'Lamine Yamal', equipo: 'España', prob: 36.0, cuota: 2.55, fuenteCuota: 'bet365', nota: 'La figura del torneo para España: desequilibra en el uno contra uno y genera el mayor peligro ofensivo español — el killer del favorito' },
+            { jugador: 'Mikel Oyarzabal', equipo: 'España', prob: 30.0, cuota: 3.20, fuenteCuota: 'bet365', nota: 'Referencia de área y finalizador del sistema coral español; el más probable de los segundos atacantes' },
+            { jugador: 'Kevin De Bruyne', equipo: 'Bélgica', prob: 24.0, cuota: 3.80, fuenteCuota: 'consenso casas', nota: 'Sigue siendo el creador y disparador belga más peligroso; las probabilidades de gol dependen casi en exclusiva de él' },
+          ],
+        },
+        picks: {
+          fija: { seleccion: 'España clasifica', prob: 70.0, cuota: 1.43, fuenteCuota: 'bet365' },
+          alternativas: [
+            { seleccion: 'Gana España (90 min)', prob: 53.0, cuota: 1.74, fuenteCuota: 'bet365', nota: 'La España más sólida del torneo, sin goles en contra en 270 minutos — coherente con la ventaja relativa' },
+            { seleccion: 'Over 1.5 goles', prob: 74.0, cuota: 1.26, fuenteCuota: 'bet365', nota: 'Ambos equipos tienen poder ofensivo y el BTTS Sí es el más alto de los cuartos (53%); pocas opciones de que quede 0-0' },
+            { seleccion: 'Lamine Yamal anota en cualquier momento', prob: 36.0, cuota: 2.55, fuenteCuota: 'bet365', nota: 'Con 3 goles y 2 asistencias en el torneo, el joven extremo está en el partido de su vida a sus 18 años' },
+          ],
+        },
+        lectura: 'España es el favorito más claro de los cuartos por consistencia y solidez defensiva (único equipo sin goles en contra). El modelo le da 53% a 90\' y 70% de clasificación. Bélgica es peligrosa — la goleada 4-1 a EEUU puede crear un efecto confianza — pero depende demasiado de De Bruyne y enfrentar el mejor sistema defensivo del torneo es un obstáculo enorme. El valor está en España clasifica (1.43) como fija conservadora y en los goles, porque Bélgica atacará buscando el milagro.',
+      },
+    ],
+  },
+  {
+    fecha: '2026-07-09',
+    etiqueta: 'Cuartos de Final',
+    partidos: [
+      {
+        id: 'fra-mar',
+        home: 'Francia', away: 'Marruecos',
+        sede: 'Gillette Stadium, Foxborough',
+        kickoffUtc: '2026-07-09T20:00:00Z',
+        contexto: 'Revancha del clásico de Qatar 2022, donde Marruecos eliminó a Portugal en semis y cayó 2-0 ante Francia. Los Leones del Atlas volvieron a demostrar su solidez: eliminaron a Países Bajos en penales (1-1) y arrasaron a Canadá 3-0 en octavos, con En-Nesyri como referencia ofensiva. Francia pasó con autoridad — 3-0 a Suecia y 1-0 a Paraguay — y Mbappé lleva 4 goles y el mejor rendimiento individual del cuadro izquierdo. El antecedente de 2022 pesa: Marruecos sabe defender y contraatacar; si logran neutralizar a Mbappé y llegar al descanso sin goles, el partido se abre. Árbitro: Szymon Marciniak (Polonia).',
+        xg: { home: 1.45, away: 0.95 },
+        rho: -0.07,
+        prob: { home: 50.0, draw: 25.0, away: 25.0 },
+        validacion: [
+          { fuente: 'Modelo (Dixon-Coles)', home: 50.0, draw: 25.0, away: 25.0 },
+          { fuente: 'bet365 (de-vig)', home: 49.2, draw: 25.6, away: 25.2 },
+          { fuente: 'Kalshi (traders)', home: 51, draw: 25, away: 24 },
+        ],
+        goles: { over15: 72.0, over25: 46.0, over35: 24.0, bttsSi: 46.9, bttsNo: 53.1, vallaHome: 38.7, vallaAway: 23.5 },
+        marcadores: [
+          { score: '1-0', pct: 13.5 }, { score: '2-0', pct: 10.0 }, { score: '1-1', pct: 11.0 },
+          { score: '2-1', pct: 9.5 }, { score: '0-1', pct: 8.5 },
+        ],
+        arbitro: { nombre: 'Szymon Marciniak', pais: 'Polonia', promAmarillas: 3.8 },
+        extras: {
+          corners: { esperados: 10.0, over85: 63.0, over95: 51.0, over105: 39.0, home: { esperados: 6.0 }, away: { esperados: 4.0 } },
+          tarjetas: { esperadas: 4.0, over35: 55.0, over45: 35.0 },
+          faltas: { esperadas: 23 },
+        },
+        arriesgados: {
+          anotaPrimero: { home: 54.9, away: 36.0, ninguno: 9.1 },
+          goleadores: [
+            { jugador: 'Kylian Mbappé', equipo: 'Francia', prob: 40.0, cuota: 2.16, fuenteCuota: 'bet365', nota: '4 goles en el torneo y en plena forma a sus 27 años — la amenaza más peligrosa del partido y el killer claro del favorito francés' },
+            { jugador: 'Ousmane Dembélé', equipo: 'Francia', prob: 30.0, cuota: 3.10, fuenteCuota: 'bet365', nota: 'Segundo foco ofensivo francés; activo, veloz y con alto volumen de remate cuando el equipo domina' },
+            { jugador: 'Youssef En-Nesyri', equipo: 'Marruecos', prob: 25.0, cuota: 3.75, fuenteCuota: 'consenso casas', nota: 'El punto más alto del ataque marroquí; concentra la mayor amenaza de gol para los Leones del Atlas a la contra' },
+          ],
+        },
+        picks: {
+          fija: { seleccion: 'Francia clasifica', prob: 66.0, cuota: 1.47, fuenteCuota: 'bet365' },
+          alternativas: [
+            { seleccion: 'Gana Francia (90 min)', prob: 50.0, cuota: 1.84, fuenteCuota: 'bet365', nota: 'Favorita leve en el partido más parejo de los cuartos; Marruecos puede hacer daño como en 2022' },
+            { seleccion: 'Mbappé anota en cualquier momento', prob: 40.0, cuota: 2.16, fuenteCuota: 'bet365', nota: 'En el mejor momento del torneo y con libertad de movimiento — el pick de mayor valor individual del partido' },
+            { seleccion: 'Marruecos clasifica', prob: 34.0, cuota: 2.94, fuenteCuota: 'modelo', nota: 'La cuota a 2.94 tiene valor real si creemos en el guion de Qatar 2022; el bloque africano es el más sólido fuera del top-4' },
+          ],
+        },
+        lectura: 'El partido más parejo y menos predecible de los cuartos. Francia es leve favorita (50% a 90 minutos) pero Marruecos ya demostró en 2022 que puede con cualquiera. El modelo otorga 66% de clasificación a Francia cuando se incluye prórroga y penales, lo que sugiere que el valor real está ahí. Mbappé vs la defensa de Marruecos es el duelo del partido. Si se va el 0-0 al descanso, la historia puede repetirse.',
+      },
+    ],
+  },
+  {
     fecha: '2026-07-07',
     etiqueta: 'Octavos de Final',
     partidos: [

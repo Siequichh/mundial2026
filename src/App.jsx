@@ -4,6 +4,7 @@ import Inicio from './pages/Inicio'
 import Predicciones from './pages/Predicciones'
 import Resultados from './pages/Resultados'
 import Camino from './pages/Camino'
+import Juego from './pages/Juego'
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
           <Route path="predicciones" element={<Predicciones />} />
           <Route path="resultados" element={<Resultados />} />
           <Route path="camino" element={<Camino />} />
+          <Route path="juego" element={<Juego />} />
         </Route>
       </Routes>
     </HashRouter>

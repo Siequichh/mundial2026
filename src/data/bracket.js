@@ -51,8 +51,19 @@ export const octavos = {
   ],
 }
 
-// Cuartos, semis y final: por definir.
+// Cuartos: cruces confirmados por el bracket oficial FIFA.
+export const cuartos = {
+  izquierda: [
+    { home: 'Francia',  away: 'Marruecos', fecha: '9 jul',  sede: 'Foxborough, MA' },
+    { home: 'España',   away: 'Bélgica',   fecha: '10 jul', sede: 'Los Ángeles' },
+  ],
+  derecha: [
+    { home: 'Noruega',    away: 'Inglaterra', fecha: '11 jul', sede: 'Kansas City' },
+    { home: 'Argentina',  away: 'Suiza',      fecha: '11 jul', sede: 'Miami' },
+  ],
+}
+
+// Semis y final: por definir.
 export const rondasPorDefinir = {
-  cuartos: { porLado: 2 },
   semis: { porLado: 1 },
 }
