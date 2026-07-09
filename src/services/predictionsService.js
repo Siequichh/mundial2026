@@ -6,11 +6,13 @@ export function getJornadas() {
 }
 
 export function getJornadaDelDia() {
-  return jornadas[0]
+  const hoy = new Date().toISOString().slice(0, 10)
+  // jornadas newest-first → reverse to find the earliest upcoming date
+  return [...jornadas].reverse().find(j => j.fecha >= hoy) ?? jornadas[0]
 }
 
 export function getCombinadasDelDia() {
-  return buildCombinadas(jornadas[0]?.partidos ?? [])
+  return buildCombinadas(getJornadaDelDia()?.partidos ?? [])
 }
 
 // Todos los partidos con resultadoReal, aplanados y anotados con la fecha de su jornada,

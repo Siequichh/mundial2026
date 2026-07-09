@@ -46,7 +46,7 @@ export default function Predicciones() {
         <CombinadasSugeridas />
         <ArmaTuCombinada />
 
-        {jornadas.map((j) => {
+        {[...jornadas].reverse().map((j) => {
           const partidosFuturos = j.partidos.filter(p => !p.resultadoReal)
           if (partidosFuturos.length === 0) return null
           return (
