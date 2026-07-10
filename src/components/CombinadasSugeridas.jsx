@@ -12,12 +12,12 @@ export default function CombinadasSugeridas() {
       <div className="comb-header">
         <span className="comb-eyebrow">ARMADAS DESDE LOS PICKS DEL MODELO</span>
         <h3 className="comb-title">Combinadas sugeridas</h3>
-        <p className="comb-sub">Una selección por partido, más un Bet Builder por partido (varias apuestas del mismo juego). Todo resultado tómalo a tu consideración.</p>
+        <p className="comb-sub">Combinadas del mismo partido (segura → valor → arriesgada) y Bet Builder. Todo resultado tómalo a tu consideración.</p>
       </div>
 
       <div className="combo-cards">
         {combinadas.map((c, idx) => (
-          <div key={c.perfil === 'betbuilder' ? `bb-${idx}` : c.perfil} className={`combo-card ${CLASES[c.perfil]}`}>
+          <div key={`${c.perfil}-${idx}`} className={`combo-card ${CLASES[c.perfil]}`}>
             <div className="combo-top">
               <span className="combo-perfil">{c.emoji} {c.titulo}</span>
               {c.mismoPartido && <span className="combo-sgp-badge">MISMO PARTIDO</span>}

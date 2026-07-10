@@ -45,9 +45,124 @@ function equipoFavorito(partido) {
   return partido.prob.home >= partido.prob.away ? partido.home : partido.away
 }
 
-// Bet builder auto-armado desde los mercados del propio partido: resultado (fija) +
-// goleador estrella del favorito + Over 1.5. Legs compatibles y correlacionados, como los
-// que ofrecen las casas (bet365 "Bet Builder", FanDuel "Same Game Parlay").
+// ─── Same-game parlays escalonados (segura → valor → arriesgada) ───────────
+// Siempre se generan para cada partido futuro, independientemente de cuántos hay.
+
+// 🟢 Segura: fija (prob alta) + Over 1.5 — dos mercados de alta confianza.
+function buildSGPSegura(partido) {
+  const legs = [buildLeg(partido, partido.picks.fija)]
+
+  if (partido.goles?.over15) {
+    legs.push(buildLeg(partido, { seleccion: 'Over 1.5 goles', prob: partido.goles.over15 }))
+  }
+
+  if (legs.length < 2) return null
+  const { cuotaTotal, cuotaSinAjuste, probCombinada } = combinarMismoPartido(legs)
+  return {
+    perfil: 'segura',
+    emoji: '🟢',
+    titulo: 'Segura (mismo partido)',
+    mismoPartido: `${partido.home} vs ${partido.away}`,
+    riesgoAlto: false,
+    legs,
+    cuotaTotal,
+    cuotaSinAjuste,
+    probCombinada,
+  }
+}
+
+// 🟡 Valor: resultado favorito (90') + goleador estrella — riesgo medio, cuota atractiva.
+function buildSGPValor(partido) {
+  const fav = equipoFavorito(partido)
+  const legs = []
+
+  // Buscar "Gana X (90 min)" en alternativas o construirlo
+  const gana90 = partido.picks.alternativas?.find(a =>
+    /Gana .+ \(90 min\)/i.test(a.seleccion)
+  )
+  if (gana90) {
+    legs.push(buildLeg(partido, gana90))
+  } else if (partido.prob.home >= 45 || partido.prob.away >= 45) {
+    // Construir desde probabilidades si no hay alternativa explícita
+    const probFav = Math.max(partido.prob.home, partido.prob.away)
+    const nombre = fav
+    legs.push(buildLeg(partido, { seleccion: `Gana ${nombre} (90 min)`, prob: probFav }))
+  }
+
+  const gols = partido.arriesgados?.goleadores ?? []
+  const gol = gols.find(g => g.equipo === fav) ?? gols[0]
+  if (gol) {
+    legs.push(buildLeg(partido, { prob: gol.prob, cuota: gol.cuota, fuenteCuota: gol.fuenteCuota }, `${gol.jugador} marca`))
+  }
+
+  if (legs.length < 2) return null
+  const { cuotaTotal, cuotaSinAjuste, probCombinada } = combinarMismoPartido(legs)
+  return {
+    perfil: 'valor',
+    emoji: '🟡',
+    titulo: 'Valor (mismo partido)',
+    mismoPartido: `${partido.home} vs ${partido.away}`,
+    riesgoAlto: false,
+    legs,
+    cuotaTotal,
+    cuotaSinAjuste,
+    probCombinada,
+  }
+}
+
+// 🔴 Arriesgada: resultado favorito (90') + goleador estrella + BTTS Sí/No o Under.
+// Tres legs del mismo partido con cuota alta — alto riesgo, alto premio.
+function buildSGPArriesgada(partido) {
+  const fav = equipoFavorito(partido)
+  const legs = []
+
+  // Resultado favorito
+  const gana90 = partido.picks.alternativas?.find(a =>
+    /Gana .+ \(90 min\)/i.test(a.seleccion)
+  )
+  if (gana90) {
+    legs.push(buildLeg(partido, gana90))
+  } else {
+    const probFav = Math.max(partido.prob.home, partido.prob.away)
+    if (probFav >= 40) {
+      legs.push(buildLeg(partido, { seleccion: `Gana ${fav} (90 min)`, prob: probFav }))
+    }
+  }
+
+  // Goleador estrella del favorito
+  const gols = partido.arriesgados?.goleadores ?? []
+  const gol = gols.find(g => g.equipo === fav) ?? gols[0]
+  if (gol) {
+    legs.push(buildLeg(partido, { prob: gol.prob, cuota: gol.cuota, fuenteCuota: gol.fuenteCuota }, `${gol.jugador} marca`))
+  }
+
+  // Tercer leg: BTTS No si vallaAway es alta (favorito mantiene arco), sino Under 2.5
+  if (partido.goles) {
+    if (partido.goles.bttsNo >= 50) {
+      legs.push(buildLeg(partido, { seleccion: 'Ambos anotan No', prob: partido.goles.bttsNo }))
+    } else if (partido.goles.over25 < 50) {
+      legs.push(buildLeg(partido, { seleccion: 'Under 2.5 goles', prob: 100 - partido.goles.over25 }))
+    } else if (partido.goles.bttsSi >= 48) {
+      legs.push(buildLeg(partido, { seleccion: 'Ambos anotan', prob: partido.goles.bttsSi }))
+    }
+  }
+
+  if (legs.length < 3) return null
+  const { cuotaTotal, cuotaSinAjuste, probCombinada } = combinarMismoPartido(legs)
+  return {
+    perfil: 'arriesgada',
+    emoji: '🔴',
+    titulo: 'Arriesgada (mismo partido)',
+    mismoPartido: `${partido.home} vs ${partido.away}`,
+    riesgoAlto: true,
+    legs,
+    cuotaTotal,
+    cuotaSinAjuste,
+    probCombinada,
+  }
+}
+
+// Bet builder clásico (legacy): fija + goleador + Over 1.5.
 function buildBetBuilder(partido) {
   const legs = [buildLeg(partido, partido.picks.fija)]
 
@@ -108,9 +223,19 @@ export function buildCombinadas(partidos) {
     }
   }
 
-  // Bet builder (mismo partido) para cada partido futuro. Garantiza que la sección no
-  // desaparezca aunque quede un solo partido en el día.
+  // Same-game parlays escalonados: segura → valor → arriesgada para cada partido.
+  // Siempre se generan, garantizan contenido incluso con un solo partido en el día.
   for (const p of futuros) {
+    const sgpSegura = buildSGPSegura(p)
+    if (sgpSegura) result.push(sgpSegura)
+
+    const sgpValor = buildSGPValor(p)
+    if (sgpValor) result.push(sgpValor)
+
+    const sgpArriesgada = buildSGPArriesgada(p)
+    if (sgpArriesgada) result.push(sgpArriesgada)
+
+    // Bet builder clásico (legacy) como opción adicional
     const bb = buildBetBuilder(p)
     if (bb) result.push(bb)
   }

@@ -54,7 +54,7 @@ export const octavos = {
 // Cuartos: cruces confirmados por el bracket oficial FIFA.
 export const cuartos = {
   izquierda: [
-    { home: 'Francia',  away: 'Marruecos', fecha: '9 jul',  sede: 'Foxborough, MA' },
+    { home: 'Francia',  away: 'Marruecos', resultado: '2-0', fecha: '9 jul',  sede: 'Foxborough, MA' },
     { home: 'España',   away: 'Bélgica',   fecha: '10 jul', sede: 'Los Ángeles' },
   ],
   derecha: [
