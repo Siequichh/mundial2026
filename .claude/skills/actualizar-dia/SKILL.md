@@ -31,9 +31,12 @@ Skill orquestadora. Decide qué hacer según el estado actual del proyecto.
 | Hay partidos pasados sin `resultadoReal` | → **Paso 1: Archivar** |
 | Hay un partido de hoy que arranca en <60-90 min y sin XI | → **Paso 2: Recalibrar** |
 | La fecha de hoy no tiene jornada en `predicciones.js` | → **Paso 3: Nueva fecha** |
+| Todos los partidos de la jornada de `jornadas[0]` ya tienen `resultadoReal` y no quedan partidos de hoy sin jugar | → **Paso 3: Nueva fecha**, apuntando al próximo día con partidos programados |
 | Bracket tiene `hoy: true` en partidos ya jugados | → Siempre actualizar bracket |
 
 Pueden aplicar varios pasos a la vez. Ejecutarlos en orden: 1 → 2 → 3.
+
+**"Próximo día con partidos" ≠ mañana calendario.** El Mundial tiene días de descanso entre rondas (p. ej. entre el último cuarto de final y la primera semifinal). Antes de asumir que no hay nada que planear, chequear el calendario oficial FIFA de la fase actual para encontrar la fecha real del siguiente partido — puede ser 2-3 días después, no necesariamente el día siguiente.
 
 **Anotar al inicio:** qué partidos de hoy tienen kickoff posterior a la hora actual y aún no tienen `resultadoReal`. Esos son "pendientes de terminar esta sesión" → revisar en el Paso 3.5 antes del build.
 
@@ -90,7 +93,7 @@ Solo si hay un partido de hoy con kickoff en menos de 60-90 minutos:
 
 ## Paso 3 — Generar predicciones de fecha nueva
 
-Para cada partido de hoy (o mañana si ya es tarde) sin predicción en `predicciones.js`:
+Para cada partido de hoy sin predicción en `predicciones.js`. Si hoy ya no quedan partidos (todos jugados/archivados, o directamente no hay partidos programados hoy), buscar en el calendario oficial FIFA la fecha del próximo partido (puede ser mañana o varios días después si hay descanso entre rondas) y generar esa jornada en su lugar, para que el sitio nunca quede sin la próxima fecha cargada.
 
 ### 3.1 Investigación (obligatoria)
 Seguir la metodología completa en **`referencias/prediccion.md`**:

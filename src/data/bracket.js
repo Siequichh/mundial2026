@@ -55,7 +55,7 @@ export const octavos = {
 export const cuartos = {
   izquierda: [
     { home: 'Francia',  away: 'Marruecos', resultado: '2-0', fecha: '9 jul',  sede: 'Foxborough, MA' },
-    { home: 'España',   away: 'Bélgica',   fecha: '10 jul', sede: 'Los Ángeles' },
+    { home: 'España',   away: 'Bélgica',   resultado: '2-1', fecha: '10 jul', sede: 'Los Ángeles' },
   ],
   derecha: [
     { home: 'Noruega',    away: 'Inglaterra', fecha: '11 jul', sede: 'Kansas City' },
