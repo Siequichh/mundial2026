@@ -5,6 +5,104 @@
 // La confianza de cada pick se deriva de su propia probabilidad (no se reparte entre partidos).
 export const jornadas = [
   {
+    fecha: '2026-07-15',
+    etiqueta: 'Semifinales',
+    partidos: [
+      {
+        id: 'ing-arg',
+        home: 'Inglaterra', away: 'Argentina',
+        sede: 'Mercedes-Benz Stadium, Atlanta',
+        kickoffUtc: '2026-07-15T19:00:00Z',
+        contexto: 'La semifinal más cargada de historia del cuadro derecho. Inglaterra llega tras eliminar a R.D. Congo (2-1), México (3-2) y Noruega (2-1 en prórroga con un doblete heroico de Bellingham). Kane lleva 6 goles y Bellingham 6 — entre ambos concentran casi todo el peligro inglés. Argentina, campeona defensora, avanzó por la vía más dramática posible: 3-2 a Cabo Verde en prórroga, 3-2 a Egipto remontando un 0-2, y 3-1 a Suiza en prórroga (Mac Allister, Álvarez y Lautaro marcaron tras la expulsión de Embolo). Messi lleva 8 goles y lidera el Botín de Oro; su estado de forma es histórico para un Mundial a los 39 años. Ambos equipos jugaron prórroga en cuartos (solo 3 días de descanso para Argentina, 4 para Inglaterra), lo que nivela el desgaste físico. BAJA CONFIRMADA de Inglaterra: Jarell Quansah sigue suspendido (roja vs México, sanción de 2 partidos). Sin otras bajas importantes reportadas en ninguno de los dos equipos. El precedente más reciente: cuartos de Rusia 2018, donde Inglaterra ganó por penales tras el 1-1. Árbitro: por confirmar (FIFA lo anuncia ~24h antes).',
+        xg: { home: 1.30, away: 1.35 },
+        rho: -0.08,
+        prob: { home: 36.0, draw: 29.0, away: 35.0 },
+        validacion: [
+          { fuente: 'Modelo (Dixon-Coles)', home: 36.0, draw: 29.0, away: 35.0 },
+          { fuente: 'bet365 (de-vig)', home: 37.1, draw: 31.5, away: 31.5 },
+          { fuente: 'Kalshi (traders)', home: 38, draw: 32, away: 31 },
+        ],
+        goles: { over15: 71.0, over25: 45.0, over35: 24.0, bttsSi: 52.5, bttsNo: 47.5, vallaHome: 25.9, vallaAway: 27.3 },
+        marcadores: [
+          { score: '1-1', pct: 13.5 }, { score: '1-0', pct: 10.0 }, { score: '0-1', pct: 10.0 },
+          { score: '2-1', pct: 9.0 }, { score: '1-2', pct: 9.0 },
+        ],
+        arbitro: { nombre: 'Por confirmar', pais: 'Por confirmar', promAmarillas: 4.0 },
+        extras: {
+          corners: { esperados: 10.0, over85: 63.0, over95: 51.0, over105: 39.0, home: { esperados: 5.0 }, away: { esperados: 5.0 } },
+          tarjetas: { esperadas: 4.2, over35: 60.0, over45: 40.0 },
+          faltas: { esperadas: 25 },
+        },
+        arriesgados: {
+          anotaPrimero: { home: 42.0, away: 44.2, ninguno: 13.8 },
+          goleadores: [
+            { jugador: 'Lionel Messi', equipo: 'Argentina', prob: 48.0, cuota: 1.95, fuenteCuota: 'bet365', nota: '8 goles en el torneo, líder del Botín de Oro y récord histórico mundialista (21 goles en carrera); anotó en 6 eliminatorias consecutivas — el killer del favorito rival y la fuerza más imparable del Mundial' },
+            { jugador: 'Harry Kane', equipo: 'Inglaterra', prob: 40.0, cuota: 2.40, fuenteCuota: 'bet365', nota: '6 goles en el torneo, máximo goleador histórico inglés en Mundiales; referencia fija de 9 y finalizador letal en el área' },
+            { jugador: 'Jude Bellingham', equipo: 'Inglaterra', prob: 35.0, cuota: 2.80, fuenteCuota: 'bet365', nota: '6 goles en el torneo, doblete heroico vs Noruega en cuartos; motor de llegada desde la segunda línea con alto volumen de remate' },
+          ],
+        },
+        picks: {
+          fija: { seleccion: 'Over 1.5 goles', prob: 71.0, cuota: 1.38, fuenteCuota: 'bet365' },
+          alternativas: [
+            { seleccion: 'Ambos anotan', prob: 52.5, cuota: 1.78, fuenteCuota: 'bet365', nota: 'Dos ataques de altísimo nivel (Kane+Bellingham vs Messi+Álvarez) — difícil que algún arco quede en cero 90 minutos' },
+            { seleccion: 'Inglaterra clasifica', prob: 55.0, cuota: 1.73, fuenteCuota: 'bet365', nota: 'Leve favorito en el mercado de clasificación por el factor Bellingham y la solidez en prórroga; el precio refleja ventaja mínima' },
+            { seleccion: 'Argentina clasifica', prob: 45.0, cuota: 2.10, fuenteCuota: 'bet365', nota: 'La campeona defensora con Messi en estado de gracia; si el partido llega a penales, la experiencia argentina es un activo real' },
+          ],
+        },
+        lectura: 'El partido más parejo de las semifinales y uno de los más parejos del torneo. Las tres fuentes sitúan a Inglaterra como favorita por un margen mínimo a 90 minutos (~36-38%) pero el modelo propio equilibra más (36-35) por el peso de Messi y la capacidad argentina de generar goles contra cualquiera. El mercado de clasificación (England ~55%, Argentina ~45%) refleja una eliminatoria sin favorito claro: es la primera semifinal sin un favorito definido desde 2018. La lectura fuerte no está en el ganador sino en los goles — ambos equipos han demostrado que anotan y que conceden (Argentina recibió 6 goles en el torneo, Inglaterra 5). La prórroga es el escenario más probable de resolución (ambos la jugaron en cuartos). El Over 1.5 a 1.38 es la fija más segura; si se busca valor, Ambos anotan a 1.78 cubre la simetría ofensiva del cruce.',
+      },
+    ],
+  },
+  {
+    fecha: '2026-07-14',
+    etiqueta: 'Semifinales',
+    partidos: [
+      {
+        id: 'fra-esp',
+        home: 'Francia', away: 'España',
+        sede: 'AT&T Stadium, Arlington',
+        kickoffUtc: '2026-07-14T19:00:00Z',
+        contexto: 'Reedición de la semifinal de la Euro 2024 (España 2-1) y del cruce de la Nations League 2025 (España ganó en semis). Francia llega como el equipo más completo del torneo: 6 victorias en 6, 16 goles a favor, solo 2 en contra, y Mbappé con 8 goles (compite con Messi por el Botín de Oro, con 3 asistencias le da ventaja por desempate). España, la selección más consistente del cuadro izquierdo: 11 goles a favor, 2 en contra (mantuvo valla invicta hasta el gol de De Ketelaere vs Bélgica), y un carácter competitivo enorme — los últimos dos partidos de eliminatoria los resolvió Mikel Merino en los minutos finales (90\' vs Portugal, 88\' vs Bélgica). Francia descansó más (QF el 9 jul, 5 días de recuperación); España jugó el 10 jul (4 días). Sin bajas importantes en ninguno de los dos equipos. Dato táctico: España controló la posesión vs Francia en la Euro 2024 (57%) y limitó a Mbappé a 1 disparo al arco — el plan de Luis de la Fuente contra ataques rápidos ya tiene precedente exitoso. Árbitro: por confirmar (FIFA lo anuncia ~24h antes).',
+        xg: { home: 1.55, away: 1.15 },
+        rho: -0.07,
+        prob: { home: 43.0, draw: 27.0, away: 30.0 },
+        validacion: [
+          { fuente: 'Modelo (Dixon-Coles)', home: 43.0, draw: 27.0, away: 30.0 },
+          { fuente: 'bet365 (de-vig)', home: 41.7, draw: 28.9, away: 29.4 },
+          { fuente: 'Kalshi (traders)', home: 42, draw: 28, away: 30 },
+        ],
+        goles: { over15: 74.0, over25: 48.0, over35: 26.0, bttsSi: 52.0, bttsNo: 48.0, vallaHome: 31.6, vallaAway: 21.3 },
+        marcadores: [
+          { score: '1-0', pct: 12.5 }, { score: '1-1', pct: 12.0 }, { score: '2-1', pct: 10.0 },
+          { score: '2-0', pct: 9.5 }, { score: '0-1', pct: 9.0 },
+        ],
+        arbitro: { nombre: 'Por confirmar', pais: 'Por confirmar', promAmarillas: 4.0 },
+        extras: {
+          corners: { esperados: 10.5, over85: 66.0, over95: 54.0, over105: 42.0, home: { esperados: 6.0 }, away: { esperados: 4.5 } },
+          tarjetas: { esperadas: 4.2, over35: 60.0, over45: 40.0 },
+          faltas: { esperadas: 24 },
+        },
+        arriesgados: {
+          anotaPrimero: { home: 52.8, away: 39.2, ninguno: 8.0 },
+          goleadores: [
+            { jugador: 'Kylian Mbappé', equipo: 'Francia', prob: 50.0, cuota: 1.85, fuenteCuota: 'bet365', nota: '8 goles y 3 asistencias en el torneo, líder virtual del Botín de Oro; anotó en 5 de 6 partidos y tiene el récord histórico de goles en eliminatorias mundialistas (12) — el killer del favorito y la apuesta más sólida del partido' },
+            { jugador: 'Mikel Merino', equipo: 'España', prob: 28.0, cuota: 3.40, fuenteCuota: 'bet365', nota: 'El hombre de los goles decisivos: anotó los winners vs Portugal (90\') y vs Bélgica (88\'); no es el goleador principal de España pero es su arma letal en partidos cerrados' },
+            { jugador: 'Mikel Oyarzabal', equipo: 'España', prob: 30.0, cuota: 3.20, fuenteCuota: 'bet365', nota: 'Máximo goleador español del torneo (4 goles); referencia de área y finalizador principal del sistema coral de Luis de la Fuente' },
+          ],
+        },
+        picks: {
+          fija: { seleccion: 'Francia clasifica', prob: 58.0, cuota: 1.62, fuenteCuota: 'bet365' },
+          alternativas: [
+            { seleccion: 'Gana Francia (90 min)', prob: 43.0, cuota: 2.25, fuenteCuota: 'bet365', nota: 'Favorito moderado: mejor ataque del torneo (16 goles) contra la mejor defensa (2 concedidos), pero España ya le ganó en la Euro 2024 y en Nations League 2025' },
+            { seleccion: 'Mbappé anota en cualquier momento', prob: 50.0, cuota: 1.85, fuenteCuota: 'bet365', nota: 'Anotó en 5 de 6 partidos del torneo; la vía de gol más probable de todo el Mundial' },
+            { seleccion: 'España clasifica', prob: 42.0, cuota: 2.30, fuenteCuota: 'bet365', nota: 'Valor especulativo real: ganó las últimas 2 eliminatorias directas contra Francia y tiene a Merino en racha de goles decisivos' },
+          ],
+        },
+        lectura: 'Francia es favorita moderada (~43% a 90 min, ~58% a clasificación) y las tres fuentes convergen estrechamente (41-43% para Francia). La ventaja francesa viene de Mbappé (la máquina goleadora más fiable del torneo) y del mejor balance ataque/defensa del cuadro izquierdo (16-2 vs 11-2 de España). Pero el modelo NO tiene confianza ciega: España ya eliminó a Francia en la Euro 2024 con un plan táctico que limitó a Mbappé a un solo disparo al arco, y Merino ha demostrado que puede resolver partidos cerrados solo. Si el partido llega igualado al 80\', España es más peligrosa de lo que sugiere su xG. La fija es Francia clasifica a 1.62 (~58%), que cubre prórroga y penales: precio justo para un favorito moderado. Si se busca un pick individual, Mbappé a 1.85 es la cuota con más respaldo estadístico del torneo.',
+      },
+    ],
+  },
+  {
     fecha: '2026-07-11',
     etiqueta: 'Cuartos de Final',
     partidos: [
@@ -50,6 +148,10 @@ export const jornadas = [
           ],
         },
         lectura: 'El modelo no tiene lectura fuerte en el resultado a 90 minutos: las probabilidades son casi simétricas (42-31 con empate a 27). El valor está en los goles — el choque de dos de los mejores atacantes del torneo (Haaland vs Kane) en un partido sin clara presión defensiva hace al Over 2.5 la apuesta más sólida. Si hay que elegir ganador, Noruega tiene el factor sorpresa y a Haaland en racha; si hayque elegir una apuesta de clasificación, Noruega clasifica a cuota 1.60 cubre prórroga y penales.',
+        resultadoReal: '1-2',
+        nota: 'prórroga',
+        postAnalisis: 'Fija acertó (Over 2.5 goles, exactamente 3). El modelo leyó bien la estructura del partido: sin lectura fuerte del ganador (42-31-27), empate a 90\' (1-1) que se define en la prórroga. Bellingham —nuestro pick #3 de goleador a 30%— fue el héroe con doblete (45+2\', 93\'), mientras Haaland (pick #1, 44%) fue anulado por primera vez en el torneo. Kane tuvo gol anulado por fuera de juego. La apuesta por goles sobre bandos fue la decisión correcta. Lección: el BTTS y Over 2.5 son los mercados correctos cuando el modelo no distingue favorito claro; Bellingham como motor desde segunda línea era más predecible de lo que sugería su 30%.',
+        fijaAcerto: true,
       },
       {
         id: 'arg-sui',
@@ -93,6 +195,10 @@ export const jornadas = [
           ],
         },
         lectura: 'Lectura clara del modelo: Argentina es el favorito más definido del cuadro derecho. Las tres fuentes convergen en torno al 62-64% para Argentina en 90 minutos y 79-81% de clasificación. Messi en el mejor momento de su carrera mundialista hace difícil no apostar por él. El único riesgo es el factor Suiza: equipos muy organizados con un bloque compacto pueden frustrar a Argentina hasta los penales, como ya vimos con Colombia. La cuota 1.22 de Argentina clasifica es justa para 80% de probabilidad — poco valor pero poco riesgo.',
+        resultadoReal: '3-1',
+        nota: 'prórroga',
+        postAnalisis: 'Fija acertó: Argentina clasifica se cumplió con un 3-1 en la prórroga. La decisión de usar \'clasifica\' sobre \'gana 90 min\' fue validada: empate 1-1 a los 90\' (el 63% a tiempo reglamentario no cubrió). Mac Allister abrió (10\') en vez de Messi o Álvarez — los goleadores previstos no marcaron en los 90\'. Embolo fue expulsado por doble amarilla (simulación, 72\') y Suiza resistió en inferioridad hasta la prórroga, donde Álvarez (112\') y Lautaro (120+1\') sentenciaron. Ndoye, no Embolo, fue quien empató (67\'). Lección: en eliminatorias con favorito claro, el seguro de prórroga+penales vale más que el margen de prob a 90\'; y la distribución de goleadores siempre sorprende — los killers de área no siempre son los que el modelo señala.',
+        fijaAcerto: true,
       },
     ],
   },

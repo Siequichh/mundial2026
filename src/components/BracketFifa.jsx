@@ -62,7 +62,7 @@ function ColumnaTBD({ n, lado, titulo }) {
 }
 
 export default function BracketFifa() {
-  const { dieciseisavos, octavos, cuartos, rondasPorDefinir } = getBracket()
+  const { dieciseisavos, octavos, cuartos, semis, rondasPorDefinir } = getBracket()
 
   return (
     <div className="bracket-scroll">
@@ -76,7 +76,9 @@ export default function BracketFifa() {
         <div className="bk-col bk-col-izq" data-ronda="Cuartos">
           {cuartos.izquierda.map((m) => <Match key={`${m.home}-${m.away}`} m={m} lado="izq" />)}
         </div>
-        <ColumnaTBD n={rondasPorDefinir.semis.porLado} lado="izq" titulo="Semifinal" />
+        <div className="bk-col bk-col-izq" data-ronda="Semifinal">
+          {semis.izquierda.map((m) => <Match key={`${m.home}-${m.away}`} m={m} lado="izq" />)}
+        </div>
 
         <div className="bk-col bk-col-final" data-ronda="Final · 19 jul · MetLife">
           <div className="bk-final">
@@ -103,7 +105,9 @@ export default function BracketFifa() {
           </div>
         </div>
 
-        <ColumnaTBD n={rondasPorDefinir.semis.porLado} lado="der" titulo="Semifinal" />
+        <div className="bk-col bk-col-der" data-ronda="Semifinal">
+          {semis.derecha.map((m) => <Match key={`${m.home}-${m.away}`} m={m} lado="der" />)}
+        </div>
         <div className="bk-col bk-col-der" data-ronda="Cuartos">
           {cuartos.derecha.map((m) => <Match key={`${m.home}-${m.away}`} m={m} lado="der" />)}
         </div>

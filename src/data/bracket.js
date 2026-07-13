@@ -58,12 +58,21 @@ export const cuartos = {
     { home: 'España',   away: 'Bélgica',   resultado: '2-1', fecha: '10 jul', sede: 'Los Ángeles' },
   ],
   derecha: [
-    { home: 'Noruega',    away: 'Inglaterra', fecha: '11 jul', sede: 'Kansas City' },
-    { home: 'Argentina',  away: 'Suiza',      fecha: '11 jul', sede: 'Miami' },
+    { home: 'Noruega',    away: 'Inglaterra', resultado: '1-2', nota: 'prórroga', fecha: '11 jul', sede: 'Kansas City' },
+    { home: 'Argentina',  away: 'Suiza',      resultado: '3-1', nota: 'prórroga', fecha: '11 jul', sede: 'Miami' },
   ],
 }
 
-// Semis y final: por definir.
+// Semifinales confirmadas.
+export const semis = {
+  izquierda: [
+    { home: 'Francia', away: 'España', fecha: '14 jul', sede: 'Arlington, TX' },
+  ],
+  derecha: [
+    { home: 'Inglaterra', away: 'Argentina', fecha: '15 jul', sede: 'Atlanta, GA' },
+  ],
+}
+
 export const rondasPorDefinir = {
-  semis: { porLado: 1 },
+  final: { porLado: 0 },
 }
