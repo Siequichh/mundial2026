@@ -1,0 +1,9 @@
+partidos:
+- away: Argentina
+  home: Inglaterra
+  id: ing-arg
+  rho: -0.08
+  xg:
+    away: 1.28
+    home: 1.22
+
