@@ -66,13 +66,13 @@ export const cuartos = {
 // Semifinales confirmadas.
 export const semis = {
   izquierda: [
-    { home: 'Francia', away: 'España', fecha: '14 jul', sede: 'Arlington, TX' },
+    { home: 'Francia', away: 'España', resultado: '0-2', fecha: '14 jul', sede: 'Arlington, TX' },
   ],
   derecha: [
     { home: 'Inglaterra', away: 'Argentina', fecha: '15 jul', sede: 'Atlanta, GA' },
   ],
 }
 
-export const rondasPorDefinir = {
-  final: { porLado: 0 },
+export const final = {
+  home: 'España', away: 'Por definir', fecha: '19 jul', sede: 'MetLife Stadium, East Rutherford, NJ',
 }

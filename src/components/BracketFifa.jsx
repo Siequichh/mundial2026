@@ -62,7 +62,7 @@ function ColumnaTBD({ n, lado, titulo }) {
 }
 
 export default function BracketFifa() {
-  const { dieciseisavos, octavos, cuartos, semis, rondasPorDefinir } = getBracket()
+  const { dieciseisavos, octavos, cuartos, semis, finalMatch } = getBracket()
 
   return (
     <div className="bracket-scroll">
@@ -99,9 +99,13 @@ export default function BracketFifa() {
                 </defs>
               </svg>
             </span>
-            <div className="bk-match bk-vacio bk-match-final">
-              <div className="bk-pendiente">Final</div>
-            </div>
+            {finalMatch ? (
+              <Match m={finalMatch} lado="izq" />
+            ) : (
+              <div className="bk-match bk-vacio bk-match-final">
+                <div className="bk-pendiente">Final</div>
+              </div>
+            )}
           </div>
         </div>
 
