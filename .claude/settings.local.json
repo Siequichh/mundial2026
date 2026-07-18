@@ -9,7 +9,8 @@
       "WebFetch(domain:www.aljazeera.com)",
       "WebFetch(domain:www.cbssports.com)",
       "WebFetch(domain:cnnespanol.cnn.com)",
-      "WebFetch(domain:www.vegasinsider.com)"
+      "WebFetch(domain:www.vegasinsider.com)",
+      "WebFetch(domain:www.espn.com)"
     ]
   }
 }

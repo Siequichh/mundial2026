@@ -69,10 +69,10 @@ export const semis = {
     { home: 'Francia', away: 'España', resultado: '0-2', fecha: '14 jul', sede: 'Arlington, TX' },
   ],
   derecha: [
-    { home: 'Inglaterra', away: 'Argentina', fecha: '15 jul', sede: 'Atlanta, GA' },
+    { home: 'Inglaterra', away: 'Argentina', resultado: '1-2', fecha: '15 jul', sede: 'Atlanta, GA' },
   ],
 }
 
 export const final = {
-  home: 'España', away: 'Por definir', fecha: '19 jul', sede: 'MetLife Stadium, East Rutherford, NJ',
+  home: 'España', away: 'Argentina', fecha: '19 jul', sede: 'MetLife Stadium, East Rutherford, NJ',
 }

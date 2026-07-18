@@ -5,6 +5,104 @@
 // La confianza de cada pick se deriva de su propia probabilidad (no se reparte entre partidos).
 export const jornadas = [
   {
+    fecha: '2026-07-19',
+    etiqueta: 'Final',
+    partidos: [
+      {
+        id: 'esp-arg',
+        home: 'España', away: 'Argentina',
+        sede: 'MetLife Stadium, East Rutherford, NJ',
+        kickoffUtc: '2026-07-19T19:00:00Z',
+        contexto: 'La final del Mundial: España vs Argentina. España llega invicta hace 37 partidos y como la selección más consistente del torneo — mejor defensa (solo cedió ante Bélgica y Francia en fase eliminatoria), fútbol de posesión coral de Luis de la Fuente y una generación dorada liderada por Lamine Yamal (19) y Pedri en la creación, con Oyarzabal (4 goles) como referencia de área. Vino de eliminar a Portugal (1-0), Bélgica (2-1) y Francia (2-0), esta última una exhibición táctica que neutralizó a Mbappé. Argentina, la campeona defensora, llega por el camino más dramático posible: remontadas agónicas en cada ronda (3-2 a Egipto tras 0-2, 3-1 a Suiza en prórroga, y un 2-1 a Inglaterra dado vuelta con dos goles en seis minutos, ambos asistidos por Messi al 85\' y 90+2\'). Messi lidera el Botín de Oro con 8 goles a los 39 años y firma un torneo histórico; su capacidad de decidir en los minutos finales define a esta Argentina. El contraste es claro: el colectivo español más engrasado del mundo contra el individuo más determinante del planeta. España descansa un día más (semifinal 14 jul); Argentina jugó el 15. Sin bajas importantes confirmadas. Árbitro: por confirmar (FIFA lo anuncia ~24-48h antes de la final).',
+        xg: { home: 1.45, away: 1.10 },
+        rho: -0.10,
+        prob: { home: 43.0, draw: 30.0, away: 27.0 },
+        validacion: [
+          { fuente: 'Modelo (Dixon-Coles)', home: 43.0, draw: 30.0, away: 27.0 },
+          { fuente: 'FanDuel (de-vig)', home: 42.1, draw: 31.6, away: 26.3 },
+          { fuente: 'Mercados predicción', home: 42, draw: 32, away: 26 },
+        ],
+        goles: { over15: 72.3, over25: 46.9, over35: 25.3, bttsSi: 51.0, bttsNo: 49.0, vallaHome: 33.3, vallaAway: 23.5 },
+        marcadores: [
+          { score: '1-1', pct: 12.5 }, { score: '1-0', pct: 11.3 }, { score: '2-1', pct: 9.0 },
+          { score: '0-1', pct: 8.6 }, { score: '2-0', pct: 8.2 },
+        ],
+        arbitro: { nombre: 'Por confirmar', pais: 'Por confirmar', promAmarillas: 4.0 },
+        extras: {
+          corners: { esperados: 10.0, over85: 63.0, over95: 51.0, over105: 39.0, home: { esperados: 5.5 }, away: { esperados: 4.5 } },
+          tarjetas: { esperadas: 4.4, over35: 62.0, over45: 42.0 },
+          faltas: { esperadas: 25 },
+        },
+        arriesgados: {
+          anotaPrimero: { home: 52.4, away: 39.8, ninguno: 7.8 },
+          goleadores: [
+            { jugador: 'Lionel Messi', equipo: 'Argentina', prob: 40.0, cuota: 2.50, fuenteCuota: 'fanduel', nota: '8 goles en el torneo, líder del Botín de Oro y récord histórico mundialista; en su probable última final. Aunque marcó menos en las últimas rondas, su impacto por asistencia es letal — el killer del favorito rival por cualquier vía' },
+            { jugador: 'Mikel Oyarzabal', equipo: 'España', prob: 35.0, cuota: 3.00, fuenteCuota: 'modelo', nota: 'Máximo goleador español del torneo (4 goles) y referencia de área del sistema coral; anotó de penal la semifinal ante Francia' },
+            { jugador: 'Lamine Yamal', equipo: 'España', prob: 32.0, cuota: 3.30, fuenteCuota: 'fanduel', nota: 'La joya de 19 años, motor creativo del ataque español; asociación y desborde constante por la derecha, con volumen de remate en aumento' },
+          ],
+        },
+        picks: {
+          fija: { seleccion: 'España campeón', prob: 59.0, cuota: 1.69, fuenteCuota: 'fanduel' },
+          alternativas: [
+            { seleccion: 'Gana España (90 min)', prob: 43.0, cuota: 2.25, fuenteCuota: 'fanduel', nota: 'Favorita moderada a 90 minutos: mejor defensa del torneo y 37 partidos invicta, con el precedente reciente de haber vencido 2-0 a Francia con el mismo plan colectivo' },
+            { seleccion: 'Argentina campeón', prob: 41.0, cuota: 2.30, fuenteCuota: 'fanduel', nota: 'Valor real: la campeona defensora con Messi en estado de gracia y un ADN de remontada que la sacó viva de cada ronda; si el partido llega igualado a los minutos finales o a penales, la experiencia argentina pesa' },
+            { seleccion: 'Messi anota en cualquier momento', prob: 40.0, cuota: 2.50, fuenteCuota: 'fanduel', nota: 'La cuota individual con más respaldo del partido; anotó u asistió en cada ronda eliminatoria' },
+          ],
+        },
+        lectura: 'La final que enfrenta al mejor colectivo del mundo contra el mejor individuo. España es favorita moderada (~43% a 90 min, ~59% al título) y las tres fuentes convergen estrechamente (42-43%): su ventaja viene de la mejor defensa del torneo, 37 partidos invicta y un plan de posesión que ya neutralizó a Mbappé en semis. Pero el modelo NO da a España por segura: Argentina ha ganado los partidos que "debía" perder toda la eliminatoria, y con Messi cualquier igualdad a los 80\' se inclina hacia su lado. La lectura fuerte es que España controlará el balón y el ritmo, pero Argentina solo necesita una chispa. La fija es España campeón a 1.69 (~59%), que cubre prórroga y penales; el valor especulativo está en Argentina campeón a 2.30. Si se busca un pick individual, Messi a 2.50 sigue siendo la vía de gol más simbólica y estadísticamente respaldada del torneo.',
+      },
+    ],
+  },
+  {
+    fecha: '2026-07-18',
+    etiqueta: 'Tercer puesto',
+    partidos: [
+      {
+        id: 'fra-eng',
+        home: 'Francia', away: 'Inglaterra',
+        sede: 'Hard Rock Stadium, Miami',
+        kickoffUtc: '2026-07-18T21:00:00Z',
+        contexto: 'El partido por el tercer puesto entre los dos perdedores de semifinales: Francia (0-2 vs España) e Inglaterra (1-2 vs Argentina, remontada agónica al 85\' y 90+2\'). Es un partido de bajo peso emocional pero con dos incentivos individuales potentes: Mbappé (8 goles) y Kane (6) siguen vivos en la lucha por el Botín de Oro, y con Messi ya clasificado a la final con 8, ambos necesitan marcar para no ceder terreno. Históricamente los partidos por el tercer puesto son abiertos y de muchos goles (promedio ~3,5 en los últimos Mundiales) por la falta de presión defensiva y la rotación. Alineaciones previstas: Francia rota pero mantiene a Mbappé de referencia, con Cherki, Dembélé y Barcola por detrás y Kanté-Zaïre-Emery en el medio; Saliba se pierde el partido (operación de espalda) y Lacroix parte por delante de Konaté. Inglaterra rota fuerte: descansan Rice, Bellingham, Saka, Gordon y Stones, entran Mainoo, Eze, Madueke, Rogers y Rashford alrededor de Kane. Francia llega con un día más de descanso y como favorita en el mercado. Si termina empatado, va directo a penales (sin prórroga en el partido por el tercer puesto). Árbitro: por confirmar.',
+        xg: { home: 1.55, away: 1.20 },
+        rho: -0.05,
+        prob: { home: 46.0, draw: 26.0, away: 28.0 },
+        validacion: [
+          { fuente: 'Modelo (Dixon-Coles)', home: 46.0, draw: 26.0, away: 28.0 },
+          { fuente: 'FanDuel (de-vig)', home: 49.9, draw: 25.1, away: 25.0 },
+          { fuente: 'FanDuel (línea)', home: 47, draw: 26, away: 27 },
+        ],
+        goles: { over15: 76.0, over25: 51.9, over35: 29.7, bttsSi: 55.0, bttsNo: 45.0, vallaHome: 30.1, vallaAway: 21.2 },
+        marcadores: [
+          { score: '1-1', pct: 11.9 }, { score: '1-0', pct: 9.9 }, { score: '2-1', pct: 9.2 },
+          { score: '2-0', pct: 7.7 }, { score: '1-2', pct: 7.1 },
+        ],
+        arbitro: { nombre: 'Por confirmar', pais: 'Por confirmar', promAmarillas: 3.4 },
+        extras: {
+          corners: { esperados: 10.0, over85: 63.0, over95: 51.0, over105: 39.0, home: { esperados: 5.5 }, away: { esperados: 4.5 } },
+          tarjetas: { esperadas: 3.4, over35: 48.0, over45: 30.0 },
+          faltas: { esperadas: 21 },
+        },
+        arriesgados: {
+          anotaPrimero: { home: 52.8, away: 40.9, ninguno: 6.4 },
+          goleadores: [
+            { jugador: 'Kylian Mbappé', equipo: 'Francia', prob: 47.0, cuota: 1.90, fuenteCuota: 'modelo', nota: '8 goles y líder virtual del Botín de Oro junto a Messi; con el trofeo en juego y Messi ya en la final, jugará motivado por cerrar goleador — la apuesta individual más sólida del partido' },
+            { jugador: 'Harry Kane', equipo: 'Inglaterra', prob: 40.0, cuota: 2.30, fuenteCuota: 'modelo', nota: '6 goles en el torneo y también en carrera por el Botín de Oro; referencia fija de 9 pese a la rotación inglesa, con incentivo real de marcar' },
+            { jugador: 'Rayan Cherki', equipo: 'Francia', prob: 28.0, cuota: 3.40, fuenteCuota: 'modelo', nota: 'Titular esperado en el ataque rotado francés; creatividad y llegada desde la segunda línea en un partido que se prevé abierto' },
+          ],
+        },
+        picks: {
+          fija: { seleccion: 'Over 1.5 goles', prob: 76.0, cuota: 1.30, fuenteCuota: 'modelo' },
+          alternativas: [
+            { seleccion: 'Over 2.5 goles', prob: 51.9, cuota: 1.90, fuenteCuota: 'modelo', nota: 'Los partidos por el tercer puesto promedian ~3,5 goles: dos ataques de nivel (Mbappé, Kane) y defensas rotadas sin presión de resultado' },
+            { seleccion: 'Gana Francia (90 min)', prob: 46.0, cuota: 1.91, fuenteCuota: 'fanduel', nota: 'Favorita en el mercado por más descanso y mayor jerarquía ofensiva pese a la rotación de ambos' },
+            { seleccion: 'Mbappé anota en cualquier momento', prob: 47.0, cuota: 1.90, fuenteCuota: 'modelo', nota: 'Máxima motivación individual (Botín de Oro) y la vía de gol más probable del partido' },
+          ],
+        },
+        lectura: 'Partido de bajo peso emocional pero alto potencial goleador. El modelo hace a Francia favorita moderada (~46%) por su día extra de descanso y mayor jerarquía, en línea con el mercado (FanDuel la pone ~50%). Con ambos equipos rotando fuerte (Inglaterra descansa a Bellingham, Saka, Rice, Gordon y Stones; Francia sin Saliba) y sin presión de eliminatoria, la lectura fuerte NO está en el ganador sino en los goles: los partidos por el tercer puesto son históricamente abiertos (~3,5 goles de promedio) y aquí hay dos goleadores peleando el Botín de Oro (Mbappé 8, Kane 6). La fija es Over 1.5 a 1.30; el valor está en Over 2.5 a 1.90 y en Mbappé anotador, empujado por su incentivo personal. Al ser tercer puesto, un empate a 90\' va directo a penales.',
+      },
+    ],
+  },
+  {
     fecha: '2026-07-15',
     etiqueta: 'Semifinales',
     partidos: [
@@ -50,6 +148,9 @@ export const jornadas = [
           ],
         },
         lectura: 'El partido más parejo de las semifinales y uno de los más parejos del torneo. Las tres fuentes sitúan a Inglaterra como favorita por un margen mínimo a 90 minutos (~36-38%) pero el modelo propio equilibra más (36-35) por el peso de Messi y la capacidad argentina de generar goles contra cualquiera. El mercado de clasificación (England ~55%, Argentina ~45%) refleja una eliminatoria sin favorito claro: es la primera semifinal sin un favorito definido desde 2018. La lectura fuerte no está en el ganador sino en los goles — ambos equipos han demostrado que anotan y que conceden (Argentina recibió 6 goles en el torneo, Inglaterra 5). La prórroga es el escenario más probable de resolución (ambos la jugaron en cuartos). El Over 1.5 a 1.38 es la fija más segura; si se busca valor, Ambos anotan a 1.78 cubre la simetría ofensiva del cruce.',
+        resultadoReal: '1-2',
+        postAnalisis: 'Fija ACERTÓ: Over 1.5 (71%) — el partido terminó 1-2 (3 goles). Inglaterra se adelantó con Gordon (55\') y aguantó hasta que Argentina lo dio vuelta en seis minutos: Enzo Fernández (85\') y un cabezazo de Lautaro Martínez (90+2\'), ambos asistidos por Messi. También acertaron "Ambos anotan" (1.78) y "Argentina clasifica" (2.10 — el pick de valor especulativo). El modelo bordó el 1X2: lo pintó como moneda al aire (36/29/35) contra un mercado que hacía a Inglaterra favorita mínima, y fue Argentina quien pasó — el equilibrio del modelo (por el peso de Messi) resultó más certero que la línea de la casa. Lección clave sobre los goleadores: nuestros tres nombres (Messi, Kane, Bellingham) NO marcaron, pero Messi fue el hombre decisivo por la vía de la asistencia (doble asistencia). El mercado "anota en cualquier momento" lo penaliza injustamente cuando su impacto es como creador; en un jugador que reparte tanto como marca, conviene complementar el pick de goleador con "asistencia" o "participa en gol". Pickford sostuvo a Inglaterra con varias atajadas y Mac Allister pegó en el palo antes del empate.',
+        fijaAcerto: true,
       },
     ],
   },
