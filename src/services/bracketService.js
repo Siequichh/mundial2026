@@ -1,5 +1,5 @@
-import { dieciseisavos, octavos, cuartos, semis, final as finalMatch } from '../data/bracket'
+import { dieciseisavos, octavos, cuartos, semis, tercerPuesto, final as finalMatch } from '../data/bracket'
 
 export function getBracket() {
-  return { dieciseisavos, octavos, cuartos, semis, finalMatch }
+  return { dieciseisavos, octavos, cuartos, semis, tercerPuesto, finalMatch }
 }

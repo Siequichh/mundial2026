@@ -63,12 +63,19 @@ export function confianzaDe(prob) {
   return { label: 'BAJA', cls: 'conf-baja' }
 }
 
-export default function PartidoCard({ partido, index }) {
+export default function PartidoCard({ partido, index, isFinal }) {
   const [ref, visible] = useReveal()
   const conf = confianzaDe(partido.picks.fija.prob)
 
   return (
-    <article ref={ref} className={`ticket ${visible ? 'is-visible' : ''}`} style={{ '--i': index }}>
+    <article ref={ref} className={`ticket ${visible ? 'is-visible' : ''} ${isFinal ? 'ticket-final' : ''}`} style={{ '--i': index }}>
+      {isFinal && (
+        <div className="final-crown" aria-hidden="true">
+          <span className="crown-trophy">🏆</span>
+          <span className="crown-label">FINAL · FIFA WORLD CUP 2026</span>
+          <span className="crown-trophy">🏆</span>
+        </div>
+      )}
       {/* Talón del ticket: equipos, hora local, sede */}
       <header className="ticket-head">
         <div className="th-teams">

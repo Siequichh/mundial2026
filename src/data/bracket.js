@@ -73,6 +73,10 @@ export const semis = {
   ],
 }
 
+export const tercerPuesto = {
+  home: 'Francia', away: 'Inglaterra', resultado: '4-6', fecha: '18 jul', sede: 'Hard Rock Stadium, Miami',
+}
+
 export const final = {
   home: 'España', away: 'Argentina', fecha: '19 jul', sede: 'MetLife Stadium, East Rutherford, NJ',
 }

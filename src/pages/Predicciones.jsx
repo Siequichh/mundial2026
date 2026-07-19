@@ -49,14 +49,15 @@ export default function Predicciones() {
         {[...jornadas].reverse().map((j) => {
           const partidosFuturos = j.partidos.filter(p => !p.resultadoReal)
           if (partidosFuturos.length === 0) return null
+          const esFinal = j.etiqueta === 'Final'
           return (
-            <div className="jornada" key={j.fecha}>
+            <div className={`jornada ${esFinal ? 'jornada-final' : ''}`} key={j.fecha}>
               <div className="jornada-tag">
                 <span className="jornada-fecha">{fechaLarga(j.fecha)}</span>
                 <span className="jornada-ronda">{j.etiqueta}</span>
               </div>
               <div className="partidos-grid">
-                {partidosFuturos.map((p, i) => <PartidoCard key={p.id} partido={p} index={i} />)}
+                {partidosFuturos.map((p, i) => <PartidoCard key={p.id} partido={p} index={i} isFinal={esFinal} />)}
               </div>
             </div>
           )
