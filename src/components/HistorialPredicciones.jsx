@@ -16,9 +16,6 @@ export default function HistorialPredicciones() {
 
   if (archivados.length === 0) return null
 
-  const aciertos = archivados.filter(p => p.fijaAcerto).length
-  const pctAcierto = Math.round((aciertos / archivados.length) * 100)
-
   const dias = FILTROS.find(f => f.key === filtro)?.dias
   const visibles = archivados.filter(p =>
     dias === null || !hoy || diasDesde(p.fechaJornada, hoy) <= dias
@@ -30,7 +27,6 @@ export default function HistorialPredicciones() {
         <span className="comb-eyebrow">RESULTADOS YA JUGADOS</span>
         <h3 className="comb-title">Historial de predicciones <span className="historial-count">({archivados.length})</span></h3>
         <p className="comb-sub">Cómo le fue al modelo en los partidos que ya terminaron.</p>
-        <p className="hi-record">Récord del torneo: <strong>{aciertos}/{archivados.length}</strong> fijas acertadas ({pctAcierto}%)</p>
       </summary>
 
       <div className="historial-filtros">

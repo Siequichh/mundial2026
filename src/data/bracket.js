@@ -78,5 +78,5 @@ export const tercerPuesto = {
 }
 
 export const final = {
-  home: 'España', away: 'Argentina', resultado: '1-0', nota: 'prórroga', fecha: '19 jul', sede: 'MetLife Stadium, East Rutherford, NJ',
+  home: 'España', away: 'Argentina', fecha: '19 jul', sede: 'MetLife Stadium, East Rutherford, NJ',
 }
