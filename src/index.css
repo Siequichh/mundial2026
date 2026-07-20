@@ -1750,6 +1750,8 @@ button { font-family: inherit; }
 .historial-section:not([open]) .historial-head:hover .comb-title { color: var(--grass); }
 .historial-section[open] .historial-head { margin-bottom: 1.25rem; }
 .historial-count { color: var(--ink-faint); font-size: 0.7em; }
+.hi-record { font-size: 0.83rem; color: var(--ink-dim); margin: 0.35rem 0 0; }
+.hi-record strong { color: var(--grass); }
 
 .historial-filtros { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.25rem; }
 
